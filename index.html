@@ -60,14 +60,19 @@ section{padding:104px 0;position:relative}
 header.nav{position:sticky;top:0;z-index:70;background:rgba(239247235,.85);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
 header.nav.scrolled{border-color:var(--line);box-shadow:0 8px 30px -18px rgba(41,49,45,.3)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
-.brand{font-family:var(--f-head);font-weight:800;font-size:1.25rem;text-decoration:none;letter-spacing:-.02em;color:var(--navy);unicode-bidi:isolate}
+.brand{font-family:var(--f-head);font-weight:800;font-size:1.25rem;text-decoration:none;letter-spacing:-.02em;color:var(--navy);unicode-bidi:isolate;white-space:nowrap}
 .brand span:last-child{color:var(--blue)}
 .nav ul{list-style:none;display:flex;gap:6px;padding:0;align-items:center}
 .nav ul a{text-decoration:none;font-weight:500;font-size:.97rem;color:var(--ink-2);padding:8px 14px;border-radius:999px;transition:background .2s,color .2s}
 .nav ul a:hover{background:var(--tint-2);color:var(--ink)}
 .nav ul a.cta{background:var(--sky);color:var(--ink);font-weight:600}
 .nav ul a.cta:hover{background:var(--cyan);color:var(--ink)}
-.lang{font:inherit;font-weight:600;font-size:.92rem;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s,border-color .2s}
+.lang-wrap{display:flex;align-items:center;gap:8px}
+@media(max-width:420px){.nav .wrap{height:auto;min-height:68px;flex-wrap:wrap;padding-block:8px;row-gap:6px}.nav ul#menu{top:100%}.nav-end{margin-inline-start:auto}}
+@media(max-width:400px){.brand{font-size:1.05rem}.nav .wrap{gap:6px}.lang-wrap{gap:4px}.lang-wrap label{font-size:.78rem}.lang{font-size:.85rem;padding:6px 8px}.menu-btn{font-size:.85rem;padding:8px 8px}}
+@media(max-width:480px){.lang-wrap label{font-size:.85rem}.lang{padding:6px 10px}.nav-end{gap:6px}.menu-btn{padding:8px 10px}}
+.lang-wrap label{display:inline;margin:0;font-weight:600;font-size:.92rem;color:var(--ink-2)}
+.lang{width:auto;font:inherit;font-weight:600;font-size:.92rem;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;transition:background .2s,border-color .2s}
 .lang:hover{background:var(--tint-2);border-color:var(--blue)}
 .nav-end{display:flex;align-items:center;gap:10px}
 .menu-btn{display:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font:inherit;font-weight:600;color:var(--navy);cursor:pointer}
@@ -306,7 +311,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       </ul>
     </nav>
     <div class="nav-end">
-      <button class="lang" id="lang" type="button" aria-label="Changer de langue">Français</button>
+      <div class="lang-wrap"><label for="lang" id="langLabel">שפה</label><select class="lang" id="lang"><option value="he">עברית</option><option value="fr">Français</option></select></div>
       <button class="menu-btn" aria-expanded="false" aria-controls="menu" data-i18n="menu">Menu</button>
     </div>
   </div>
@@ -699,8 +704,8 @@ foot:"© <span class=\"yr\"></span> <span data-name>ישי סיטבון</span>. 
 top:"חזרה למעלה"
 };
 const META = {
-  fr:{title:" — Création de sites web sur mesure",desc:"Création de sites internet sur mesure : landing page, site vitrine avec espace admin et signature électronique, e-commerce. Tarifs clairs, livraison rapide, hébergement et maintenance inclus.",wa:"Bonjour, je souhaite un site web et j’aimerais en discuter.",mail:"Projet de site web",lang:"עברית",langAria:"Passer en hébreu",loc:"fr-FR"},
-  he:{title:" — בניית אתרים בהתאמה אישית",desc:"בניית אתרי אינטרנט בהתאמה אישית: דף נחיתה, אתר תדמית עם לוח ניהול וחתימה אלקטרונית, חנות אונליין. מחירים ברורים, אספקה מהירה, אחסון ותחזוקה כלולים.",wa:"שלום, אני מעוניין באתר אינטרנט ורוצה לשוחח על כך.",mail:"פרויקט אתר אינטרנט",lang:"Français",langAria:"Passer en français",loc:"he-IL"}
+  fr:{title:" — Création de sites web sur mesure",desc:"Création de sites internet sur mesure : landing page, site vitrine avec espace admin et signature électronique, e-commerce. Tarifs clairs, livraison rapide, hébergement et maintenance inclus.",wa:"Bonjour, je souhaite un site web et j’aimerais en discuter.",mail:"Projet de site web",langLabel:"Langue",loc:"fr-FR"},
+  he:{title:" — בניית אתרים בהתאמה אישית",desc:"בניית אתרי אינטרנט בהתאמה אישית: דף נחיתה, אתר תדמית עם לוח ניהול וחתימה אלקטרונית, חנות אונליין. מחירים ברורים, אספקה מהירה, אחסון ותחזוקה כלולים.",wa:"שלום, אני מעוניין באתר אינטרנט ורוצה לשוחח על כך.",mail:"פרויקט אתר אינטרנט",langLabel:"שפה",loc:"he-IL"}
 };
 
 /* On mémorise le texte français d'origine */
@@ -730,7 +735,7 @@ function applyLang(lang){
   document.title=NAME+M.title;
   document.querySelector('meta[name=description]').content=M.desc;
   document.querySelector('meta[property="og:title"]').content=NAME+M.title;
-  const lb=document.getElementById('lang');lb.textContent=M.lang;lb.setAttribute('aria-label',M.langAria);
+  document.getElementById('langLabel').textContent=M.langLabel;document.getElementById('lang').value=lang;
   document.querySelectorAll('[data-wa]').forEach(a=>{a.href=wa(M.wa);a.target="_blank";a.rel="noopener"});
   document.querySelectorAll('[data-mail]').forEach(a=>a.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent(M.mail));
   calc();
@@ -740,7 +745,7 @@ function applyLang(lang){
 const mb=document.querySelector('.menu-btn'),menu=document.getElementById('menu');
 mb.addEventListener('click',()=>{const o=menu.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
 menu.addEventListener('click',e=>{if(e.target.tagName==='A'){menu.classList.remove('open');mb.setAttribute('aria-expanded',false)}});
-document.getElementById('lang').addEventListener('click',()=>applyLang(LANG==='he'?'fr':'he'));
+document.getElementById('lang').addEventListener('change',e=>applyLang(e.target.value));
 
 /* Barre de progression et ombre de la nav */
 const bar=document.getElementById('progress'),nav=document.getElementById('nav');
