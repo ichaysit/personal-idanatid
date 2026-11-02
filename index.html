@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ישי סיטבון — בניית אתרים בהתאמה אישית</title>
+<meta name="description" content="בניית אתרי אינטרנט בהתאמה אישית: דף נחיתה, אתר תדמית עם לוח ניהול וחתימה אלקטרונית, חנות אונליין. מחירים ברורים, אספקה מהירה, אחסון ותחזוקה כלולים.">
+<meta property="og:title" content="ישי סיטבון — בניית אתרים בהתאמה אישית">
+<meta property="og:description" content="דף נחיתה, אתר תדמית Pro, חנות אונליין: אתרים מהירים, אלגנטיים וקלים לניהול. החבילות והמחירים כאן.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#A9DB9A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=Heebo:wght@400;500;600&family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"ישי סיטבון","alternateName":"Ichay Sitbon","email":"ichaysitsitbon@gmail.com","telephone":"+972587884418","description":"בניית אתרי אינטרנט בהתאמה אישית: דפי נחיתה, אתרי תדמית עם לוח ניהול, חנויות אונליין.","priceRange":"1500 ILS - 8000+ ILS","areaServed":"IL","availableLanguage":["he","fr","en"]}
+</script>
+<style>
+html:not(.ready) body{opacity:0}
+:root{
+  --navy:#3F4742;       /* gris mat foncé */
+  --navy-2:#4A524D;
+  --ink:#29312D;
+  --ink-2:#5A6560;
+  --blue:#3A7A2E;       /* vert profond : texte et filets */
+  --blue-d:#2D6024;
+  --sky:#A9DB9A;        /* vert clair : aplats */
+  --cyan:#C8E9BC;
+  --tint:#EFF7EB;
+  --tint-2:#DDEED4;
+  --white:#ffffff;
+  --line:#D9E2D5;
+  --ok:#3A7A2E;
+  --r:18px;
+  --f-head:'Bricolage Grotesque',system-ui,sans-serif;
+  --f-body:'Figtree',system-ui,sans-serif;
+}
+[lang="he"]{--f-head:'Rubik','Heebo',system-ui,sans-serif;--f-body:'Heebo',system-ui,sans-serif}
+[lang="he"] h1,[lang="he"] h2,[lang="he"] h3{letter-spacing:0;line-height:1.18}
+[lang="he"] .price{letter-spacing:0}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--f-body);color:var(--ink);background:var(--tint);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;inset-inline-start:-999px;top:8px;background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;z-index:100}
+.skip:focus{inset-inline-start:8px}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:var(--f-head);line-height:1.05;letter-spacing:-.025em;color:var(--navy)}
+h1{font-size:clamp(2.5rem,6.2vw,4.7rem);font-weight:800}
+h2{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:800}
+h3{font-size:1.35rem;font-weight:700}
+p{max-width:62ch}
+section{padding:104px 0;position:relative}
+
+/* Barre de progression + nav */
+.progress{position:fixed;top:0;inset-inline-start:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--cyan));z-index:80}
+[dir="rtl"] .progress{transform-origin:100% 50%}
+header.nav{position:sticky;top:0;z-index:70;background:rgba(239,247,235,.85);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+header.nav.scrolled{border-color:var(--line);box-shadow:0 8px 30px -18px rgba(41,49,45,.3)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.brand{font-family:var(--f-head);font-weight:800;font-size:1.25rem;text-decoration:none;letter-spacing:-.02em;color:var(--navy);unicode-bidi:isolate}
+.brand span:last-child{color:var(--blue)}
+.nav ul{list-style:none;display:flex;gap:6px;padding:0;align-items:center}
+.nav ul a{text-decoration:none;font-weight:500;font-size:.97rem;color:var(--ink-2);padding:8px 14px;border-radius:999px;transition:background .2s,color .2s}
+.nav ul a:hover{background:var(--tint-2);color:var(--ink)}
+.nav ul a.cta{background:var(--sky);color:var(--ink);font-weight:600}
+.nav ul a.cta:hover{background:var(--cyan);color:var(--ink)}
+.lang{font:inherit;font-weight:600;font-size:.92rem;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s,border-color .2s}
+.lang:hover{background:var(--tint-2);border-color:var(--blue)}
+.nav-end{display:flex;align-items:center;gap:10px}
+.menu-btn{display:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font:inherit;font-weight:600;color:var(--navy);cursor:pointer}
+@media(max-width:860px){
+  .menu-btn{display:block}
+  .nav ul{display:none;position:absolute;top:68px;left:0;right:0;background:var(--tint);flex-direction:column;align-items:stretch;gap:0;border-bottom:1px solid var(--line);padding:8px 20px 16px}
+  .nav ul.open{display:flex}
+  .nav ul a{display:block;padding:12px 8px}
+}
+
+/* Boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 28px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid transparent;cursor:pointer;font:inherit;font-weight:600;transition:transform .2s,background .2s,color .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:var(--sky);color:var(--ink);box-shadow:0 14px 30px -18px rgba(41,49,45,.6)}
+.btn-primary:hover{background:#BFE6B2;box-shadow:0 18px 34px -18px rgba(41,49,45,.7)}
+.btn-ghost{border-color:var(--navy);color:var(--navy);background:transparent}
+.btn-ghost:hover{background:var(--navy);color:#fff}
+.btn-wa{background:var(--navy);color:#fff}
+.btn-wa:hover{background:#2D3430}
+
+/* HERO */
+.hero{padding:64px 0 110px;overflow:hidden;background:linear-gradient(180deg,#FBFDFA 0%,var(--tint) 100%)}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none;will-change:transform}
+.b1{width:520px;height:520px;background:#BFE6B2;top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}
+.b2{width:420px;height:420px;background:#D5D9D6;bottom:-200px;left:-120px;opacity:.38;animation:drift 18s ease-in-out infinite alternate-reverse}
+.b3{width:300px;height:300px;background:#C8E9BC;top:40%;left:46%;opacity:.4;animation:drift 16s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(50px,36px) scale(1.12)}}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;position:relative}
+.hero p.lead{font-size:1.2rem;color:var(--ink-2);margin:26px 0 34px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:34px;padding:0;list-style:none;color:var(--ink-2);font-size:.97rem}
+.facts li::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sky);margin-inline-end:9px;box-shadow:0 0 0 4px rgba(169,219,154,.35)}
+@media(max-width:940px){.hero .wrap{grid-template-columns:1fr}}
+
+.hero .in-1,.hero .in-2,.hero .in-3,.hero .in-4,.hero .stage{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero .in-1{animation-delay:.05s}.hero .in-2{animation-delay:.18s}.hero .in-3{animation-delay:.3s}.hero .in-4{animation-delay:.42s}
+.hero .stage{animation-delay:.25s}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+/* Scène maquette */
+.stage{position:relative;perspective:1200px;padding:18px}
+.device{background:#fff;border-radius:20px;box-shadow:0 40px 80px -30px rgba(41,49,45,.45),0 0 0 1px rgba(41,49,45,.06);transition:transform .25s ease-out;transform-style:preserve-3d;overflow:hidden}
+.chrome{display:flex;align-items:center;gap:7px;padding:12px 16px;background:var(--tint);border-bottom:1px solid var(--line)}
+.chrome i{width:10px;height:10px;border-radius:50%;background:#CBD1CD}
+.chrome span{margin-inline-start:10px;flex:1;background:#fff;border-radius:999px;font-size:.78rem;color:var(--ink-2);padding:4px 14px;border:1px solid var(--line);direction:ltr;text-align:left}
+.mock-tabs{display:flex;gap:6px;padding:12px 14px 0;background:#fff}
+.mock-tabs button{flex:1;background:var(--tint);color:var(--ink-2);border:1px solid var(--line);border-radius:10px;padding:9px 6px;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .2s,color .2s}
+.mock-tabs button:hover{background:var(--tint-2)}
+.mock-tabs button[aria-selected="true"]{background:var(--sky);color:var(--ink);border-color:var(--sky)}
+.screen{padding:16px 14px 18px;min-height:340px;position:relative}
+.panel{display:none}
+.panel.on{display:block;animation:swap .5s ease both}
+@keyframes swap{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.sk{background:var(--tint-2);border-radius:8px}
+.sk.b{background:var(--sky)}
+.sk.c{background:var(--cyan)}
+.row{display:flex;gap:10px;margin-top:10px}
+.cap{margin-top:14px;font-size:.88rem;color:var(--ink-2)}
+.sig{margin-top:10px;border:1.5px dashed #8A9690;border-radius:10px;height:78px;display:grid;place-items:center;background:var(--tint)}
+.sig path{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:420}
+.panel.on .sig path{animation:sign 2.2s .3s ease forwards}
+@keyframes sign{to{stroke-dashoffset:0}}
+.bars{display:flex;align-items:flex-end;gap:7px;height:62px}
+.bars i{flex:1;background:var(--sky);border-radius:5px 5px 2px 2px;height:30%;transform-origin:bottom}
+.panel.on .bars i{animation:grow 1s cubic-bezier(.2,.8,.2,1) both}
+.bars i:nth-child(1){--h:45%}.bars i:nth-child(2){--h:70%;animation-delay:.08s}.bars i:nth-child(3){--h:55%;animation-delay:.16s}.bars i:nth-child(4){--h:90%;animation-delay:.24s}.bars i:nth-child(5){--h:65%;animation-delay:.32s}.bars i:nth-child(6){--h:100%;animation-delay:.4s}
+@keyframes grow{from{height:6%}to{height:var(--h)}}
+.chip{position:absolute;background:#fff;border-radius:14px;padding:10px 14px;font-size:.86rem;font-weight:600;color:var(--navy);box-shadow:0 18px 40px -16px rgba(41,49,45,.45);display:flex;align-items:center;gap:9px;animation:float 5s ease-in-out infinite alternate;z-index:2}
+.chip b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--sky);color:var(--ink);font-size:.8rem}
+.chip.c1{top:-6px;inset-inline-end:-4px}
+.chip.c2{bottom:-14px;inset-inline-start:-22px;animation-delay:-2.2s;animation-duration:6.2s}
+.chip.c2 b{background:var(--navy);color:#fff}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+@media(max-width:1020px){.chip.c2{inset-inline-start:-4px}.chip.c1{inset-inline-end:0}}
+
+/* Bandeau défilant */
+.marquee{background:var(--sky);color:var(--ink);overflow:hidden;padding:18px 0;direction:ltr}
+.track{display:flex;width:max-content;animation:scroll 34s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-family:var(--f-head);font-weight:700;font-size:1.25rem;padding:0 26px;display:flex;align-items:center;gap:52px;white-space:nowrap}
+.track span::after{content:"";width:9px;height:9px;background:var(--navy);transform:rotate(45deg)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* À PROPOS */
+.about{background:var(--tint)}
+.about .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
+.portrait{aspect-ratio:4/5;border-radius:28px;background:linear-gradient(155deg,var(--sky) 0%,var(--cyan) 100%);color:var(--ink);display:grid;place-items:center;text-align:center;padding:24px;font-size:.95rem;position:relative;overflow:hidden}
+.portrait::before,.portrait::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.18)}
+.portrait::before{width:260px;height:260px;top:-80px;right:-80px;animation:drift 12s ease-in-out infinite alternate}
+.portrait::after{width:180px;height:180px;bottom:-50px;left:-40px;animation:drift 15s ease-in-out infinite alternate-reverse}
+.portrait span{position:relative}
+.about h2{margin-bottom:24px}
+.about p+p{margin-top:14px}
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.vals div{background:#fff;border-radius:16px;padding:18px;transition:transform .25s,box-shadow .25s}
+.vals div:hover{transform:translateY(-5px);box-shadow:0 18px 30px -20px rgba(41,49,45,.45)}
+.vals strong{display:block;font-family:var(--f-head);font-size:1.12rem;color:var(--blue);margin-bottom:4px}
+.vals span{font-size:.94rem;color:var(--ink-2);display:block;line-height:1.5}
+@media(max-width:940px){.about .wrap{grid-template-columns:1fr;gap:40px}.portrait{aspect-ratio:16/9}.vals{grid-template-columns:1fr}}
+
+.head{margin-bottom:54px}
+.head p{color:var(--ink-2);margin-top:16px;font-size:1.1rem}
+
+/* OFFRES */
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.offer{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:32px 28px;display:flex;flex-direction:column;position:relative;transition:transform .3s,box-shadow .3s}
+.offer:hover{transform:translateY(-8px);box-shadow:0 34px 50px -30px rgba(41,49,45,.45)}
+.offer.main{background:linear-gradient(165deg,var(--navy-2) 0%,var(--navy) 70%);color:#fff;border-color:transparent;box-shadow:0 40px 70px -36px rgba(63,71,66,.8)}
+.offer.main::before{content:"";position:absolute;inset:-2px;border-radius:calc(var(--r) + 2px);padding:2px;background:linear-gradient(130deg,var(--cyan),var(--sky));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.offer.main h3{color:#fff}
+.offer.main .muted,.offer.main li{color:#DCE3DE}
+.tag{position:absolute;top:-14px;inset-inline-start:28px;background:var(--sky);color:var(--navy);font-weight:700;font-size:.85rem;padding:5px 16px;border-radius:999px}
+.muted{color:var(--ink-2);font-size:.97rem}
+.price{font-family:var(--f-head);font-weight:800;font-size:2.15rem;letter-spacing:-.03em;margin:20px 0 2px;color:var(--blue);line-height:1.15;direction:ltr;text-align:left}
+[dir="rtl"] .price{text-align:right}
+.offer.main .price{color:#fff}
+.sub{font-weight:600;margin-bottom:20px;font-size:.95rem}
+.offer.main .sub{color:var(--sky)}
+.tiers{list-style:none;padding:0;margin:0 0 20px;border-top:1px solid var(--line)}
+.offer.main .tiers{border-color:rgba(255,255,255,.18)}
+.tiers li{padding:14px 0;border-bottom:1px solid var(--line);font-size:.96rem}
+.offer.main .tiers li{border-color:rgba(255,255,255,.18)}
+.tiers b{display:block;font-family:var(--f-head);font-size:1.05rem;color:var(--navy)}
+.offer.main .tiers b{color:#fff}
+.incl{list-style:none;padding:0;margin:0 0 26px;font-size:.96rem}
+.incl li{padding-inline-start:28px;position:relative;margin-bottom:9px}
+.incl li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--blue);font-weight:800}
+.offer.main .incl li::before{color:var(--sky)}
+.offer .btn{margin-top:auto}
+.offer.main .btn-primary{background:var(--sky);color:var(--ink);box-shadow:none}
+.offer.main .btn-primary:hover{background:var(--cyan)}
+@media(max-width:1000px){.offers{grid-template-columns:1fr;max-width:580px}}
+
+/* ESTIMATEUR */
+.calc{margin-top:64px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:38px;display:grid;grid-template-columns:1fr 1fr;gap:40px;box-shadow:0 30px 60px -44px rgba(41,49,45,.45)}
+.calc h3{margin-bottom:8px}
+.field{margin-top:18px}
+label{font-weight:600;display:block;margin-bottom:6px}
+select,input,textarea{width:100%;font:inherit;padding:13px 15px;border:1.5px solid #8A9690;border-radius:12px;background:#fff;color:var(--ink)}
+.stepper{display:flex;align-items:center;gap:14px;direction:ltr;justify-content:flex-start}
+[dir="rtl"] .stepper{justify-content:flex-end}
+.stepper button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--navy);background:#fff;font-size:1.35rem;cursor:pointer;color:var(--navy);transition:background .2s,color .2s,transform .15s}
+.stepper button:hover{background:var(--navy);color:#fff}
+.stepper button:active{transform:scale(.9)}
+.stepper output{min-width:36px;text-align:center;font-weight:700;font-size:1.3rem}
+.result{background:linear-gradient(160deg,var(--tint),var(--tint-2));border-radius:18px;padding:26px;align-self:start}
+.result dl{display:grid;grid-template-columns:1fr auto;gap:10px 16px}
+.result dt{color:var(--ink-2)}
+.result dd{font-weight:600;text-align:end}
+.result .total{border-top:1.5px solid var(--navy);margin-top:6px;padding-top:12px;font-family:var(--f-head);font-weight:800;font-size:1.3rem;color:var(--navy)}
+.result .total+dd{border-top:1.5px solid var(--navy);padding-top:12px;font-family:var(--f-head);font-weight:800;font-size:1.3rem;margin-top:6px;color:var(--blue)}
+.bump{animation:bump .35s ease}
+@keyframes bump{50%{transform:scale(1.12)}}
+@media(max-width:860px){.calc{grid-template-columns:1fr;padding:26px}}
+
+/* PROCESS */
+.process{background:var(--tint)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;list-style:none;padding:0;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding-top:30px}
+.steps li::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;border-radius:4px;background:#fff}
+.steps li::after{content:"";position:absolute;top:0;left:0;right:0;height:4px;border-radius:4px;background:var(--sky);transform:scaleX(0);transform-origin:0 50%;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+[dir="rtl"] .steps li::after{transform-origin:100% 50%}
+.steps li.in::after{transform:scaleX(1)}
+.steps li:nth-child(2)::after{transition-delay:.2s}.steps li:nth-child(3)::after{transition-delay:.4s}.steps li:nth-child(4)::after{transition-delay:.6s}
+.steps h3{font-size:1.18rem;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.steps h3::before{content:counter(s);display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:var(--sky);color:var(--ink);font-size:.95rem}
+.steps p{font-size:.96rem;color:var(--ink-2)}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* CONDITIONS */
+.terms{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;align-items:start}
+details{background:#fff;border:1px solid var(--line);border-radius:16px;transition:box-shadow .25s,border-color .25s}
+details:hover{border-color:var(--sky)}
+details[open]{box-shadow:0 20px 34px -26px rgba(41,49,45,.45);border-color:var(--blue)}
+summary{padding:20px 24px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;color:var(--navy)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--blue);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details div{padding:0 24px 22px;color:var(--ink-2);font-size:.97rem}
+details li{margin-top:7px;margin-inline-start:18px}
+@media(max-width:860px){.terms{grid-template-columns:1fr}}
+
+/* CONTACT */
+.contact{background:var(--navy);color:#fff;overflow:hidden}
+.contact::before,.contact::after{content:"";position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.contact::before{width:480px;height:480px;background:var(--sky);opacity:.3;top:-180px;left:-120px;animation:drift 16s ease-in-out infinite alternate}
+.contact::after{width:380px;height:380px;background:#CBD1CD;opacity:.18;bottom:-160px;right:-100px;animation:drift 19s ease-in-out infinite alternate-reverse}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;position:relative;z-index:1;align-items:center}
+.contact h2{color:#fff}
+.contact p{color:#DCE3DE;margin-top:18px}
+.contact .coords{color:#fff;font-weight:600}
+.contact .coords a{direction:ltr;unicode-bidi:isolate;display:inline-block;text-decoration:none}
+.contact .coords a:hover{text-decoration:underline}
+.contact form{background:#fff;color:var(--ink);padding:32px;border-radius:24px;box-shadow:0 40px 70px -30px rgba(0,0,0,.4)}
+.contact .field:first-child{margin-top:0}
+.contact form .note{font-size:.88rem;color:var(--ink-2);margin-top:12px}
+.direct{display:flex;flex-direction:column;gap:12px;margin-top:30px;align-items:flex-start}
+.direct .btn-wa{background:var(--sky);color:var(--ink)}
+.direct .btn-wa:hover{background:#BFE6B2}
+.direct .btn-ghost{border-color:#fff;color:#fff}
+.direct .btn-ghost:hover{background:#fff;color:var(--navy)}
+@media(max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+
+footer{padding:30px 0;font-size:.92rem;color:var(--ink-2);background:#F1F2F1}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+.js .rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.1s}.js .rv.d2{transition-delay:.2s}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+  .sig path{stroke-dashoffset:0}
+  .track{width:auto;flex-wrap:wrap}
+}
+</style>
+<noscript><style>html:not(.ready) body{opacity:1}</style></noscript>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<a class="skip" href="#main" data-i18n="skip">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span data-name>ישי סיטבון</span><span>.</span></a>
+    <nav aria-label="Navigation principale" data-i18n-aria="navAria">
+      <ul id="menu">
+        <li><a href="#apropos" data-i18n="nav1">À propos</a></li>
+        <li><a href="#offres" data-i18n="nav2">Offres &amp; tarifs</a></li>
+        <li><a href="#methode" data-i18n="nav3">Méthode</a></li>
+        <li><a href="#conditions" data-i18n="nav4">Conditions</a></li>
+        <li><a class="cta" href="#contact" data-i18n="nav5">Me contacter</a></li>
+      </ul>
+    </nav>
+    <div class="nav-end">
+      <button class="lang" id="lang" type="button" aria-label="Changer de langue">Français</button>
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu" data-i18n="menu">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+  <div class="blob b3" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <h1 class="in-1" data-i18n="h1">Des sites web qui travaillent pour votre activité.</h1>
+      <p class="lead in-2" data-i18n="lead">Je conçois votre site de A à Z : design sur mesure, mise en ligne, hébergement et maintenance. Vous gardez la main sur vos contenus, sans jargon et sans surprise de prix.</p>
+      <div class="cta in-3">
+        <a class="btn btn-primary" href="#offres" data-i18n="cta1">Voir les offres et les prix</a>
+        <a class="btn btn-wa" data-wa href="#contact" data-i18n="cta2">Écrire sur WhatsApp</a>
+      </div>
+      <ul class="facts in-4">
+        <li data-i18n="f1">Livraison dès 5 jours ouvrés</li>
+        <li data-i18n="f2">Hébergement et SSL inclus</li>
+        <li data-i18n="f3">Site en français, mobile first</li>
+      </ul>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="chip c1" aria-hidden="true"><b>✓</b><span data-i18n="chip1">Mandat signé</span></div>
+      <div class="chip c2" aria-hidden="true"><b>★</b><span data-i18n="chip2">Nouvelle demande reçue</span></div>
+      <div class="device" id="device" aria-label="Aperçu des trois types de sites" data-i18n-aria="mockAria">
+        <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span>www.votre-site.com</span></div>
+        <div class="mock-tabs" role="tablist">
+          <button role="tab" aria-selected="true" aria-controls="p1" id="t1" data-i18n="tab1">Starter</button>
+          <button role="tab" aria-selected="false" aria-controls="p2" id="t2" tabindex="-1" data-i18n="tab2">Vitrine Pro</button>
+          <button role="tab" aria-selected="false" aria-controls="p3" id="t3" tabindex="-1" data-i18n="tab3">E-commerce</button>
+        </div>
+        <div class="screen">
+          <div class="panel on" id="p1" role="tabpanel" aria-labelledby="t1">
+            <div class="sk b" style="height:100px;padding:18px"><div class="sk" style="height:12px;width:55%;background:rgba(255,255,255,.85)"></div><div class="sk" style="height:9px;width:36%;margin-top:9px;background:rgba(255,255,255,.55)"></div><div class="sk" style="height:22px;width:26%;margin-top:14px;border-radius:99px;background:#fff"></div></div>
+            <div class="row"><div class="sk" style="height:66px;flex:1"></div><div class="sk" style="height:66px;flex:1"></div><div class="sk" style="height:66px;flex:1"></div></div>
+            <div class="sk" style="height:30px;margin-top:10px"></div>
+            <div class="sk c" style="height:34px;width:46%;margin-top:10px;border-radius:99px"></div>
+            <p class="cap" data-i18n="cap1">Une page fluide qui mène le visiteur jusqu’au contact.</p>
+          </div>
+          <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+            <div class="row" style="margin-top:0"><div class="sk b" style="height:54px;flex:1"></div><div class="sk" style="height:54px;flex:1"></div><div class="sk" style="height:54px;flex:1"></div></div>
+            <div class="sk" style="margin-top:10px;padding:12px"><div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="sig" aria-hidden="true"><svg viewBox="0 0 200 60" width="190" height="56"><path d="M8 42 C 24 6, 38 66, 58 28 S 92 8, 108 40 S 146 58, 160 22 S 180 14, 194 30"/></svg></div>
+            <p class="cap" data-i18n="cap2">Pages multiples, espace admin privé et signature tactile.</p>
+          </div>
+          <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+            <div class="row" style="margin-top:0"><div class="sk" style="height:24px;flex:1;border-radius:99px"></div><div class="sk b" style="height:24px;width:64px;border-radius:99px"></div></div>
+            <div class="row"><div class="sk c" style="height:104px;flex:1"></div><div class="sk b" style="height:104px;flex:1"></div><div class="sk c" style="height:104px;flex:1"></div></div>
+            <div class="row"><div class="sk" style="height:12px;flex:1"></div><div class="sk" style="height:12px;flex:1"></div><div class="sk" style="height:12px;flex:1"></div></div>
+            <div class="sk b" style="height:38px;width:55%;margin-top:14px;border-radius:99px"></div>
+            <p class="cap" data-i18n="cap3">Catalogue, panier, paiement sécurisé et gestion des stocks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANDEAU -->
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track">
+    <span data-i18n="m1">Landing page</span><span data-i18n="m2">Site vitrine</span><span data-i18n="m3">Dashboard admin</span><span data-i18n="m4">Signature électronique</span><span data-i18n="m5">E-commerce</span><span data-i18n="m6">SEO</span><span data-i18n="m7">Hébergement inclus</span>
+  </div>
+</div>
+
+<!-- À PROPOS -->
+<section class="about" id="apropos">
+  <div class="wrap">
+    <div class="portrait rv" role="img" aria-label="Emplacement de la photo de profil" data-i18n-aria="portAria">
+      <span data-i18n="port">Votre photo ici<br><small>(remplacez ce bloc par &lt;img src="photo.jpg" alt="…"&gt;)</small></span>
+    </div>
+    <div class="rv d1">
+      <h2 data-i18n="abH">Je suis <span data-name>ישי סיטבון</span>, créateur de sites web.</h2>
+      <p data-i18n="ab1">Je crée des sites pour les indépendants, les PME et les agences qui veulent une présence en ligne claire, rapide et professionnelle. Je m’occupe de tout : la conception, le développement, la mise en ligne et le suivi.</p>
+      <p data-i18n="ab2">Mon approche : un site simple à comprendre pour vos visiteurs, simple à gérer pour vous. Quand c’est utile, j’ajoute de vrais outils métier, comme un espace d’administration pour gérer vos biens ou vos produits, ou la signature électronique de vos mandats.</p>
+      <p data-i18n="ab3">Parmi mes réalisations : un site vitrine immobilier pour Alliance Properties, avec dashboard privé et signature de mandats sur tablette.</p>
+      <div class="vals">
+        <div><strong data-i18n="v1a">Sur mesure</strong><span data-i18n="v1b">Pas de modèle recyclé : le site suit votre activité.</span></div>
+        <div><strong data-i18n="v2a">Transparent</strong><span data-i18n="v2b">Prix, délais et inclusions annoncés avant de commencer.</span></div>
+        <div><strong data-i18n="v3a">Suivi continu</strong><span data-i18n="v3b">Hébergement, sauvegardes et modifications mensuelles.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRES -->
+<section id="offres">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 data-i18n="ofH">Trois offres, des prix clairs.</h2>
+      <p data-i18n="ofP">Chaque offre comprend la création du site (paiement unique) et un abonnement mensuel pour l’hébergement, la sécurité et vos modifications. Tous les prix sont en shekels (ILS).</p>
+    </div>
+
+    <div class="offers">
+      <article class="offer rv">
+        <h3 data-i18n="o1h">Starter</h3>
+        <p class="muted" data-i18n="o1m">Landing page de conversion, pour indépendants, artisans, événements et professions libérales.</p>
+        <div class="price"><span data-count="1500">1 500</span> – <span data-count="2500">2 500</span> ₪</div>
+        <div class="sub" data-i18n="o1s">puis 150 ₪ / mois · livré en 5 à 7 jours ouvrés</div>
+        <ul class="tiers">
+          <li><b data-i18n="o1t1a">1 500 ₪ · Standard</b><span data-i18n="o1t1b">1 page, 4 sections : accueil, à propos, services, contact.</span></li>
+          <li><b data-i18n="o1t2a">2 000 ₪ · Intermédiaire</b><span data-i18n="o1t2b">6 sections, galerie photos ou portfolio, témoignages clients.</span></li>
+          <li><b data-i18n="o1t3a">2 500 ₪ · Premium</b><span data-i18n="o1t3b">Visuels retravaillés, aide à la rédaction, prise de rendez-vous (type Calendly), pixels Meta et Google.</span></li>
+        </ul>
+        <ul class="incl">
+          <li data-i18n="o1i1">Design responsive mobile, tablette, ordinateur</li>
+          <li data-i18n="o1i2">Bouton WhatsApp et formulaire de contact sécurisé</li>
+          <li data-i18n="o1i3">Chargement optimisé et SEO de base</li>
+          <li data-i18n="o1i4">Abonnement : hébergement CDN, SSL, sauvegardes hebdomadaires, 30 min de modifications par mois</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact" data-offer="starter" data-i18n="o1b">Demander le Starter</a>
+      </article>
+
+      <article class="offer main rv d1">
+        <span class="tag" data-i18n="tag">L’offre phare</span>
+        <h3 data-i18n="o2h">Vitrine Pro &amp; Dashboard Admin</h3>
+        <p class="muted" data-i18n="o2m">Pour PME, agences immobilières, cabinets et prestataires exigeants.</p>
+        <div class="price"><span data-count="3000">3 000</span> – <span data-count="5000">5 000</span> ₪</div>
+        <div class="sub" data-i18n="o2s">puis 300 ₪ / mois · livré en 10 à 15 jours ouvrés</div>
+        <ul class="tiers">
+          <li><b data-i18n="o2t1a">3 000 ₪ · Base vitrine</b><span data-i18n="o2t1b">3 à 4 pages (accueil, à propos, services, contact), design sur mesure.</span></li>
+          <li><b data-i18n="o2t2a">3 800 ₪ · Standard + Admin</b><span data-i18n="o2t2b">5 pages, animations interactives, contenus multimédias et panel d’administration privé pour gérer vos contenus seul.</span></li>
+          <li><b data-i18n="o2t3a">5 000 ₪ · Avancée + Web App</b><span data-i18n="o2t3b">6 pages et plus, filtres dynamiques, signature électronique de mandats et contrats en ligne.</span></li>
+        </ul>
+        <ul class="incl">
+          <li data-i18n="o2i1">Dashboard avec connexion sécurisée et base de données</li>
+          <li data-i18n="o2i2">Signature tactile sur écran (en option selon la formule)</li>
+          <li data-i18n="o2i3">Page supplémentaire : 500 ₪ chacune</li>
+          <li data-i18n="o2i4">Abonnement : hébergement premium, SSL, protection DDoS, sauvegardes quotidiennes, 1 h de support par mois</li>
+        </ul>
+        <a class="btn btn-primary" href="#contact" data-offer="pro" data-i18n="o2b">Demander la Vitrine Pro</a>
+      </article>
+
+      <article class="offer rv d2">
+        <h3 data-i18n="o3h">E-commerce &amp; sur-mesure</h3>
+        <p class="muted" data-i18n="o3m">Boutiques en ligne, catalogues interactifs et plateformes métier.</p>
+        <div class="price"><span data-count="4500">4 500</span> – <span data-count="8000">8 000</span>+ ₪</div>
+        <div class="sub" data-i18n="o3s">puis 400 ₪ / mois min. · livré en 15 à 30 jours ouvrés</div>
+        <ul class="tiers">
+          <li><b data-i18n="o3t1a">4 500 ₪ · Standard</b><span data-i18n="o3t1b">Jusqu’à 20 produits, panier, paiement sécurisé (Tranzila, CreditGuard, Hyp, Stripe).</span></li>
+          <li><b data-i18n="o3t2a">6 000 ₪ · Avancé</b><span data-i18n="o3t2b">Jusqu’à 100 produits, variantes taille et couleur, espace client, relance des paniers abandonnés.</span></li>
+          <li><b data-i18n="o3t3a">8 000 ₪+ · Plateforme</b><span data-i18n="o3t3b">Application complète : utilisateurs, signatures complexes, facturation automatisée, API tierces.</span></li>
+        </ul>
+        <ul class="incl">
+          <li data-i18n="o3i1">Tunnel d’achat pensé pour la conversion</li>
+          <li data-i18n="o3i2">E-mails automatiques : commande, facture, contrat</li>
+          <li data-i18n="o3i3">Stocks en temps réel depuis l’admin</li>
+          <li data-i18n="o3i4">Abonnement : hébergement dédié, surveillance 24/7 du paiement, sauvegardes en temps réel, 2 h 30 de support par mois</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact" data-offer="ecom" data-i18n="o3b">Demander l’E-commerce</a>
+      </article>
+    </div>
+
+    <div class="calc rv" id="estimateur">
+      <div>
+        <h3 data-i18n="cH">Estimez votre projet Vitrine Pro</h3>
+        <p class="muted" data-i18n="cP">Choisissez une formule et le nombre de pages en plus. Le total se met à jour.</p>
+        <div class="field">
+          <label for="tier" data-i18n="cL1">Formule</label>
+          <select id="tier">
+            <option value="3000" data-i18n="cO1">Base vitrine, 3 000 ₪</option>
+            <option value="3800" selected data-i18n="cO2">Standard + Admin, 3 800 ₪</option>
+            <option value="5000" data-i18n="cO3">Avancée + Web App, 5 000 ₪</option>
+          </select>
+        </div>
+        <div class="field">
+          <label id="pl" data-i18n="cL2">Pages supplémentaires (500 ₪ l’une)</label>
+          <div class="stepper" role="group" aria-labelledby="pl">
+            <button type="button" id="minus" aria-label="Retirer une page" data-i18n-aria="minus">−</button>
+            <output id="pages" aria-live="polite">0</output>
+            <button type="button" id="plus" aria-label="Ajouter une page" data-i18n-aria="plus">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <dl>
+          <dt data-i18n="r1">Formule</dt><dd id="r-base">3 800 ₪</dd>
+          <dt data-i18n="r2">Pages en plus</dt><dd id="r-extra">0 ₪</dd>
+          <dt class="total" data-i18n="r3">Création</dt><dd id="r-total">3 800 ₪</dd>
+          <dt data-i18n="r4">Acompte au démarrage (50 %)</dt><dd id="r-dep">1 900 ₪</dd>
+          <dt data-i18n="r5">Solde à la mise en ligne</dt><dd id="r-bal">1 900 ₪</dd>
+          <dt data-i18n="r6">Abonnement mensuel</dt><dd>300 ₪</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE -->
+<section class="process" id="methode">
+  <div class="wrap">
+    <div class="head rv"><h2 data-i18n="pH">Comment ça se passe.</h2><p data-i18n="pP">Un déroulé simple, avec des dates et des validations à chaque étape.</p></div>
+    <ol class="steps">
+      <li class="rv"><h3 data-i18n="s1h">Cadrage et devis</h3><p data-i18n="s1p">On définit votre besoin, la formule adaptée et le prix. Vous versez un acompte de 50 % pour démarrer.</p></li>
+      <li class="rv d1"><h3 data-i18n="s2h">Contenus</h3><p data-i18n="s2p">Vous m’envoyez textes, logo et visuels sous 7 jours. Je peux vous aider à les rédiger selon la formule.</p></li>
+      <li class="rv d2"><h3 data-i18n="s3h">Maquette et retours</h3><p data-i18n="s3p">Je vous présente le prototype. Vous avez 5 jours ouvrés pour demander des ajustements.</p></li>
+      <li class="rv d2"><h3 data-i18n="s4h">Mise en ligne</h3><p data-i18n="s4p">Vous réglez le solde, je publie le site et je vous remets vos accès. L’abonnement démarre ce jour-là.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section id="conditions">
+  <div class="wrap">
+    <div class="head rv"><h2 data-i18n="kH">Les conditions, sans petits caractères.</h2><p data-i18n="kP">Voici l’essentiel de ce que vous signez. Le détail complet figure sur le devis.</p></div>
+    <div class="terms rv">
+      <details open><summary data-i18n="k1h">Paiement</summary><div><ul>
+        <li data-i18n="k1a">Acompte non remboursable de 50 % avant le début des travaux.</li>
+        <li data-i18n="k1b">Solde de 50 % le jour de la mise en ligne ou de la remise des accès.</li>
+        <li data-i18n="k1c">Abonnement prélevé automatiquement au début de chaque mois, dès la mise en ligne.</li></ul></div></details>
+      <details><summary data-i18n="k2h">Changer d’offre</summary><div><ul>
+        <li data-i18n="k2a">Vous ne repayez jamais le prix plein : vous payez uniquement la différence avec ce que vous avez déjà versé pour la création.</li>
+        <li data-i18n="k2b">L’abonnement passe au tarif de la nouvelle formule dès sa livraison.</li></ul></div></details>
+      <details><summary data-i18n="k3h">Vos contenus et les délais</summary><div><ul>
+        <li data-i18n="k3a">Textes, logos et visuels haute définition à fournir sous 7 jours après la signature. Un retard de votre part décale la livraison d’autant.</li>
+        <li data-i18n="k3b">Sans retour sous 5 jours ouvrés après la présentation de la maquette, le projet est considéré comme validé.</li></ul></div></details>
+      <details><summary data-i18n="k4h">Propriété du site</summary><div><ul>
+        <li data-i18n="k4a">Le code et les visuels créés pour vous vous appartiennent après paiement intégral de la création.</li>
+        <li data-i18n="k4b">Les scripts d’administration et l’architecture restent ma propriété, avec une licence d’utilisation exclusive et illimitée tant que l’abonnement est actif.</li>
+        <li data-i18n="k4c">Je peux citer le projet dans mon portfolio et ajouter une mention discrète « Conçu par… » en bas de page.</li></ul></div></details>
+      <details><summary data-i18n="k5h">Abonnement et résiliation</summary><div><ul>
+        <li data-i18n="k5a">Engagement initial de 6 mois, puis résiliation par écrit avec 30 jours de préavis.</li>
+        <li data-i18n="k5b">Les minutes ou heures de modification non utilisées ne sont pas reportées.</li>
+        <li data-i18n="k5c">En cas de départ, le site est transféré chez l’hébergeur de votre choix, avec 500 ₪ de frais d’export.</li></ul></div></details>
+      <details><summary data-i18n="k6h">Signature électronique</summary><div><p data-i18n="k6a">Le module enregistre l’image de la signature, l’adresse IP et l’horodatage. Il vous revient de vérifier que les clauses de vos mandats respectent la législation locale en vigueur.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="rv">
+      <h2 data-i18n="tH">Parlons de votre projet.</h2>
+      <p data-i18n="tP">Décrivez-moi votre activité et ce que vous attendez de votre site. Je vous réponds avec la formule adaptée et un prix.</p>
+      <p class="coords"><a href="tel:+972587884418">058-788-4418</a><br><a href="mailto:ichaysitsitbon@gmail.com">ichaysitsitbon@gmail.com</a></p>
+      <div class="direct">
+        <a class="btn btn-wa" data-wa href="#contact" data-i18n="tB1">Discuter sur WhatsApp</a>
+        <a class="btn btn-ghost" data-mail href="#contact" data-i18n="tB2">Écrire un e-mail</a>
+      </div>
+    </div>
+    <form id="form" class="rv d1" aria-label="Formulaire de contact" data-i18n-aria="formAria">
+      <div class="field"><label for="n" data-i18n="fL1">Nom</label><input id="n" name="n" required autocomplete="name"></div>
+      <div class="field"><label for="t" data-i18n="fL2">Téléphone</label><input id="t" name="t" type="tel" required autocomplete="tel"></div>
+      <div class="field"><label for="o" data-i18n="fL3">Offre qui vous intéresse</label>
+        <select id="o"><option value="" data-i18n="fO0">Je ne sais pas encore</option><option value="starter" data-i18n="fO1">Starter</option><option value="pro" data-i18n="fO2">Vitrine Pro</option><option value="ecom" data-i18n="fO3">E-commerce</option></select></div>
+      <div class="field"><label for="m" data-i18n="fL4">Votre message</label><textarea id="m" rows="4" required></textarea></div>
+      <div class="field"><button class="btn btn-primary" type="submit" style="width:100%" data-i18n="fSend">Envoyer par WhatsApp</button></div>
+      <p class="note" data-i18n="fNote">Le message s’ouvre dans WhatsApp, prêt à envoyer. Rien n’est transmis avant que vous l’envoyiez.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="foot">© <span class="yr"></span> <span data-name>ישי סיטבון</span>. Tous droits réservés.</span>
+    <a href="#top" data-i18n="top">Retour en haut</a>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+
+/* ===== À MODIFIER : vos informations ===== */
+const CONFIG = {
+  nameFr: "Ichay Sitbon",
+  nameHe: "ישי סיטבון",
+  whatsapp: "972587884418",      // format international, sans + ni espaces
+  email: "ichaysitsitbon@gmail.com"
+};
+/* ========================================== */
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Le bandeau est doublé avant la capture du texte français, pour une boucle sans coupure */
+const track=document.getElementById('track');
+track.innerHTML += track.innerHTML;
+
+/* ================= Traductions (hébreu ; le français est le texte d'origine du HTML) ================= */
+const HE = {
+skip:"דלגו לתוכן",
+nav1:"אודות", nav2:"חבילות ומחירים", nav3:"תהליך העבודה", nav4:"תנאים", nav5:"יצירת קשר",
+navAria:"ניווט ראשי", menu:"תפריט",
+h1:"אתרי אינטרנט שעובדים בשביל העסק שלכם.",
+lead:"אני בונה את האתר שלכם מההתחלה ועד הסוף: עיצוב אישי, העלאה לאוויר, אחסון ותחזוקה. אתם שולטים בתכנים בעצמכם, בלי ז'רגון ובלי הפתעות במחיר.",
+cta1:"לצפייה בחבילות ובמחירים", cta2:"לכתוב בוואטסאפ",
+f1:"אספקה כבר מ-5 ימי עבודה", f2:"אחסון ו-SSL כלולים", f3:"אתר מותאם קודם כול לנייד",
+chip1:"מנדט נחתם", chip2:"התקבלה פנייה חדשה",
+mockAria:"תצוגה מקדימה של שלושת סוגי האתרים",
+tab1:"סטארטר", tab2:"תדמית Pro", tab3:"חנות אונליין",
+cap1:"דף זורם שמוביל את המבקר עד ליצירת קשר.",
+cap2:"עמודים מרובים, אזור ניהול פרטי וחתימה במגע.",
+cap3:"קטלוג, עגלה, תשלום מאובטח וניהול מלאי.",
+m1:"דף נחיתה", m2:"אתר תדמית", m3:"לוח ניהול", m4:"חתימה אלקטרונית", m5:"חנות אונליין", m6:"קידום SEO", m7:"אחסון כלול",
+portAria:"מקום לתמונת הפרופיל",
+port:"התמונה שלכם כאן<br><small>(החליפו את הבלוק ב-&lt;img src=\"photo.jpg\" alt=\"…\"&gt;)</small>",
+abH:"אני <span data-name>ישי סיטבון</span>, בונה אתרים.",
+ab1:"אני בונה אתרים לעצמאים, לעסקים קטנים ובינוניים ולסוכנויות שרוצים נוכחות דיגיטלית ברורה, מהירה ומקצועית. אני מטפל בהכול: תכנון, פיתוח, העלאה לאוויר וליווי שוטף.",
+ab2:"הגישה שלי: אתר פשוט להבנה עבור המבקרים ופשוט לניהול עבורכם. כשצריך, אני מוסיף כלים עסקיים אמיתיים, כמו אזור ניהול לנכסים או למוצרים שלכם, או חתימה אלקטרונית על מנדטים.",
+ab3:"בין הפרויקטים שלי: אתר תדמית נדל״ני עבור Alliance Properties, עם לוח ניהול פרטי וחתימה על מנדטים בטאבלט.",
+v1a:"בהתאמה אישית", v1b:"לא תבנית ממוחזרת: האתר מתאים לעסק שלכם.",
+v2a:"שקוף", v2b:"מחיר, זמנים ומה כלול נקבעים לפני שמתחילים.",
+v3a:"ליווי שוטף", v3b:"אחסון, גיבויים ושינויים חודשיים.",
+ofH:"שלוש חבילות, מחירים ברורים.",
+ofP:"כל חבילה כוללת את בניית האתר (תשלום חד-פעמי) ומנוי חודשי לאחסון, אבטחה ושינויים. כל המחירים בשקלים (₪).",
+o1h:"סטארטר",
+o1m:"דף נחיתה להמרה, לעצמאים, בעלי מלאכה, אירועים ומקצועות חופשיים.",
+o1s:"ואז 150 ₪ לחודש · אספקה תוך 5–7 ימי עבודה",
+o1t1a:"1,500 ₪ · סטנדרט", o1t1b:"דף אחד, 4 חלקים: דף הבית, אודות, שירותים, יצירת קשר.",
+o1t2a:"2,000 ₪ · בינוני", o1t2b:"6 חלקים, גלריית תמונות או תיק עבודות, המלצות לקוחות.",
+o1t3a:"2,500 ₪ · פרימיום", o1t3b:"ויזואלים משופרים, סיוע בכתיבת תוכן, קביעת פגישות (כמו Calendly), פיקסלים של Meta ו-Google.",
+o1i1:"עיצוב רספונסיבי לנייד, לטאבלט ולמחשב",
+o1i2:"כפתור וואטסאפ וטופס יצירת קשר מאובטח",
+o1i3:"טעינה מהירה וקידום אורגני (SEO) בסיסי",
+o1i4:"מנוי: אחסון על CDN, SSL, גיבוי שבועי, 30 דקות שינויים בחודש",
+o1b:"אני רוצה את הסטארטר",
+tag:"החבילה המובילה",
+o2h:"אתר תדמית Pro ולוח ניהול",
+o2m:"לעסקים קטנים ובינוניים, סוכנויות נדל״ן, משרדים ונותני שירות תובעניים.",
+o2s:"ואז 300 ₪ לחודש · אספקה תוך 10–15 ימי עבודה",
+o2t1a:"3,000 ₪ · בסיס תדמית", o2t1b:"3–4 עמודים (דף הבית, אודות, שירותים, יצירת קשר), עיצוב אישי.",
+o2t2a:"3,800 ₪ · סטנדרט + ניהול", o2t2b:"5 עמודים, אנימציות אינטראקטיביות, תכני מולטימדיה ולוח ניהול פרטי לניהול התכנים בעצמכם.",
+o2t3a:"5,000 ₪ · מתקדם + אפליקציית ווב", o2t3b:"6 עמודים ומעלה, פילטרים דינמיים, חתימה אלקטרונית על מנדטים וחוזים אונליין.",
+o2i1:"לוח ניהול עם התחברות מאובטחת ומסד נתונים",
+o2i2:"חתימה במגע על המסך (אופציונלי, לפי החבילה)",
+o2i3:"עמוד נוסף: 500 ₪ לכל עמוד",
+o2i4:"מנוי: אחסון פרימיום, SSL, הגנה מפני DDoS, גיבוי יומי, שעת תמיכה בחודש",
+o2b:"אני רוצה אתר תדמית Pro",
+o3h:"חנות אונליין ופיתוח בהתאמה אישית",
+o3m:"חנויות אונליין, קטלוגים אינטראקטיביים ופלטפורמות עסקיות.",
+o3s:"ואז 400 ₪ לחודש (מינימום) · אספקה תוך 15–30 ימי עבודה",
+o3t1a:"4,500 ₪ · סטנדרט", o3t1b:"עד 20 מוצרים, עגלת קניות, תשלום מאובטח (Tranzila, CreditGuard, Hyp, Stripe).",
+o3t2a:"6,000 ₪ · מתקדם", o3t2b:"עד 100 מוצרים, וריאציות של מידה וצבע, אזור אישי ללקוחות, תזכורות לעגלות נטושות.",
+o3t3a:"8,000 ₪+ · פלטפורמה", o3t3b:"אפליקציה מלאה: ניהול משתמשים, חתימות מורכבות, חשבוניות אוטומטיות, חיבורי API.",
+o3i1:"תהליך רכישה שבנוי להמרה",
+o3i2:"מיילים אוטומטיים: הזמנה, חשבונית, חוזה",
+o3i3:"מלאי בזמן אמת מלוח הניהול",
+o3i4:"מנוי: אחסון ייעודי, ניטור 24/7 של התשלומים, גיבוי בזמן אמת, שעתיים וחצי תמיכה בחודש",
+o3b:"אני רוצה את החנות",
+cH:"הערכת מחיר לאתר תדמית Pro",
+cP:"בחרו חבילה וכמה עמודים להוסיף. הסכום מתעדכן מיד.",
+cL1:"חבילה",
+cO1:"בסיס תדמית, 3,000 ₪", cO2:"סטנדרט + ניהול, 3,800 ₪", cO3:"מתקדם + אפליקציית ווב, 5,000 ₪",
+cL2:"עמודים נוספים (500 ₪ לעמוד)",
+minus:"להסיר עמוד", plus:"להוסיף עמוד",
+r1:"חבילה", r2:"עמודים נוספים", r3:"סה״כ בנייה", r4:"מקדמה בתחילת העבודה (50%)", r5:"יתרה בהעלאה לאוויר", r6:"מנוי חודשי",
+pH:"איך זה עובד.",
+pP:"תהליך פשוט, עם תאריכים ואישורים בכל שלב.",
+s1h:"אפיון והצעת מחיר", s1p:"מגדירים את הצורך, את החבילה המתאימה ואת המחיר. אתם משלמים מקדמה של 50% כדי להתחיל.",
+s2h:"תכנים", s2p:"אתם שולחים לי טקסטים, לוגו ותמונות תוך 7 ימים. אפשר לעזור לכם בכתיבה, לפי החבילה.",
+s3h:"הדמיה ותיקונים", s3p:"אני מציג לכם את האב-טיפוס. יש לכם 5 ימי עבודה לבקש תיקונים.",
+s4h:"העלאה לאוויר", s4p:"אתם משלמים את היתרה, אני מפרסם את האתר ומוסר לכם את הגישות. המנוי מתחיל באותו יום.",
+kH:"התנאים, בלי אותיות קטנות.",
+kP:"אלה עיקרי מה שאתם חותמים עליו. הפירוט המלא מופיע בהצעת המחיר.",
+k1h:"תשלום",
+k1a:"מקדמה של 50% שאינה מוחזרת, לפני תחילת העבודה.",
+k1b:"יתרה של 50% ביום העלאת האתר לאוויר או מסירת הגישות.",
+k1c:"המנוי נגבה אוטומטית בתחילת כל חודש, מיום העלאת האתר.",
+k2h:"מעבר בין חבילות",
+k2a:"אינכם משלמים שוב מחיר מלא: משלמים רק את ההפרש בין מה ששילמתם על הבנייה לבין מחיר החבילה החדשה.",
+k2b:"המנוי עובר לתעריף החבילה החדשה ברגע שהיא נמסרת.",
+k3h:"התכנים שלכם והזמנים",
+k3a:"טקסטים, לוגו ותמונות באיכות גבוהה יש להעביר תוך 7 ימים מהחתימה. איחור מצדכם דוחה את האספקה בהתאם.",
+k3b:"אם לא התקבל מענה תוך 5 ימי עבודה מהצגת ההדמיה, הפרויקט נחשב כמאושר.",
+k4h:"בעלות על האתר",
+k4a:"הקוד והוויזואלים שנוצרו עבורכם שייכים לכם לאחר תשלום מלא על הבנייה.",
+k4b:"סקריפטי הניהול והארכיטקטורה נשארים בבעלותי, עם רישיון שימוש בלעדי ובלתי מוגבל כל עוד המנוי פעיל.",
+k4c:"אני רשאי לציין את הפרויקט בתיק העבודות שלי ולהוסיף שורת קרדיט דיסקרטית בתחתית האתר (״נבנה על ידי…״).",
+k5h:"מנוי וביטול",
+k5a:"התחייבות ראשונית של 6 חודשים, ולאחר מכן ביטול בכתב בהודעה מראש של 30 ימים.",
+k5b:"דקות או שעות שינויים שלא נוצלו אינן עוברות לחודש הבא.",
+k5c:"במקרה של עזיבה, האתר מועבר לספק האחסון לבחירתכם, בתוספת 500 ₪ דמי ייצוא.",
+k6h:"חתימה אלקטרונית",
+k6a:"המודול שומר את תמונת החתימה, כתובת ה-IP וחותמת הזמן. באחריותכם לוודא שסעיפי המנדטים תואמים לחקיקה המקומית בתוקף.",
+tH:"בואו נדבר על הפרויקט שלכם.",
+tP:"ספרו לי על העסק ועל מה שאתם מצפים מהאתר. אחזור אליכם עם החבילה המתאימה ומחיר.",
+tB1:"לשוחח בוואטסאפ", tB2:"לשלוח מייל",
+formAria:"טופס יצירת קשר",
+fL1:"שם", fL2:"טלפון", fL3:"החבילה שמעניינת אתכם", fL4:"ההודעה שלכם",
+fO0:"עדיין לא בטוח", fO1:"סטארטר", fO2:"אתר תדמית Pro", fO3:"חנות אונליין",
+fSend:"שליחה בוואטסאפ",
+fNote:"ההודעה נפתחת בוואטסאפ, מוכנה לשליחה. שום דבר לא נשלח לפני שתלחצו על שליחה.",
+foot:"© <span class=\"yr\"></span> <span data-name>ישי סיטבון</span>. כל הזכויות שמורות.",
+top:"חזרה למעלה"
+};
+const META = {
+  fr:{title:" — Création de sites web sur mesure",desc:"Création de sites internet sur mesure : landing page, site vitrine avec espace admin et signature électronique, e-commerce. Tarifs clairs, livraison rapide, hébergement et maintenance inclus.",wa:"Bonjour, je souhaite un site web et j’aimerais en discuter.",mail:"Projet de site web",lang:"עברית",langAria:"Passer en hébreu",loc:"fr-FR"},
+  he:{title:" — בניית אתרים בהתאמה אישית",desc:"בניית אתרי אינטרנט בהתאמה אישית: דף נחיתה, אתר תדמית עם לוח ניהול וחתימה אלקטרונית, חנות אונליין. מחירים ברורים, אספקה מהירה, אחסון ותחזוקה כלולים.",wa:"שלום, אני מעוניין באתר אינטרנט ורוצה לשוחח על כך.",mail:"פרויקט אתר אינטרנט",lang:"Français",langAria:"Passer en français",loc:"he-IL"}
+};
+
+/* On mémorise le texte français d'origine */
+document.querySelectorAll('[data-i18n]').forEach(el=>{el.dataset.fr=el.innerHTML});
+document.querySelectorAll('[data-i18n-aria]').forEach(el=>{el.dataset.frAria=el.getAttribute('aria-label')});
+
+let LANG='he';
+const fmtN=n=>Math.round(n).toLocaleString(META[LANG].loc);
+const fmt=n=>fmtN(n)+" ₪";
+const wa = t => "https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(t);
+
+function fillDynamic(){
+  const NAME=LANG==='he'?CONFIG.nameHe:CONFIG.nameFr;
+  document.querySelectorAll('[data-name]').forEach(e=>e.textContent=NAME);
+  document.querySelectorAll('.yr').forEach(e=>e.textContent=new Date().getFullYear());
+  document.querySelectorAll('[data-count]').forEach(e=>e.textContent=fmtN(+e.dataset.count));
+}
+function applyLang(lang){
+  LANG=lang;
+  const M=META[lang],he=lang==='he',NAME=he?CONFIG.nameHe:CONFIG.nameFr;
+  const h=document.documentElement;
+  h.lang=lang;h.dir=he?'rtl':'ltr';
+  try{localStorage.setItem('lang',lang)}catch(e){}
+  document.querySelectorAll('[data-i18n]').forEach(el=>{el.innerHTML=he?HE[el.dataset.i18n]:el.dataset.fr});
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{el.setAttribute('aria-label',he?HE[el.dataset.i18nAria]:el.dataset.frAria)});
+  fillDynamic();
+  document.title=NAME+M.title;
+  document.querySelector('meta[name=description]').content=M.desc;
+  document.querySelector('meta[property="og:title"]').content=NAME+M.title;
+  const lb=document.getElementById('lang');lb.textContent=M.lang;lb.setAttribute('aria-label',M.langAria);
+  document.querySelectorAll('[data-wa]').forEach(a=>{a.href=wa(M.wa);a.target="_blank";a.rel="noopener"});
+  document.querySelectorAll('[data-mail]').forEach(a=>a.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent(M.mail));
+  calc();
+}
+
+/* Menu mobile */
+const mb=document.querySelector('.menu-btn'),menu=document.getElementById('menu');
+mb.addEventListener('click',()=>{const o=menu.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+menu.addEventListener('click',e=>{if(e.target.tagName==='A'){menu.classList.remove('open');mb.setAttribute('aria-expanded',false)}});
+document.getElementById('lang').addEventListener('click',()=>applyLang(LANG==='he'?'fr':'he'));
+
+/* Barre de progression et ombre de la nav */
+const bar=document.getElementById('progress'),nav=document.getElementById('nav');
+function onScroll(){
+  const h=document.documentElement.scrollHeight-innerHeight;
+  bar.style.transform='scaleX('+(h>0?scrollY/h:0)+')';
+  nav.classList.toggle('scrolled',scrollY>8);
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* Apparition au défilement + compteurs de prix */
+function countUp(el){
+  const to=+el.dataset.count;
+  if(reduce){el.textContent=fmtN(to);return}
+  const t0=performance.now(),d=1100;
+  (function step(t){
+    const k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);
+    el.textContent=fmtN(to*e);
+    if(k<1)requestAnimationFrame(step)
+  })(t0);
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll('[data-count]').forEach(countUp);
+  io.unobserve(e.target);
+}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* Onglets de la maquette */
+const tabs=[...document.querySelectorAll('.mock-tabs [role=tab]')];
+let cur=0,auto=null;
+function show(i){cur=i;tabs.forEach((t,k)=>{const on=k===i;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;const p=document.getElementById(t.getAttribute('aria-controls'));p.hidden=!on;p.classList.toggle('on',on)})}
+function stopAuto(){if(auto){clearInterval(auto);auto=null}}
+tabs.forEach((t,i)=>{
+  t.addEventListener('click',()=>{stopAuto();show(i)});
+  t.addEventListener('keydown',e=>{
+    const rtl=document.documentElement.dir==='rtl';
+    const next=(e.key==='ArrowRight')!==rtl;
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+      const j=next?(i+1)%3:(i+2)%3;
+      stopAuto();show(j);tabs[j].focus();
+    }
+  });
+});
+if(!reduce){auto=setInterval(()=>show((cur+1)%3),5200)}
+const dev=document.getElementById('device');
+dev.addEventListener('mouseenter',stopAuto);
+dev.addEventListener('focusin',stopAuto);
+
+/* Inclinaison 3D légère (souris uniquement) */
+if(!reduce && matchMedia('(pointer:fine)').matches){
+  const st=document.getElementById('stage');
+  st.addEventListener('mousemove',e=>{
+    const r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    dev.style.transform='rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg)';
+  });
+  st.addEventListener('mouseleave',()=>{dev.style.transform=''});
+}
+
+/* Estimateur */
+let pages=0;
+const tier=document.getElementById('tier');
+function calc(){
+  const base=+tier.value,extra=pages*500,tot=base+extra;
+  document.getElementById('pages').textContent=pages;
+  document.getElementById('r-base').textContent=fmt(base);
+  document.getElementById('r-extra').textContent=fmt(extra);
+  const rt=document.getElementById('r-total');
+  rt.textContent=fmt(tot);
+  rt.classList.remove('bump');void rt.offsetWidth;rt.classList.add('bump');
+  document.getElementById('r-dep').textContent=fmt(tot/2);
+  document.getElementById('r-bal').textContent=fmt(tot/2);
+}
+document.getElementById('plus').onclick=()=>{if(pages<20){pages++;calc()}};
+document.getElementById('minus').onclick=()=>{if(pages>0){pages--;calc()}};
+tier.onchange=calc;
+
+/* Pré-sélection de l'offre depuis les boutons */
+document.querySelectorAll('[data-offer]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('o').value=b.dataset.offer}));
+
+/* Formulaire → WhatsApp (message dans la langue active) */
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=id=>document.getElementById(id).value.trim();
+  const sel=document.getElementById('o'),offer=sel.options[sel.selectedIndex].text;
+  const txt = LANG==='he'
+    ? "שלום, שמי "+v('n')+" ("+v('t')+").\nחבילה: "+offer+".\n\n"+v('m')
+    : "Bonjour, je m’appelle "+v('n')+" ("+v('t')+").\nOffre : "+offer+".\n\n"+v('m');
+  window.open(wa(txt),'_blank','noopener');
+});
+
+/* Démarrage : hébreu par défaut, français si ?lang=fr ou choix précédent */
+let start='he';
+try{const q=new URLSearchParams(location.search).get('lang');const s=localStorage.getItem('lang');start=(q==='fr'||q==='he')?q:(s==='fr'||s==='he')?s:'he'}catch(e){}
+applyLang(start);
+document.documentElement.classList.add('ready');
+</script>
+</body>
+</html>
