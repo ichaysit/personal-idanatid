@@ -1,4 +1,4 @@
-# Ichay Sitbon — site personnel / אתר אישי
+# Idanatid — site de création de sites web / אתר בניית אתרים
 
 Page d'accueil pour présenter mes services de création de sites web, mes offres et mes tarifs.
 Le site s'ouvre en hébreu ; un bouton permet de passer en français (`?lang=fr` ouvre directement la version française).
