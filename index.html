@@ -3,17 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ישי סיטבון — בניית אתרים בהתאמה אישית</title>
-<meta name="description" content="בניית אתרי אינטרנט בהתאמה אישית: דף נחיתה, אתר תדמית עם לוח ניהול וחתימה אלקטרונית, חנות אונליין. מחירים ברורים, אספקה מהירה, אחסון ותחזוקה כלולים.">
-<meta property="og:title" content="ישי סיטבון — בניית אתרים בהתאמה אישית">
-<meta property="og:description" content="דף נחיתה, אתר תדמית Pro, חנות אונליין: אתרים מהירים, אלגנטיים וקלים לניהול. החבילות והמחירים כאן.">
+<title>Idanatid — בניית אתרים ואפליקציות לעסקים בישראל</title>
+<meta name="description" content="Idanatid בונה דפי נחיתה, אתרי תדמית עם לוח ניהול, חנויות אונליין ואפליקציות לעסקים בישראל. מחירים שנקבעים מראש, אספקה תוך 5-30 ימי עבודה. עוזר AI ווואטסאפ.">
+<meta property="og:title" content="Idanatid — בניית אתרים ואפליקציות לעסקים בישראל">
+<meta property="og:description" content="דפי נחיתה, אתרי תדמית עם לוח ניהול, חנויות אונליין ואפליקציות. מחירים שנקבעים מראש ואספקה תוך 5-30 ימי עבודה.">
+<meta property="og:url" content="https://ichaysit.github.io/personal-idanatid/">
+<meta property="og:site_name" content="Idanatid">
+<meta property="og:locale" content="he_IL">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://ichaysit.github.io/personal-idanatid/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#05060B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Heebo:wght@400;500;600;700&family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"ישי סיטבון","alternateName":"Ichay Sitbon","email":"ichaysitsitbon@gmail.com","telephone":"+972587884418","description":"בניית אתרי אינטרנט בהתאמה אישית: דפי נחיתה, אתרי תדמית עם לוח ניהול, חנויות אונליין.","priceRange":"1500 ILS - 17000+ ILS","areaServed":"IL","availableLanguage":["he","fr","en"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Idanatid","url":"https://ichaysit.github.io/personal-idanatid/","founder":{"@type":"Person","name":"Ichay Sitbon","alternateName":"ישי סיטבון"},"email":"ichaysitsitbon@gmail.com","telephone":"+972587884418","description":"בניית דפי נחיתה, אתרי תדמית עם לוח ניהול, חנויות אונליין ואפליקציות לעסקים בישראל.","priceRange":"1500 ILS - 17000+ ILS","areaServed":"IL","availableLanguage":["he","fr"]}
 </script>
 <style>
 html:not(.ready) body{opacity:0}
@@ -115,21 +123,10 @@ header.nav.scrolled{border-color:var(--line);box-shadow:0 8px 30px -18px rgba(11
 @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
 /* Bandeau défilant */
-.marquee{background:var(--sky);color:var(--ink);overflow:hidden;padding:18px 0;direction:ltr}
-.track{display:flex;width:max-content;animation:scroll 34s linear infinite}
-.marquee:hover .track{animation-play-state:paused}
-.track span{font-family:var(--f-head);font-weight:700;font-size:1.25rem;padding:0 26px;display:flex;align-items:center;gap:52px;white-space:nowrap}
-.track span::after{content:"";width:9px;height:9px;background:var(--navy);transform:rotate(45deg)}
-@keyframes scroll{to{transform:translateX(-50%)}}
 
 /* À PROPOS */
 .about{background:var(--tint)}
 .about .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
-.portrait{aspect-ratio:4/5;border-radius:28px;background:linear-gradient(155deg,var(--sky) 0%,var(--cyan) 100%);color:var(--ink);display:grid;place-items:center;text-align:center;padding:24px;font-size:.95rem;position:relative;overflow:hidden}
-.portrait::before,.portrait::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.18)}
-.portrait::before{width:260px;height:260px;top:-80px;right:-80px;animation:drift 12s ease-in-out infinite alternate}
-.portrait::after{width:180px;height:180px;bottom:-50px;left:-40px;animation:drift 15s ease-in-out infinite alternate-reverse}
-.portrait span{position:relative}
 .about h2{margin-bottom:24px}
 .about p+p{margin-top:14px}
 .vals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
@@ -259,7 +256,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .js .rv{opacity:1;transform:none}
   .sig path{stroke-dashoffset:0}
-  .track{width:auto;flex-wrap:wrap}
 }
 
 /* ===== THÈME CRISTAL : noir, blanc, bleu cristal, violet, une touche de jaune ===== */
@@ -314,12 +310,9 @@ header.nav.scrolled{border-color:rgba(255,255,255,.1);box-shadow:0 10px 40px -20
 @keyframes spinA{to{--a:360deg}}
 
 /* Bandeau : cristal */
-.marquee{background:var(--crystal);color:#0B0D14}
 
 /* À propos, offres, etc. */
 .about,.process{background:var(--tint)}
-.portrait{background:var(--crystal);color:#0B0D14}
-.portrait::before,.portrait::after{background:rgba(255,255,255,.35)}
 .vals div{box-shadow:0 1px 0 rgba(11,13,30,.04)}
 .offer{border-color:var(--line)}
 .offer.main{background:linear-gradient(165deg,#161A2B 0%,#0B0D14 75%);box-shadow:0 40px 80px -36px rgba(91,71,216,.55)}
@@ -372,6 +365,39 @@ footer{background:#F1F5FB}
 @media(max-width:480px){.cb-btn span.t{display:none}.cb-btn{padding:0 18px}.cb-panel.float{inset-inline-end:16px;bottom:88px}.hero-chat{height:min(520px,78vh)}}
 @media(max-width:600px){.cb-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.cb-chips button{flex:none}.hero p.lead{font-size:.95rem;margin-bottom:20px}.hero{padding-top:28px}}
 @media(prefers-reduced-motion:reduce){.hero-chat{animation:none}}
+.about .wrap{display:block;max-width:860px}
+
+/* ===== Direction sobre : un seul accent bleu, boutons peu arrondis, peu d'animation ===== */
+:root{--blue:#2457D6;--blue-d:#1B44AD;--ok:#2457D6;--crystal:#BDE6FF}
+.btn,.nav ul a,.nav ul a.cta,.lang,.menu-btn,.cb-btn{border-radius:12px}
+.eyebrow,.tag{border-radius:8px}
+.btn-primary,.nav ul a.cta,.btn-primary:hover{box-shadow:none}
+.progress{background:var(--sky)}
+.hero::before{background:radial-gradient(60% 55% at 15% 0%,rgba(60,110,255,.20),transparent 70%),radial-gradient(55% 50% at 88% 8%,rgba(89,195,255,.18),transparent 70%)}
+.blob{animation:none!important;opacity:.10}
+.b3{display:none}
+.hero h1{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff}
+.hero-chat{animation:none;background:rgba(189,230,255,.30);box-shadow:0 30px 80px -40px rgba(0,0,0,.85)}
+.steps li::after{background:var(--blue)}
+.steps h3::before{background:var(--sky)}
+.result{background:var(--tint)}
+.offer.main{box-shadow:0 30px 60px -36px rgba(11,13,30,.6)}
+.contact::before,.contact::after{animation:none!important;background:#3A6BFF;opacity:.14}
+.cb-chips button,.cb-form input,.cb-form button,.cb-msg a{border-radius:10px}
+.cb-btn{box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}
+.cb-btn .dot{background:var(--blue);box-shadow:none}
+.cb-panel.float{box-shadow:0 30px 70px -30px rgba(0,0,0,.85)}
+.cb-head .av{box-shadow:none;border-radius:10px}
+.cb-note a{color:var(--sky)}
+.flinks{display:flex;flex-wrap:wrap;gap:6px 22px}
+.flinks a{color:var(--ink-2)}
+.flinks a:hover{color:var(--ink)}
+.hero h1{font-size:clamp(1.9rem,4vw,3rem);max-width:30ch}
+.hero{padding-top:32px}
+.hero p.lead{margin:12px auto 22px}
+.hero-chat{height:min(410px,64vh)}
+@media(max-width:600px){.hero p.lead{display:none}.hero h1{margin-bottom:18px}}
+.hero .cta{margin-top:26px}
 </style>
 <noscript><style>html:not(.ready) body{opacity:1}</style></noscript>
 </head>
@@ -405,13 +431,13 @@ footer{background:#F1F5FB}
   <div class="blob b2" aria-hidden="true"></div>
   <div class="blob b3" aria-hidden="true"></div>
   <div class="wrap">
-    <p class="eyebrow in-1"><i class="spark" aria-hidden="true"></i><span data-i18n="eyebrow">La nouvelle génération · IA · Israël</span></p>
-    <h1 class="in-1" data-i18n="h1">Sites web et applications, propulsés par l’IA.</h1>
-    <p class="lead in-2" data-i18n="lead">Idanatid est la nouvelle génération de création de sites web et d’applications. Posez vos questions à l’assistant IA ci-dessous : tarifs, offres, délais, idées de projet.</p>
+    <p class="eyebrow in-1"><i class="spark" aria-hidden="true"></i><span data-i18n="eyebrow">Sites web · Applications · IA, pour les entreprises en Israël</span></p>
+    <h1 class="in-1" data-i18n="h1">Votre site web en ligne en 5 à 30 jours ouvrés, à prix annoncé d’avance.</h1>
+    <p class="lead in-2" data-i18n="lead">Idanatid crée des landing pages, sites vitrines avec espace d’administration, boutiques en ligne et applications. Posez vos questions à l’assistant ci-dessous, ou écrivez-nous directement sur WhatsApp.</p>
     <div class="hero-chat in-3" id="heroChat"></div>
     <div class="cta in-4">
-      <a class="btn btn-primary" href="#offres" data-i18n="cta1">Voir les offres et les prix</a>
-      <a class="btn btn-wa" data-wa href="#contact" data-i18n="cta2">Écrire sur WhatsApp</a>
+      <a class="btn btn-primary" data-wa href="#contact" data-i18n="cta2">Écrire sur WhatsApp</a>
+      <a class="btn btn-wa" href="#offres" data-i18n="cta1">Voir les offres et les prix</a>
     </div>
     <ul class="facts in-4">
       <li data-i18n="f1">Livraison dès 5 jours ouvrés</li>
@@ -422,19 +448,9 @@ footer{background:#F1F5FB}
   </div>
 </section>
 
-<!-- BANDEAU -->
-<div class="marquee" aria-hidden="true">
-  <div class="track" id="track">
-    <span data-i18n="m1">Landing page</span><span data-i18n="m2">Site vitrine</span><span data-i18n="m3">Dashboard admin</span><span data-i18n="m4">Signature électronique</span><span data-i18n="m5">E-commerce</span><span data-i18n="m6">SEO</span><span data-i18n="m7">Hébergement inclus</span>
-  </div>
-</div>
-
 <!-- À PROPOS -->
 <section class="about" id="apropos">
   <div class="wrap">
-    <div class="portrait rv" role="img" aria-label="Emplacement de la photo de profil" data-i18n-aria="portAria">
-      <span data-i18n="port">Votre photo ici<br><small>(remplacez ce bloc par &lt;img src="photo.jpg" alt="…"&gt;)</small></span>
-    </div>
     <div class="rv d1">
       <h2 data-i18n="abH">Je suis <span data-name>ישי סיטבון</span>, créateur de sites web.</h2>
       <p data-i18n="ab1">Je crée des sites pour les indépendants, les PME et les agences qui veulent une présence en ligne claire, rapide et professionnelle. Je m’occupe de tout : la conception, le développement, la mise en ligne et le suivi.</p>
@@ -604,8 +620,8 @@ footer{background:#F1F5FB}
 
 <footer>
   <div class="wrap">
-    <span data-i18n="foot">© <span class="yr"></span> <span data-name>ישי סיטבון</span>. Tous droits réservés.</span>
-    <a href="#top" data-i18n="top">Retour en haut</a>
+    <span data-i18n="foot">© <span class="yr"></span> Idanatid · <span data-name>ישי סיטבון</span>. Tous droits réservés.</span>
+    <nav class="flinks" aria-label="Pages légales" data-i18n-aria="legalAria"><a href="privacy.html" data-i18n="fpr">Confidentialité</a><a href="terms.html" data-i18n="ftr">Conditions d’utilisation</a><a href="#top" data-i18n="top">Retour en haut</a></nav>
   </div>
 </footer>
 
@@ -634,22 +650,17 @@ const CONFIG = {
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* Le bandeau est doublé avant la capture du texte français, pour une boucle sans coupure */
-const track=document.getElementById('track');
-track.innerHTML += track.innerHTML;
 
 /* ================= Traductions (hébreu ; le français est le texte d'origine du HTML) ================= */
 const HE = {
 skip:"דלגו לתוכן",
 nav1:"אודות", nav2:"חבילות ומחירים", nav3:"תהליך העבודה", nav4:"תנאים", nav5:"יצירת קשר",
 navAria:"ניווט ראשי", menu:"תפריט",
-h1:"אתרים ואפליקציות, מונעים בינה מלאכותית.",
-eyebrow:"הדור החדש · AI · ישראל",
-lead:"Idanatid היא הדור החדש של בניית אתרים ואפליקציות בישראל. שאלו את העוזר החכם כאן למטה: מחירים, חבילות, זמני אספקה ורעיונות לפרויקט.",
+h1:"האתר שלכם באוויר תוך 5-30 ימי עבודה, במחיר שנקבע מראש.",
+eyebrow:"אתרים · אפליקציות · AI לעסקים בישראל",
+lead:"Idanatid בונה דפי נחיתה, אתרי תדמית עם לוח ניהול, חנויות אונליין ואפליקציות. שאלו את העוזר החכם כאן למטה, או כתבו לנו ישירות בוואטסאפ.",
 cta1:"לצפייה בחבילות ובמחירים", cta2:"לכתוב בוואטסאפ",
 f1:"אספקה כבר מ-5 ימי עבודה", f2:"אחסון ו-SSL כלולים", f3:"אתר מותאם קודם כול לנייד",
-m1:"דף נחיתה", m2:"אתר תדמית", m3:"לוח ניהול", m4:"חתימה אלקטרונית", m5:"חנות אונליין", m6:"קידום SEO", m7:"אחסון כלול",
-portAria:"מקום לתמונת הפרופיל",
-port:"התמונה שלכם כאן<br><small>(החליפו את הבלוק ב-&lt;img src=\"photo.jpg\" alt=\"…\"&gt;)</small>",
 abH:"אני <span data-name>ישי סיטבון</span>, בונה אתרים.",
 ab1:"אני בונה אתרים לעצמאים, לעסקים קטנים ובינוניים ולסוכנויות שרוצים נוכחות דיגיטלית ברורה, מהירה ומקצועית. אני מטפל בהכול: תכנון, פיתוח, העלאה לאוויר וליווי שוטף.",
 ab2:"הגישה שלי: אתר פשוט להבנה עבור המבקרים ופשוט לניהול עבורכם. כשצריך, אני מוסיף כלים עסקיים אמיתיים, כמו אזור ניהול לנכסים או למוצרים שלכם, או חתימה אלקטרונית על מנדטים ועוד.",
@@ -673,7 +684,7 @@ o1t3f1:"עיבוד ויזואלי מתקדם (אפקטי CSS / Canvas קלים)"
 o1t3f2:"מודול קביעת פגישות (ווידג׳ט Calendly או לוח שנה אינטראקטיבי)",
 o1t3f3:"הגדרת מקומות לפיקסלים של Meta ושל Google Analytics",
 o2t1a:"3000 ₪ · בסיס תדמית",
-o2t1f1:"אתר רב-עמודי של 3–4 עמודים: דף הבית, אודות, שירותים, יצירת קשר",
+o2t1f1:"אתר רב-עמודי של 3-4 עמודים: דף הבית, אודות, שירותים, יצירת קשר",
 o2t1f2:"עיצוב אישי ב-100%",
 o2t1f3:"ממשק ניהול פרטי: התחברות מאובטחת (אימייל / סיסמה) לעריכת הטקסטים והתמונות בעצמכם, בלי להיות תלויים במפתח",
 o2t1f4:"שמירת נתונים (LocalStorage או חיבור ל-Supabase)",
@@ -709,17 +720,17 @@ o3t3f4:"הפקה אוטומטית של חשבוניות PDF ושליחת מיי�
 o3t3f5:"חיבור ל-API של צד שלישי (ERP, CRM, לוגיסטיקה)",
 o1h:"סטארטר",
 o1m:"דף נחיתה להמרה, לעצמאים, בעלי מלאכה, אירועים ומקצועות חופשיים.",
-o1s:"ואז 150 ₪ לחודש · אספקה תוך 5–7 ימי עבודה",
+o1s:"ואז 150 ₪ לחודש · אספקה תוך 5-7 ימי עבודה",
 o1b:"אני רוצה את הסטארטר",
 tag:"החבילה המובילה",
 o2h:"אתר תדמית Pro ולוח ניהול",
 o2m:"לעסקים קטנים ובינוניים, סוכנויות נדל״ן, רופאים, ספרים, משרדים ונותני שירות תובעניים.",
-o2s:"ואז 300 ₪ לחודש · אספקה תוך 10–15 ימי עבודה",
+o2s:"ואז 300 ₪ לחודש · אספקה תוך 10-15 ימי עבודה",
 o2i3:"עמוד נוסף: 500 ₪ לעמוד מעבר למסגרת החבילה",
 o2b:"אני רוצה אתר תדמית Pro",
 o3h:"חנות אונליין ופיתוח בהתאמה אישית",
 o3m:"חנויות אונליין, קטלוגים אינטראקטיביים ופלטפורמות עסקיות.",
-o3s:"ואז 400 ₪ לחודש (מינימום) · אספקה תוך 15–30 ימי עבודה",
+o3s:"ואז 400 ₪ לחודש (מינימום) · אספקה תוך 15-30 ימי עבודה",
 o3b:"אני רוצה את החנות",
 cH:"הערכת מחיר לאתר תדמית Pro",
 cL1:"חבילה",
@@ -762,12 +773,13 @@ fL1:"שם", fL2:"טלפון", fL3:"החבילה שמעניינת אתכם", fL4:
 fO0:"עדיין לא בטוח", fO1:"סטארטר", fO2:"אתר תדמית Pro", fO3:"חנות אונליין",
 fSend:"שליחה בוואטסאפ",
 fNote:"ההודעה נפתחת בוואטסאפ, מוכנה לשליחה. שום דבר לא נשלח לפני שתלחצו על שליחה.",
-foot:"© <span class=\"yr\"></span> <span data-name>ישי סיטבון</span>. כל הזכויות שמורות.",
+foot:"© <span class=\"yr\"></span> Idanatid · <span data-name>ישי סיטבון</span>. כל הזכויות שמורות.",
+fpr:"מדיניות פרטיות", ftr:"תנאי שימוש", legalAria:"עמודים משפטיים",
 top:"חזרה למעלה"
 };
 const META = {
-  fr:{title:" — Création de sites web sur mesure",desc:"Création de sites internet sur mesure : landing page, site vitrine avec espace admin et signature électronique, e-commerce. Tarifs clairs, livraison rapide, hébergement et maintenance inclus.",wa:"Bonjour, je souhaite un site web et j’aimerais en discuter.",mail:"Projet de site web",langLabel:"Langue",loc:"fr-FR"},
-  he:{title:" — בניית אתרים בהתאמה אישית",desc:"בניית אתרי אינטרנט בהתאמה אישית: דף נחיתה, אתר תדמית עם לוח ניהול וחתימה אלקטרונית, חנות אונליין. מחירים ברורים, אספקה מהירה, אחסון ותחזוקה כלולים.",wa:"שלום, אני מעוניין באתר אינטרנט ורוצה לשוחח על כך.",mail:"פרויקט אתר אינטרנט",langLabel:"שפה",loc:"he-IL"}
+  fr:{title:" — Sites web et applications pour les entreprises en Israël",desc:"Idanatid crée des landing pages, sites vitrines avec espace admin, boutiques en ligne et applications pour les entreprises en Israël. Prix annoncés d’avance, livraison en 5 à 30 jours ouvrés. Assistant IA et WhatsApp.",wa:"Bonjour, je souhaite un site web et j’aimerais en discuter.",mail:"Projet de site web",langLabel:"Langue",loc:"fr-FR"},
+  he:{title:" — בניית אתרים ואפליקציות לעסקים בישראל",desc:"Idanatid בונה דפי נחיתה, אתרי תדמית עם לוח ניהול, חנויות אונליין ואפליקציות לעסקים בישראל. מחירים שנקבעים מראש, אספקה תוך 5-30 ימי עבודה. עוזר AI ווואטסאפ.",wa:"שלום, אני מעוניין באתר אינטרנט ורוצה לשוחח על כך.",mail:"פרויקט אתר אינטרנט",langLabel:"שפה",loc:"he-IL"}
 };
 
 /* On mémorise le texte français d'origine */
@@ -794,9 +806,9 @@ function applyLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{el.innerHTML=he?HE[el.dataset.i18n]:el.dataset.fr});
   document.querySelectorAll('[data-i18n-aria]').forEach(el=>{el.setAttribute('aria-label',he?HE[el.dataset.i18nAria]:el.dataset.frAria)});
   fillDynamic();
-  document.title=NAME+M.title;
+  document.title="Idanatid"+M.title;
   document.querySelector('meta[name=description]').content=M.desc;
-  document.querySelector('meta[property="og:title"]').content=NAME+M.title;
+  document.querySelector('meta[property="og:title"]').content="Idanatid"+M.title;
   document.getElementById('langLabel').textContent=M.langLabel;document.getElementById('lang').value=lang;
   document.querySelectorAll('[data-wa]').forEach(a=>{a.href=wa(M.wa);a.target="_blank";a.rel="noopener"});
   document.querySelectorAll('[data-mail]').forEach(a=>a.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent(M.mail));
@@ -820,16 +832,7 @@ function onScroll(){
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 
 /* Apparition au défilement + compteurs de prix */
-function countUp(el){
-  const to=+el.dataset.count;
-  if(reduce){el.textContent=fmtN(to);return}
-  const t0=performance.now(),d=1100;
-  (function step(t){
-    const k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);
-    el.textContent=fmtN(to*e);
-    if(k<1)requestAnimationFrame(step)
-  })(t0);
-}
+function countUp(el){el.textContent=fmtN(+el.dataset.count)}
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting)return;
   e.target.classList.add('in');
@@ -876,14 +879,16 @@ document.getElementById('form').addEventListener('submit',e=>{
 const CHAT_ENDPOINT="https://vldpnobmfpjlmmseevum.supabase.co/functions/v1/chat";
 const CHAT={
 fr:{btn:"Assistant IA",title:"Idanatid AI",sub:"Posez-moi vos questions",close:"Fermer",send:"Envoyer",ph:"Écrivez votre question…",
- note:"Mode démo : l’assistant complet (Claude) sera branché prochainement.",
+ note:"Mode démo : l’assistant complet sera branché prochainement.",
+ priv:"Ne saisissez pas de données sensibles. Les messages sont traités par un fournisseur d’IA. <a href=\"privacy.html\">Confidentialité</a>",
  hello:"Bonjour ! Je suis l’assistant d’Idanatid. Je peux vous parler des tarifs, des offres, des délais, du contact, ou vous indiquer où trouver chaque chose sur la page.",
  chips:["Quels sont les tarifs ?","Que comprend l’offre Pro ?","Quels sont les délais ?","Comment vous contacter ?"],
  wait:"…",err:"Désolé, une erreur est survenue. Écrivez-nous sur WhatsApp.",
  wa:"Ouvrir WhatsApp",
  fallback:"Je n’ai pas la réponse complète à cette question en mode démo. Pour un avis précis, le plus simple est d’écrire directement sur WhatsApp : 058-788-4418."},
 he:{btn:"עוזר AI",title:"Idanatid AI",sub:"שאלו אותי כל שאלה",close:"סגירה",send:"שליחה",ph:"כתבו את השאלה שלכם…",
- note:"מצב הדגמה: העוזר המלא (Claude) יחובר בקרוב.",
+ note:"מצב הדגמה: העוזר המלא יחובר בקרוב.",
+ priv:"אל תכתבו מידע רגיש. ההודעות מעובדות על ידי ספק AI חיצוני. <a href=\"privacy.html\">מדיניות פרטיות</a>",
  hello:"שלום! אני העוזר של Idanatid. אפשר לשאול אותי על מחירים, חבילות, זמני אספקה, יצירת קשר, או איפה למצוא כל דבר בדף.",
  chips:["מה המחירים?","מה כוללת חבילת Pro?","מה זמני האספקה?","איך יוצרים קשר?"],
  wait:"…",err:"מצטער, אירעה שגיאה. כתבו לנו בוואטסאפ.",
@@ -896,19 +901,19 @@ const CHAT_KB=[
   he:"שלוש חבילות:\n• סטארטר: 1500 עד 2500 ₪, ואז 150 ₪ לחודש\n• אתר תדמית Pro ולוח ניהול: 3000 עד 5000 ₪, ואז 300 ₪ לחודש\n• חנות אונליין ופיתוח אישי: 8000 עד 17000+ ₪, ואז 400 ₪ לחודש (מינימום)\nכל עמוד נוסף: 500 ₪.",go:"#offres"},
  {k:/starter|landing|1500|2000|2500|סטארטר|דף נחיתה/i,
   fr:"Le Starter est une landing page. 1500 ₪ : 4 sections (Hero, À propos, Services, Contact). 2000 ₪ : 6 sections avec galerie et témoignages. 2500 ₪ : retouches visuelles avancées, prise de rendez-vous (Calendly) et pixels Meta / Google Analytics. Livraison en 5 à 7 jours ouvrés.",
-  he:"הסטארטר הוא דף נחיתה. 1500 ₪: 4 חלקים (Hero, אודות, שירותים, יצירת קשר). 2000 ₪: 6 חלקים עם גלריה והמלצות. 2500 ₪: עיבוד ויזואלי מתקדם, קביעת פגישות (Calendly) ופיקסלים של Meta / Google Analytics. אספקה תוך 5–7 ימי עבודה.",go:"#offres"},
+  he:"הסטארטר הוא דף נחיתה. 1500 ₪: 4 חלקים (Hero, אודות, שירותים, יצירת קשר). 2000 ₪: 6 חלקים עם גלריה והמלצות. 2500 ₪: עיבוד ויזואלי מתקדם, קביעת פגישות (Calendly) ופיקסלים של Meta / Google Analytics. אספקה תוך 5-7 ימי עבודה.",go:"#offres"},
  {k:/pro\b|vitrine|3000|3800|5000|dashboard|admin|תדמית|ניהול/i,
   fr:"Vitrine Pro & Dashboard Admin. Toutes les formules incluent une interface d’administration privée (connexion e-mail / mot de passe) pour modifier vous-même textes et images.\n• 3000 ₪ : 3 à 4 pages, design sur mesure\n• 3800 ₪ : 5 pages, animations, catalogue géré dans l’admin, galerie et cartes\n• 5000 ₪ : 6 pages et plus, filtres dynamiques, signature électronique tactile\nLivraison en 10 à 15 jours ouvrés.",
-  he:"אתר תדמית Pro ולוח ניהול. כל המדרגות כוללות ממשק ניהול פרטי (התחברות באימייל / סיסמה) לעריכת טקסטים ותמונות בעצמכם.\n• 3000 ₪: 3–4 עמודים, עיצוב אישי\n• 3800 ₪: 5 עמודים, אנימציות, ניהול קטלוג בלוח הניהול, גלריה ומפות\n• 5000 ₪: 6 עמודים ויותר, פילטרים דינמיים, חתימה אלקטרונית במגע\nאספקה תוך 10–15 ימי עבודה.",go:"#offres"},
+  he:"אתר תדמית Pro ולוח ניהול. כל המדרגות כוללות ממשק ניהול פרטי (התחברות באימייל / סיסמה) לעריכת טקסטים ותמונות בעצמכם.\n• 3000 ₪: 3-4 עמודים, עיצוב אישי\n• 3800 ₪: 5 עמודים, אנימציות, ניהול קטלוג בלוח הניהול, גלריה ומפות\n• 5000 ₪: 6 עמודים ויותר, פילטרים דינמיים, חתימה אלקטרונית במגע\nאספקה תוך 10-15 ימי עבודה.",go:"#offres"},
  {k:/e-?commerce|boutique|magasin|panier|paiement en ligne|8000|15000|17000|חנות|עגלה|אונליין/i,
   fr:"E-commerce & sur-mesure.\n• 8000 ₪ : jusqu’à 20 produits, panier latéral, achat en 2 étapes, paiement sécurisé (Tranzila, CreditGuard, Hyp, Stripe), admin des stocks\n• 15000 ₪ : jusqu’à 100 produits, variantes, espace client, relance des paniers abandonnés\n• 17000 ₪+ : plus de 100 produits ou application sur mesure, rôles utilisateurs, signatures complexes, factures PDF, API tierces\nLivraison en 15 à 30 jours ouvrés.",
-  he:"חנות אונליין ופיתוח אישי.\n• 8000 ₪: עד 20 מוצרים, עגלה צדדית, רכישה ב-2 שלבים, תשלום מאובטח (Tranzila, CreditGuard, Hyp, Stripe), ניהול מלאי\n• 15000 ₪: עד 100 מוצרים, וריאציות, אזור אישי, תזכורת לעגלות נטושות\n• 17000 ₪+: מעל 100 מוצרים או אפליקציה בהתאמה אישית, הרשאות משתמשים, חתימות מורכבות, חשבוניות PDF, חיבורי API\nאספקה תוך 15–30 ימי עבודה.",go:"#offres"},
+  he:"חנות אונליין ופיתוח אישי.\n• 8000 ₪: עד 20 מוצרים, עגלה צדדית, רכישה ב-2 שלבים, תשלום מאובטח (Tranzila, CreditGuard, Hyp, Stripe), ניהול מלאי\n• 15000 ₪: עד 100 מוצרים, וריאציות, אזור אישי, תזכורת לעגלות נטושות\n• 17000 ₪+: מעל 100 מוצרים או אפליקציה בהתאמה אישית, הרשאות משתמשים, חתימות מורכבות, חשבוניות PDF, חיבורי API\nאספקה תוך 15-30 ימי עבודה.",go:"#offres"},
  {k:/signature|signer|חתימה|חתום/i,
   fr:"La signature électronique tactile (canvas) est incluse à partir de 5000 ₪ dans l’offre Vitrine Pro : signature à la main sur tablette, mobile ou souris, horodatage, adresse IP enregistrée et document récapitulatif.",
   he:"חתימה אלקטרונית במגע (canvas) כלולה מ-5000 ₪ בחבילת Pro: חתימה ידנית בטאבלט, בנייד או בעכבר, חותמת זמן, שמירת כתובת IP ומסמך מסכם.",go:"#offres"},
  {k:/délai|delai|livraison|livrer|quand|combien de temps|jours|אספקה|זמן|מתי|ימים/i,
   fr:"Délais de livraison : Starter 5 à 7 jours ouvrés, Vitrine Pro 10 à 15 jours, E-commerce 15 à 30 jours. Vous fournissez vos textes et visuels sous 7 jours après la signature.",
-  he:"זמני אספקה: סטארטר 5–7 ימי עבודה, Pro 10–15 ימים, חנות 15–30 ימים. את הטקסטים והוויזואלים מעבירים תוך 7 ימים מהחתימה.",go:"#methode"},
+  he:"זמני אספקה: סטארטר 5-7 ימי עבודה, Pro 10-15 ימים, חנות 15-30 ימים. את הטקסטים והוויזואלים מעבירים תוך 7 ימים מהחתימה.",go:"#methode"},
  {k:/acompte|paiement|payer|upgrade|changer d|différence|difference|propriété|code source|résili|מקדמה|תשלום|לשלם|שדרוג|מעבר בין|בעלות|קוד מקור|ביטול/i,
   fr:"Paiement : 50 % d’acompte au démarrage, 50 % à la livraison du site. Si vous changez d’offre, vous ne payez que la différence avec ce que vous avez déjà versé. Le code source vous est transféré à 100 % après paiement du solde.",
   he:"תשלום: מקדמה של 50% בתחילת העבודה ו-50% במסירת האתר. במעבר בין חבילות משלמים רק את ההפרש ממה ששולם. קוד המקור מועבר אליכם ב-100% לאחר תשלום היתרה.",go:"#conditions"},
@@ -942,7 +947,7 @@ const CHAT_KB=[
   function labels(){
     const t=T();
     $('cbBtnT').textContent=t.btn;$('cbTitle').textContent=t.title;$('cbSub').textContent=t.sub;
-    $('cbClose').setAttribute('aria-label',t.close);$('cbSend').textContent=t.send;inp.placeholder=t.ph;$('cbNote').textContent=CHAT_ENDPOINT?'':t.note;
+    $('cbClose').setAttribute('aria-label',t.close);$('cbSend').textContent=t.send;inp.placeholder=t.ph;$('cbNote').innerHTML=(CHAT_ENDPOINT?'':t.note+' ')+t.priv;
     if(log.children.length===1)log.firstChild.textContent=t.hello;
     chips.innerHTML='';t.chips.forEach(c=>{const b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',()=>ask(c));chips.appendChild(b)});
   }
