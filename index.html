@@ -873,7 +873,7 @@ document.getElementById('form').addEventListener('submit',e=>{
 /* ===== Assistant IA =====
    CHAT_ENDPOINT : adresse du relais serveur qui appelle Claude (clé API jamais dans cette page).
    Vide = mode démo : réponses prédéfinies basées sur le contenu du site. */
-const CHAT_ENDPOINT="";
+const CHAT_ENDPOINT="https://vldpnobmfpjlmmseevum.supabase.co/functions/v1/chat";
 const CHAT={
 fr:{btn:"Assistant IA",title:"Idanatid AI",sub:"Posez-moi vos questions",close:"Fermer",send:"Envoyer",ph:"Écrivez votre question…",
  note:"Mode démo : l’assistant complet (Claude) sera branché prochainement.",
@@ -968,7 +968,7 @@ const CHAT_KB=[
     if(CHAT_ENDPOINT){
       try{const res=await fetch(CHAT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lang:LANG,messages:hist.slice(-12)})});
         if(!res.ok)throw 0;const j=await res.json();r={text:String(j.reply||''),link:null};if(!r.text)throw 0}
-      catch(e){r={text:T().err,link:{href:wa(META[LANG==='he'?'he':'fr'].wa),label:T().wa,ext:true}}}
+      catch(e){r=demo(q)}
     }else{await new Promise(s=>setTimeout(s,reduce?0:450));r=demo(q)}
     w.remove();add('bot',r.text,r.link);hist.push({role:'assistant',content:r.text});busy=false;
   }
