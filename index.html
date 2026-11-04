@@ -295,6 +295,33 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   .sig path{stroke-dashoffset:0}
   .track{width:auto;flex-wrap:wrap}
 }
+
+/* ===== Chatbot ===== */
+.cb-btn{position:fixed;inset-inline-end:20px;bottom:20px;z-index:60;display:flex;align-items:center;gap:10px;min-height:56px;padding:0 20px;border:0;border-radius:999px;background:var(--navy);color:#fff;font:inherit;font-weight:600;cursor:pointer;box-shadow:0 18px 36px -16px rgba(41,49,45,.7);transition:transform .2s,background .2s}
+.cb-btn:hover{transform:translateY(-2px);background:var(--navy-2)}
+.cb-btn .dot{width:12px;height:12px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 4px rgba(169,219,154,.35)}
+.cb-panel{padding:0;position:fixed;inset-inline-end:20px;bottom:92px;z-index:61;width:min(390px,calc(100vw - 32px));height:min(580px,calc(100vh - 120px));display:none;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 40px 70px -30px rgba(41,49,45,.65);overflow:hidden}
+.cb-panel.open{display:flex}
+.cb-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--navy);color:#fff}
+.cb-head .av{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;background:var(--sky);color:var(--ink);font-weight:800}
+.cb-head b{display:block;font-family:var(--f-head);line-height:1.2}
+.cb-head small{display:block;color:#DCE3DE;font-size:.8rem}
+.cb-head button{margin-inline-start:auto;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:#fff;font-size:1.4rem;cursor:pointer}
+.cb-head button:hover{background:rgba(255,255,255,.14)}
+.cb-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#FAFCF9}
+.cb-msg{max-width:86%;padding:10px 14px;border-radius:16px;font-size:.95rem;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.cb-msg.bot{align-self:flex-start;background:var(--tint);color:var(--ink);border-end-start-radius:4px}
+.cb-msg.me{align-self:flex-end;background:var(--sky);color:var(--ink);border-end-end-radius:4px}
+.cb-msg a{display:inline-block;margin-top:8px;padding:6px 14px;border-radius:999px;background:var(--navy);color:#fff;font-weight:600;font-size:.88rem;text-decoration:none}
+.cb-msg.typing{color:var(--ink-2)}
+.cb-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 10px;background:#FAFCF9}
+.cb-chips button{min-height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font:inherit;font-size:.88rem;cursor:pointer}
+.cb-chips button:hover{background:var(--tint-2)}
+.cb-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:#fff}
+.cb-form input{flex:1;min-width:0;min-height:46px;padding:0 14px;border:1.5px solid #8A9690;border-radius:999px;font:inherit;color:var(--ink);background:#fff}
+.cb-form button{min-height:46px;padding:0 18px;border:0;border-radius:999px;background:var(--sky);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.cb-note{padding:0 16px 10px;font-size:.78rem;color:var(--ink-2);background:#fff}
+@media(max-width:480px){.cb-btn span.t{display:none}.cb-btn{padding:0 16px}.cb-panel{inset-inline-end:16px;bottom:88px}}
 </style>
 <noscript><style>html:not(.ready) body{opacity:1}</style></noscript>
 </head>
@@ -566,6 +593,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   </div>
 </footer>
 
+
+<!-- Assistant IA -->
+<button class="cb-btn" id="cbBtn" type="button" aria-expanded="false" aria-controls="cbPanel"><span class="dot" aria-hidden="true"></span><span class="t" id="cbBtnT">Assistant IA</span></button>
+<section class="cb-panel" id="cbPanel" role="dialog" aria-labelledby="cbTitle">
+  <div class="cb-head"><span class="av" aria-hidden="true">I</span><div><b id="cbTitle">Idanatid AI</b><small id="cbSub">Assistant du site</small></div><button type="button" id="cbClose" aria-label="Fermer">×</button></div>
+  <div class="cb-log" id="cbLog" aria-live="polite"></div>
+  <div class="cb-chips" id="cbChips"></div>
+  <form class="cb-form" id="cbForm" autocomplete="off"><input id="cbIn" type="text" maxlength="500" aria-label="Message"><button type="submit" id="cbSend">Envoyer</button></form>
+  <div class="cb-note" id="cbNote"></div>
+</section>
 <script>
 document.documentElement.classList.add('js');
 
@@ -753,6 +790,7 @@ function applyLang(lang){
   document.querySelectorAll('[data-wa]').forEach(a=>{a.href=wa(M.wa);a.target="_blank";a.rel="noopener"});
   document.querySelectorAll('[data-mail]').forEach(a=>a.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent(M.mail));
   calc();
+  if(window.chatLabels)window.chatLabels();
 }
 
 /* Menu mobile */
@@ -851,6 +889,109 @@ document.getElementById('form').addEventListener('submit',e=>{
     : "Bonjour, je m’appelle "+v('n')+" ("+v('t')+").\nOffre : "+offer+".\n\n"+v('m');
   window.open(wa(txt),'_blank','noopener');
 });
+
+/* ===== Assistant IA =====
+   CHAT_ENDPOINT : adresse du relais serveur qui appelle Claude (clé API jamais dans cette page).
+   Vide = mode démo : réponses prédéfinies basées sur le contenu du site. */
+const CHAT_ENDPOINT="";
+const CHAT={
+fr:{btn:"Assistant IA",title:"Idanatid AI",sub:"Posez-moi vos questions",close:"Fermer",send:"Envoyer",ph:"Écrivez votre question…",
+ note:"Mode démo : l’assistant complet (Claude) sera branché prochainement.",
+ hello:"Bonjour ! Je suis l’assistant d’Idanatid. Je peux vous parler des tarifs, des offres, des délais, du contact, ou vous indiquer où trouver chaque chose sur la page.",
+ chips:["Quels sont les tarifs ?","Que comprend l’offre Pro ?","Quels sont les délais ?","Comment vous contacter ?"],
+ wait:"…",err:"Désolé, une erreur est survenue. Écrivez-nous sur WhatsApp.",
+ wa:"Ouvrir WhatsApp",
+ fallback:"Je n’ai pas la réponse complète à cette question en mode démo. Pour un avis précis, le plus simple est d’écrire directement sur WhatsApp : 058-788-4418."},
+he:{btn:"עוזר AI",title:"Idanatid AI",sub:"שאלו אותי כל שאלה",close:"סגירה",send:"שליחה",ph:"כתבו את השאלה שלכם…",
+ note:"מצב הדגמה: העוזר המלא (Claude) יחובר בקרוב.",
+ hello:"שלום! אני העוזר של Idanatid. אפשר לשאול אותי על מחירים, חבילות, זמני אספקה, יצירת קשר, או איפה למצוא כל דבר בדף.",
+ chips:["מה המחירים?","מה כוללת חבילת Pro?","מה זמני האספקה?","איך יוצרים קשר?"],
+ wait:"…",err:"מצטער, אירעה שגיאה. כתבו לנו בוואטסאפ.",
+ wa:"פתיחת וואטסאפ",
+ fallback:"אין לי תשובה מלאה לשאלה הזו במצב הדגמה. לתשובה מדויקת הכי פשוט לכתוב בוואטסאפ: 058-788-4418."}
+};
+const CHAT_KB=[
+ {k:/tarif|prix|combien|coût|cout|₪|shekel|מחיר|כמה עולה|עלות|תעריף|כמה זה/i,
+  fr:"Trois offres :\n• Starter : 1500 à 2500 ₪, puis 150 ₪ / mois\n• Vitrine Pro & Dashboard Admin : 3000 à 5000 ₪, puis 300 ₪ / mois\n• E-commerce & sur-mesure : 8000 à 17000+ ₪, puis 400 ₪ / mois minimum\nChaque page supplémentaire : 500 ₪.",
+  he:"שלוש חבילות:\n• סטארטר: 1500 עד 2500 ₪, ואז 150 ₪ לחודש\n• אתר תדמית Pro ולוח ניהול: 3000 עד 5000 ₪, ואז 300 ₪ לחודש\n• חנות אונליין ופיתוח אישי: 8000 עד 17000+ ₪, ואז 400 ₪ לחודש (מינימום)\nכל עמוד נוסף: 500 ₪.",go:"#offres"},
+ {k:/starter|landing|1500|2000|2500|סטארטר|דף נחיתה/i,
+  fr:"Le Starter est une landing page. 1500 ₪ : 4 sections (Hero, À propos, Services, Contact). 2000 ₪ : 6 sections avec galerie et témoignages. 2500 ₪ : retouches visuelles avancées, prise de rendez-vous (Calendly) et pixels Meta / Google Analytics. Livraison en 5 à 7 jours ouvrés.",
+  he:"הסטארטר הוא דף נחיתה. 1500 ₪: 4 חלקים (Hero, אודות, שירותים, יצירת קשר). 2000 ₪: 6 חלקים עם גלריה והמלצות. 2500 ₪: עיבוד ויזואלי מתקדם, קביעת פגישות (Calendly) ופיקסלים של Meta / Google Analytics. אספקה תוך 5–7 ימי עבודה.",go:"#offres"},
+ {k:/pro\b|vitrine|3000|3800|5000|dashboard|admin|תדמית|ניהול/i,
+  fr:"Vitrine Pro & Dashboard Admin. Toutes les formules incluent une interface d’administration privée (connexion e-mail / mot de passe) pour modifier vous-même textes et images.\n• 3000 ₪ : 3 à 4 pages, design sur mesure\n• 3800 ₪ : 5 pages, animations, catalogue géré dans l’admin, galerie et cartes\n• 5000 ₪ : 6 pages et plus, filtres dynamiques, signature électronique tactile\nLivraison en 10 à 15 jours ouvrés.",
+  he:"אתר תדמית Pro ולוח ניהול. כל המדרגות כוללות ממשק ניהול פרטי (התחברות באימייל / סיסמה) לעריכת טקסטים ותמונות בעצמכם.\n• 3000 ₪: 3–4 עמודים, עיצוב אישי\n• 3800 ₪: 5 עמודים, אנימציות, ניהול קטלוג בלוח הניהול, גלריה ומפות\n• 5000 ₪: 6 עמודים ויותר, פילטרים דינמיים, חתימה אלקטרונית במגע\nאספקה תוך 10–15 ימי עבודה.",go:"#offres"},
+ {k:/e-?commerce|boutique|magasin|panier|paiement en ligne|8000|15000|17000|חנות|עגלה|אונליין/i,
+  fr:"E-commerce & sur-mesure.\n• 8000 ₪ : jusqu’à 20 produits, panier latéral, achat en 2 étapes, paiement sécurisé (Tranzila, CreditGuard, Hyp, Stripe), admin des stocks\n• 15000 ₪ : jusqu’à 100 produits, variantes, espace client, relance des paniers abandonnés\n• 17000 ₪+ : plus de 100 produits ou application sur mesure, rôles utilisateurs, signatures complexes, factures PDF, API tierces\nLivraison en 15 à 30 jours ouvrés.",
+  he:"חנות אונליין ופיתוח אישי.\n• 8000 ₪: עד 20 מוצרים, עגלה צדדית, רכישה ב-2 שלבים, תשלום מאובטח (Tranzila, CreditGuard, Hyp, Stripe), ניהול מלאי\n• 15000 ₪: עד 100 מוצרים, וריאציות, אזור אישי, תזכורת לעגלות נטושות\n• 17000 ₪+: מעל 100 מוצרים או אפליקציה בהתאמה אישית, הרשאות משתמשים, חתימות מורכבות, חשבוניות PDF, חיבורי API\nאספקה תוך 15–30 ימי עבודה.",go:"#offres"},
+ {k:/signature|signer|חתימה|חתום/i,
+  fr:"La signature électronique tactile (canvas) est incluse à partir de 5000 ₪ dans l’offre Vitrine Pro : signature à la main sur tablette, mobile ou souris, horodatage, adresse IP enregistrée et document récapitulatif.",
+  he:"חתימה אלקטרונית במגע (canvas) כלולה מ-5000 ₪ בחבילת Pro: חתימה ידנית בטאבלט, בנייד או בעכבר, חותמת זמן, שמירת כתובת IP ומסמך מסכם.",go:"#offres"},
+ {k:/délai|delai|livraison|livrer|quand|combien de temps|jours|אספקה|זמן|מתי|ימים/i,
+  fr:"Délais de livraison : Starter 5 à 7 jours ouvrés, Vitrine Pro 10 à 15 jours, E-commerce 15 à 30 jours. Vous fournissez vos textes et visuels sous 7 jours après la signature.",
+  he:"זמני אספקה: סטארטר 5–7 ימי עבודה, Pro 10–15 ימים, חנות 15–30 ימים. את הטקסטים והוויזואלים מעבירים תוך 7 ימים מהחתימה.",go:"#methode"},
+ {k:/acompte|paiement|payer|upgrade|changer d|différence|difference|propriété|code source|résili|מקדמה|תשלום|לשלם|שדרוג|מעבר בין|בעלות|קוד מקור|ביטול/i,
+  fr:"Paiement : 50 % d’acompte au démarrage, 50 % à la livraison du site. Si vous changez d’offre, vous ne payez que la différence avec ce que vous avez déjà versé. Le code source vous est transféré à 100 % après paiement du solde.",
+  he:"תשלום: מקדמה של 50% בתחילת העבודה ו-50% במסירת האתר. במעבר בין חבילות משלמים רק את ההפרש ממה ששולם. קוד המקור מועבר אליכם ב-100% לאחר תשלום היתרה.",go:"#conditions"},
+ {k:/page suppl|pages|עמוד נוסף|עמודים/i,
+  fr:"Chaque page supplémentaire, au-delà du forfait, est facturée 500 ₪.",he:"כל עמוד נוסף מעבר למסגרת החבילה עולה 500 ₪.",go:"#estimateur"},
+ {k:/contact|whatsapp|téléphone|telephone|appeler|mail|joindre|numéro|numero|צור קשר|ליצור קשר|קשר|טלפון|וואטסאפ|מייל|אימייל|להתקשר/i,
+  fr:"Vous pouvez nous écrire sur WhatsApp ou appeler le 058-788-4418, ou envoyer un e-mail à ichaysitsitbon@gmail.com. Le formulaire de contact en bas de page ouvre aussi WhatsApp.",
+  he:"אפשר לכתוב בוואטסאפ או להתקשר ל-058-788-4418, או לשלוח מייל ל-ichaysitsitbon@gmail.com. גם טופס יצירת הקשר בתחתית הדף נפתח בוואטסאפ.",go:"#contact",wa:true},
+ {k:/étape|etape|comment ça se passe|comment ca se passe|processus|méthode|methode|déroul|שלבים|תהליך|איך זה עובד/i,
+  fr:"4 étapes : 1) cadrage et devis avec 50 % d’acompte, 2) vous envoyez vos contenus, 3) maquette et retours sous 5 jours ouvrés, 4) mise en ligne et solde.",
+  he:"4 שלבים: 1) אפיון והצעת מחיר עם מקדמה של 50%, 2) שליחת התכנים, 3) הדמיה ותיקונים תוך 5 ימי עבודה, 4) העלאה לאוויר ותשלום היתרה.",go:"#methode"},
+ {k:/où|ou se trouve|trouver|section|aller à|איפה|היכן|למצוא/i,
+  fr:"Sur la page : À propos, Offres et tarifs (avec l’estimateur de prix), Méthode, Conditions et Contact. Utilisez le menu en haut ou le bouton ci-dessous.",
+  he:"בדף: אודות, חבילות ומחירים (עם מחשבון הערכת מחיר), תהליך העבודה, תנאים ויצירת קשר. אפשר להשתמש בתפריט למעלה או בכפתור.",go:"#offres"},
+ {k:/qui êtes|qui es-tu|qui est|à propos|a propos|idanatid|מי אתה|מי אתם|אודות/i,
+  fr:"Idanatid crée des sites web et des applications, avec l’IA au cœur de la démarche, pour les professionnels en Israël. Le site est géré par Ichay Sitbon.",
+  he:"Idanatid בונה אתרים ואפליקציות, עם AI בלב התהליך, לעסקים בישראל. האתר מנוהל על ידי ישי סיטבון.",go:"#apropos"},
+ {k:/^(bonjour|salut|hello|hi|hey|שלום|היי|הי)\b/i,fr:"Bonjour ! Comment puis-je vous aider ?",he:"שלום! איך אפשר לעזור?"}
+];
+(function(){
+  const $=id=>document.getElementById(id);
+  const btn=$('cbBtn'),panel=$('cbPanel'),log=$('cbLog'),form=$('cbForm'),inp=$('cbIn'),chips=$('cbChips');
+  const hist=[];let started=false,busy=false;
+  const T=()=>CHAT[LANG==='he'?'he':'fr'];
+  function add(role,text,link){
+    const d=document.createElement('div');d.className='cb-msg '+(role==='me'?'me':'bot');d.textContent=text;
+    if(link){const a=document.createElement('a');a.href=link.href;a.textContent=link.label;
+      if(link.ext){a.target='_blank';a.rel='noopener'}else a.addEventListener('click',()=>{if(innerWidth<700)close()});d.appendChild(document.createElement('br'));d.appendChild(a)}
+    log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
+  }
+  function labels(){
+    const t=T();
+    $('cbBtnT').textContent=t.btn;$('cbTitle').textContent=t.title;$('cbSub').textContent=t.sub;
+    $('cbClose').setAttribute('aria-label',t.close);$('cbSend').textContent=t.send;inp.placeholder=t.ph;$('cbNote').textContent=CHAT_ENDPOINT?'':t.note;
+    chips.innerHTML='';t.chips.forEach(c=>{const b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',()=>ask(c));chips.appendChild(b)});
+  }
+  function open(){panel.classList.add('open');btn.setAttribute('aria-expanded',true);
+    if(!started){started=true;add('bot',T().hello)}inp.focus()}
+  function close(){panel.classList.remove('open');btn.setAttribute('aria-expanded',false);btn.focus()}
+  btn.addEventListener('click',()=>panel.classList.contains('open')?close():open());
+  $('cbClose').addEventListener('click',close);
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))close()});
+  function demo(q){
+    const he=LANG==='he';
+    for(const e of CHAT_KB){if(e.k.test(q)){
+      const link=e.wa?{href:wa(META[he?'he':'fr'].wa),label:T().wa,ext:true}:e.go?{href:e.go,label:he?'לעבור לחלק הזה':'Aller à cette section'}:null;
+      return{text:he?e.he:e.fr,link}}}
+    return{text:T().fallback,link:{href:wa(META[he?'he':'fr'].wa),label:T().wa,ext:true}};
+  }
+  async function ask(q){
+    q=q.trim();if(!q||busy)return;busy=true;add('me',q);hist.push({role:'user',content:q});inp.value='';
+    const w=add('bot',T().wait);w.classList.add('typing');
+    let r;
+    if(CHAT_ENDPOINT){
+      try{const res=await fetch(CHAT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lang:LANG,messages:hist.slice(-12)})});
+        if(!res.ok)throw 0;const j=await res.json();r={text:String(j.reply||''),link:null};if(!r.text)throw 0}
+      catch(e){r={text:T().err,link:{href:wa(META[LANG==='he'?'he':'fr'].wa),label:T().wa,ext:true}}}
+    }else{await new Promise(s=>setTimeout(s,reduce?0:450));r=demo(q)}
+    w.remove();add('bot',r.text,r.link);hist.push({role:'assistant',content:r.text});busy=false;
+  }
+  form.addEventListener('submit',e=>{e.preventDefault();ask(inp.value)});
+  window.chatLabels=labels;labels();
+})();
 
 /* Démarrage : hébreu par défaut, français si ?lang=fr ou choix précédent */
 let start='he';
