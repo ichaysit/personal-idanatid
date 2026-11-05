@@ -291,6 +291,19 @@ table.cmp td>*{text-align:end}
 table.cmp td .v{unicode-bidi:isolate}[dir=rtl] table.cmp td .v{direction:rtl}
 table.cmp td .v.n{direction:ltr!important}
 
+/* ===== COOKIE GATE ===== */
+#ck{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:1.2rem;background:rgba(8,13,28,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+#ck.on{display:flex}
+#ck .bx{max-width:30rem;width:100%;background:#0f1a33;color:#fff;border:1px solid rgba(160,205,240,.25);border-radius:1.4rem;padding:1.6rem 1.5rem;box-shadow:0 30px 80px rgba(0,0,0,.5);text-align:start;animation:ckin .5s cubic-bezier(.2,.8,.2,1)}
+#ck h2{font-size:1.25rem;margin:0 0 .6rem;font-weight:600}
+#ck p{font-size:.95rem;line-height:1.6;margin:0 0 1.2rem;color:#c9d7ee}
+#ck a{color:#9fd4ff;text-decoration:underline}
+#ck button{width:100%;min-height:3rem;border:0;border-radius:999px;background:linear-gradient(135deg,#6fb8ee,#3a7fd0);color:#fff;font:inherit;font-weight:600;font-size:1rem;cursor:pointer;transition:transform .2s}
+#ck button:hover{transform:translateY(-2px)}
+#ck button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+html.ck-lock,html.ck-lock body{overflow:hidden!important}
+@keyframes ckin{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+
 [data-l]{display:none}html[lang=he] [data-l=he],html[lang=fr] [data-l=fr]{display:block}
 .prose{max-width:52rem}.prose h2{font-size:1.5rem;margin:2.25rem 0 .75rem;letter-spacing:-.01em}.prose p,.prose li{color:var(--soft);margin-top:.6rem}.prose ul{list-style:disc;padding-inline-start:1.4rem}.prose a{color:var(--brand);text-decoration:underline}.prose .upd{font-size:.875rem}.prose b{color:var(--ink);font-weight:500}
 .pg[hidden]{display:none}
@@ -589,8 +602,6 @@ table.cmp td .v.n{direction:ltr!important}
 <p>הודעות וואטסאפ ודוא״ל נשמרות כל עוד נדרש לניהול הפנייה והקשר העסקי, ולפי חובות החוק. אפשר לבקש מחיקה בכל עת.</p>
 <h2>הזכויות שלכם</h2>
 <p>לפי חוק הגנת הפרטיות, התשמ״א-1981, אתם רשאים לעיין במידע עליכם, לבקש לתקן אותו או למחוק אותו. פנו אלינו בדוא״ל או בטלפון.</p>
-<h2>קטינים</h2>
-<p>האתר אינו מיועד לילדים מתחת לגיל 18.</p>
 <h2>שינויים במדיניות</h2>
 <p>נעדכן מסמך זה כשהאתר או אופן העיבוד משתנים, והתאריך בראש העמוד יתעדכן.</p>
 </div>
@@ -613,8 +624,6 @@ table.cmp td .v.n{direction:ltr!important}
 <p>Les messages WhatsApp et e-mails sont conservés le temps nécessaire à la gestion de votre demande et de la relation commerciale, et selon nos obligations légales. Vous pouvez demander leur suppression à tout moment.</p>
 <h2>Vos droits</h2>
 <p>Conformément à la loi israélienne sur la protection de la vie privée (1981), vous pouvez consulter les données qui vous concernent, demander leur correction ou leur suppression. Contactez-nous par e-mail ou par téléphone.</p>
-<h2>Mineurs</h2>
-<p>Le site ne s’adresse pas aux personnes de moins de 18 ans.</p>
 <h2>Modifications</h2>
 <p>Nous mettrons ce document à jour lorsque le site ou le traitement des données évolue, et la date en haut de page sera modifiée.</p>
 </div>
@@ -1330,6 +1339,20 @@ function liquid(box){
 })();
 ;(function(){function lab(){document.querySelectorAll('table.cmp').forEach(function(t){var h=[].map.call(t.querySelectorAll('thead th'),function(x){return x.textContent.trim()});t.querySelectorAll('tbody tr').forEach(function(r){[].forEach.call(r.querySelectorAll('td'),function(td,i){td.setAttribute('data-label',h[i+1]||'');if(!td.querySelector('.v')&&td.children.length==0){var v=document.createElement('span');v.className='v';v.textContent=td.textContent;if(/^[\d+–\- ,.₪]+$/.test(v.textContent.replace(/\(.*\)/,'').trim()))v.className='v n';td.textContent='';td.appendChild(v)}})})})}
 lab();document.addEventListener('DOMContentLoaded',lab);var o=window.onLang;window.onLang=function(){o&&o.apply(this,arguments);setTimeout(lab,0)};setInterval(lab,1500)})();
+
+;(function(){var K='idn_cookies_ok';function ok(){try{return localStorage.getItem(K)==='1'}catch(e){return false}}
+var T={he:{t:'ברוכים הבאים ל-Idanatid',p:'האתר משתמש בעוגיות ובאחסון מקומי (לשמירת השפה והעדפות) ובשירות צ׳אט חיצוני. כדי להיכנס לאתר יש לאשר את השימוש בעוגיות. פרטים במדיניות הפרטיות.',b:'אני מאשר/ת את העוגיות ונכנס/ת',l:'מדיניות פרטיות'},
+fr:{t:'Bienvenue chez Idanatid',p:'Ce site utilise des cookies et un stockage local (langue, préférences) ainsi qu’un service de chat externe. Pour entrer sur le site, veuillez accepter les cookies. Détails dans la politique de confidentialité.',b:'J’accepte les cookies et j’entre',l:'Politique de confidentialité'}};
+var d,root=document.documentElement;
+function lang(){return root.lang==='fr'?'fr':'he'}
+function fill(){if(!d)return;var x=T[lang()];d.querySelector('h2').textContent=x.t;d.querySelector('p').firstChild.textContent=x.p+' ';d.querySelector('a').textContent=x.l;d.querySelector('button').textContent=x.b}
+function route(){if(!d||!d.classList.contains('pend'))return;var onp=/#\/privacy/.test(location.hash);d.classList.toggle('on',!onp);root.classList.toggle('ck-lock',!onp)}
+function init(){if(ok())return;d=document.createElement('div');d.id='ck';d.className='pend';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');
+d.innerHTML='<div class="bx"><h2></h2><p><span></span><a href="#/privacy"></a></p><button type="button"></button></div>';
+document.body.appendChild(d);fill();
+d.querySelector('button').addEventListener('click',function(){try{localStorage.setItem(K,'1')}catch(e){}d.classList.remove('on','pend');root.classList.remove('ck-lock');setTimeout(function(){d.remove()},50)});
+route();addEventListener('hashchange',route);var o=window.onLang;window.onLang=function(){o&&o.apply(this,arguments);fill()};setInterval(fill,1000)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();
 </script>
 <script>
 (function(){
