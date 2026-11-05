@@ -974,7 +974,7 @@ fr:{btn:"Assistant IA",title:"Idanatid AI",sub:"Posez-moi vos questions",close:"
  chips:["Quels sont les tarifs ?","Que comprend l’offre Pro ?","Quels sont les délais ?","Comment vous contacter ?"],
  wait:"…",err:"Désolé, une erreur est survenue. Écrivez-nous sur WhatsApp.",
  wa:"Ouvrir WhatsApp",
- fallback:"Je n’ai pas la réponse complète à cette question en mode démo. Pour un avis précis, le plus simple est d’écrire directement sur WhatsApp : 058-788-4418."},
+ fallback:"Je n’arrive pas à répondre pour le moment. Pour une réponse précise, le plus simple est d’écrire directement sur WhatsApp : 058-788-4418."},
 he:{btn:"עוזר AI",title:"Idanatid AI",sub:"שאלו אותי כל שאלה",close:"סגירה",send:"שליחה",ph:"כתבו את השאלה שלכם…",
  note:"מצב הדגמה: העוזר המלא יחובר בקרוב.",
  priv:"אל תכתבו מידע רגיש. ההודעות מעובדות על ידי ספק AI חיצוני. <a href=\"privacy.html\">מדיניות פרטיות</a>",
@@ -982,7 +982,7 @@ he:{btn:"עוזר AI",title:"Idanatid AI",sub:"שאלו אותי כל שאלה",
  chips:["מה המחירים?","מה כוללת חבילת Pro?","מה זמני האספקה?","איך יוצרים קשר?"],
  wait:"…",err:"מצטער, אירעה שגיאה. כתבו לנו בוואטסאפ.",
  wa:"פתיחת וואטסאפ",
- fallback:"אין לי תשובה מלאה לשאלה הזו במצב הדגמה. לתשובה מדויקת הכי פשוט לכתוב בוואטסאפ: 058-788-4418."}
+ fallback:"כרגע לא הצלחתי לענות. לתשובה מדויקת הכי פשוט לכתוב בוואטסאפ: 058-788-4418."}
 };
 const CHAT_KB=[
  {k:/tarif|prix|combien|coût|cout|₪|shekel|מחיר|כמה עולה|עלות|תעריף|כמה זה/i,
@@ -1060,8 +1060,8 @@ const CHAT_KB=[
     const w=add('bot',T().wait);w.classList.add('typing');
     let r;
     if(CHAT_ENDPOINT){
-      try{const res=await fetch(CHAT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lang:LANG,messages:hist.slice(-12)})});
-        if(!res.ok)throw 0;const j=await res.json();r={text:String(j.reply||''),link:null};if(!r.text)throw 0}
+      try{let res;for(let i=0;i<2;i++){try{res=await fetch(CHAT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lang:LANG,messages:hist.slice(-12)})});if(res.ok)break}catch(e){res=null}}
+        if(!res||!res.ok)throw 0;const j=await res.json();r={text:String(j.reply||''),link:null};if(!r.text)throw 0}
       catch(e){r=demo(q)}
     }else{await new Promise(s=>setTimeout(s,reduce?0:450));r=demo(q)}
     w.remove();add('bot',r.text,r.link);hist.push({role:'assistant',content:r.text});busy=false;
