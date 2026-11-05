@@ -16,7 +16,7 @@
 <link rel="canonical" href="https://ichaysit.github.io/personal-idanatid/">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#05060B">
+<meta name="theme-color" content="#0C0926">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Heebo:wght@400;500;600;700&family=Rubik:wght@500;700;800&display=swap" rel="stylesheet">
@@ -549,6 +549,118 @@ footer{background:#D9E8F1}
   .dots i{width:22px;height:4px;background:var(--line);transition:background .2s,width .2s}
   .dots i.on{background:var(--blue);width:34px}
 }
+
+/* ===== v10 : futuriste — violet, jaune, bleu cristal ; verre, lumière, angles adoucis ===== */
+:root{--navy:#120E2E;--navy-2:#1B1545;--ink:#120E2E;--ink-2:#4E4A6E;--blue:#6A4CF5;--blue-d:#5638E0;--ok:#6A4CF5;--sky:#9ED8FF;--cyan:#D3EEFF;--violet:#8B6BFF;--yellow:#FFD54A;--crystal:linear-gradient(120deg,#BFE6FF 0%,#C9B8FF 48%,#FFE08A 100%);--tint:#F5F4FF;--tint-2:#ECEAFE;--line:#E3E0F5;--sun:linear-gradient(135deg,#FFEBA8 0%,#FFD54A 48%,#F6B93B 100%);--prism:linear-gradient(110deg,#9ED8FF 0%,#8B6BFF 50%,#FFD54A 100%);--ink-grad:linear-gradient(100deg,#6A4CF5 0%,#3F86FF 100%)}
+body{background:var(--tint);color:var(--ink)}
+:focus-visible{outline-color:var(--violet);border-radius:10px!important}
+/* angles adoucis, façon Apple */
+.btn,.nav ul a,.nav ul a.cta,.lang,.menu-btn,.cb-btn,.cb-form input,.cb-form button,.cb-chips button,.cb-msg a,.eyebrow,.tag{border-radius:999px!important}
+.offer,.calc,.contact form,.hero-chat{border-radius:26px!important}
+.cb-panel.docked{border-radius:24.5px!important}
+.vals div,details,.result,.cb-panel.float{border-radius:20px!important}
+select,input,textarea{border-radius:14px!important}
+.stepper button,.steps h3::before,.spark,.facts li::before,.cb-btn .dot,.cb-head .av,.cb-head button{border-radius:50%!important}
+.cb-msg,.cb-msg.bot,.cb-msg.me{border-radius:18px!important}
+.steps li::before,.steps li::after{border-radius:4px!important}
+/* navigation : verre violet nuit */
+header.nav{background:rgba(12,9,38,.94);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);border-bottom:1px solid rgba(201,184,255,.08)}
+header.nav.scrolled{background:rgba(10,8,30,.84);border-color:rgba(201,184,255,.12);box-shadow:0 12px 40px -24px rgba(60,30,160,.7)}
+.nav ul a{color:#D2CCF0}
+.nav ul a:hover{background:rgba(201,184,255,.10);color:#fff}
+.nav ul a.cta,.nav ul a.cta:hover{background:var(--sun);color:#1A1205;font-weight:700;box-shadow:0 8px 24px -10px rgba(255,213,74,.7)}
+.nav ul a.cta:hover{filter:brightness(1.05)}
+.brand span:last-child{color:var(--yellow)}
+.lang,.menu-btn{background:rgba(255,255,255,.06);border-color:rgba(201,184,255,.22);color:#fff}
+.lang:hover{background:rgba(255,255,255,.12);border-color:var(--violet)}
+@media(max-width:860px){.nav ul{background:rgba(10,8,30,.97);border-bottom:1px solid rgba(201,184,255,.12)}}
+.progress{background:var(--prism)}
+/* boutons : le jaune lumineux pour agir, le verre pour le reste */
+.btn{padding:15px 30px;letter-spacing:-.005em}
+.btn-primary,.direct .btn-wa,.offer.main .btn-primary,.hero a.btn-primary,.cb-form button{background:var(--sun);color:#1A1205;border-color:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 14px 34px -14px rgba(255,190,50,.75)}
+.btn-primary:hover,.direct .btn-wa:hover,.offer.main .btn-primary:hover{background:var(--sun);filter:brightness(1.05);transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 20px 40px -14px rgba(255,190,50,.85)}
+.btn-ghost{border:1.5px solid rgba(106,76,245,.4);color:var(--blue);background:rgba(255,255,255,.7)}
+.btn-ghost:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.hero .btn-wa,.hero a.btn-wa{background:rgba(255,255,255,.07);border:1px solid rgba(201,184,255,.38);color:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.hero .btn-wa:hover{background:rgba(255,255,255,.14);border-color:rgba(201,184,255,.6)}
+.direct .btn-ghost{border-color:rgba(255,255,255,.35);color:#fff;background:transparent}
+.direct .btn-ghost:hover{background:#fff;color:var(--navy)}
+/* accueil : espace violet profond, facettes cristal */
+.hero{background:radial-gradient(70% 60% at 18% 0%,rgba(139,107,255,.38),transparent 70%),radial-gradient(60% 50% at 92% 18%,rgba(94,170,255,.24),transparent 70%),radial-gradient(40% 30% at 50% 100%,rgba(255,213,74,.10),transparent 70%),linear-gradient(180deg,#0C0926,#07061A)}
+.hero::before{background:
+ linear-gradient(118deg,transparent 0 30%,rgba(158,216,255,.10) 30% 44%,transparent 44%),
+ linear-gradient(74deg,transparent 0 58%,rgba(139,107,255,.22) 58% 76%,transparent 76%),
+ linear-gradient(196deg,transparent 0 62%,rgba(255,213,74,.08) 62% 78%,transparent 78%)}
+.eyebrow{background:rgba(255,255,255,.06);border:1px solid rgba(201,184,255,.3);color:#E4DEFF;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.spark{background:var(--yellow);box-shadow:0 0 0 4px rgba(255,213,74,.18),0 0 14px rgba(255,213,74,.85)}
+.hero h1{font-size:clamp(2rem,4.3vw,3.3rem);background:linear-gradient(180deg,#FFFFFF 35%,#D4CBFF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+[lang="fr"] .hero h1{letter-spacing:-.04em;line-height:1.04}
+.hero h1 .iri{background:linear-gradient(100deg,#A9DCFF 0%,#B59CFF 48%,#FFD54A 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:#BFB8E2}
+.facts{color:#B3ACD8}
+.facts li::before{background:var(--yellow);box-shadow:0 0 10px rgba(255,213,74,.7)}
+.hero-chat{padding:1.5px;background:conic-gradient(from var(--a),#9ED8FF,#8B6BFF,#FFD54A,#9ED8FF);animation:spinA 14s linear infinite;box-shadow:0 30px 90px -30px rgba(139,107,255,.7),0 0 120px -50px rgba(94,170,255,.6)}
+/* assistant : verre violet */
+.cb-panel{background:#0E0B26}
+.cb-panel.docked{background:linear-gradient(180deg,rgba(22,17,56,.96),rgba(12,9,32,.97))}
+.cb-head{background:rgba(255,255,255,.03)}
+.cb-head,.cb-form{border-color:rgba(201,184,255,.12)}
+.cb-head .av{background:var(--prism);color:#0C0926}
+.cb-msg.bot{background:rgba(201,184,255,.08);border:1px solid rgba(201,184,255,.14);color:#EEEAFF}
+.cb-msg.me{background:var(--crystal);color:#120E2E}
+.cb-chips button{border-color:rgba(201,184,255,.22);background:rgba(255,255,255,.04);color:#E2DCFF}
+.cb-chips button:hover{border-color:var(--yellow);background:rgba(255,213,74,.08)}
+.cb-form input{border-color:rgba(201,184,255,.22);background:rgba(255,255,255,.05)}
+.cb-form input:focus{border-color:var(--violet);outline:none}
+.cb-note a{color:var(--sky)}
+.cb-btn{background:rgba(14,11,38,.88);color:#fff;border:1px solid rgba(201,184,255,.32);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 18px 40px -16px rgba(139,107,255,.7)}
+.cb-btn:hover{border-color:var(--yellow)}
+.cb-btn .dot{background:var(--yellow);box-shadow:0 0 10px rgba(255,213,74,.9)}
+.cb-panel.float{border-color:rgba(201,184,255,.18);box-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 70px -24px rgba(139,107,255,.6)}
+/* bande défilante */
+.ticker{background:#0B0824;border-block:1px solid rgba(201,184,255,.14)}
+.tk-set span{color:#DCD6FF}
+.tk-set span::after{background:var(--yellow);box-shadow:0 0 10px rgba(255,213,74,.6)}
+/* sections claires : porcelaine lavande, cartes en verre blanc */
+.about,.process{background:linear-gradient(180deg,#F7F6FF,#EEECFF)}
+#offres,#conditions{background:#FBFBFF}
+.vals div{background:rgba(255,255,255,.8);border:1px solid var(--line);box-shadow:inset 0 1px 0 #fff,0 20px 40px -30px rgba(40,20,120,.35)}
+.vals strong{color:var(--blue)}
+.offer{background:rgba(255,255,255,.9);border:1px solid var(--line);box-shadow:inset 0 1px 0 #fff,0 30px 60px -42px rgba(40,20,120,.4)}
+.offer:hover{transform:translateY(-6px);border-color:#D6CEFA;box-shadow:0 40px 70px -40px rgba(60,30,160,.45)}
+.offer.main{background:radial-gradient(120% 55% at 50% 0%,rgba(139,107,255,.38),transparent 62%),linear-gradient(170deg,#1C1548 0%,#0E0B26 100%);border-color:transparent;box-shadow:0 50px 90px -40px rgba(91,60,230,.7)}
+.offer.main::before{inset:-1.5px;height:auto;padding:1.5px;border-radius:27.5px!important;background:var(--prism);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+@media(min-width:1001px){.offer.main{transform:translateY(-12px)}.offer.main:hover{transform:translateY(-18px)}}
+.offer.main .muted,.offer.main li{color:#CFC9EF}
+.offer.main .sub,.offer.main .tiers .inc,.offer.main .incl li::before{color:var(--yellow)}
+.offer.main .tiers,.offer.main .tiers li{border-color:rgba(201,184,255,.16)}
+.tag{background:var(--sun);color:#1A1205;box-shadow:0 8px 22px -8px rgba(255,190,50,.8)}
+.price{background:var(--ink-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.offer.main .price{background:var(--crystal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tiers .inc{color:var(--blue)}
+.tiers li ul.feat li::marker{color:var(--violet)}
+.offer.main .tiers li ul.feat li::marker{color:var(--yellow)}
+.incl li::before{color:var(--blue)}
+.calc{background:rgba(255,255,255,.9);border:1px solid var(--line);box-shadow:0 40px 80px -52px rgba(40,20,120,.45)}
+.result{background:linear-gradient(160deg,#F3F0FF,#EAF4FF);border:1px solid #E0DAFB}
+.result .total,.result .total+dd{border-top-color:rgba(106,76,245,.35)}
+.result .total+dd{background:var(--ink-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+select,input,textarea{border:1.5px solid #D9D4F0;background:#fff;transition:border-color .2s,box-shadow .2s}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 4px rgba(139,107,255,.16)}
+.stepper button{border:1.5px solid #D4CCFA;color:var(--blue);background:#fff}
+.stepper button:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.steps li::before{background:#E4DFFA}
+.steps li::after{background:var(--prism)}
+.steps h3::before{background:linear-gradient(135deg,#8B6BFF,#5A3EE6);color:#FFE08A;box-shadow:0 8px 18px -8px rgba(106,76,245,.75)}
+details{background:rgba(255,255,255,.9);border:1px solid var(--line);box-shadow:none}
+details:hover{border-color:#CFC5FA}
+details[open]{border-color:rgba(106,76,245,.5);box-shadow:0 24px 50px -36px rgba(60,30,160,.45)}
+summary::after{color:var(--blue)}
+/* contact : nuit violette, lueurs bleue et jaune */
+.contact{background:radial-gradient(60% 70% at 0% 0%,rgba(139,107,255,.36),transparent 70%),radial-gradient(50% 60% at 100% 100%,rgba(94,170,255,.22),transparent 70%),radial-gradient(30% 40% at 70% 8%,rgba(255,213,74,.10),transparent 70%),linear-gradient(170deg,#110D2E,#07061A)}
+.contact p{color:#C6C0E6}
+.contact form{background:rgba(255,255,255,.97);border:1px solid rgba(255,255,255,.6);box-shadow:0 40px 90px -40px rgba(0,0,0,.6),0 0 0 6px rgba(201,184,255,.06)}
+footer{background:#F1EFFC}
 </style>
 <noscript><style>html:not(.ready) body{opacity:1}
 </style></noscript>
@@ -585,7 +697,7 @@ footer{background:#D9E8F1}
   <div class="blob b3" aria-hidden="true"></div>
   <div class="wrap">
     <p class="eyebrow in-1"><i class="spark" aria-hidden="true"></i><span data-i18n="eyebrow">Sites web · Applications · IA, pour les entreprises en Israël</span></p>
-    <h1 class="in-1" data-i18n="h1">Votre site web en ligne en 5 à 30 jours ouvrés, à prix annoncé d’avance.</h1>
+    <h1 class="in-1" data-i18n="h1">Votre site web en ligne en <span class="iri">5 à 30 jours ouvrés</span>, à prix annoncé d’avance.</h1>
     <p class="lead in-2" data-i18n="lead">Idanatid crée des landing pages, sites vitrines avec espace d’administration, boutiques en ligne et applications. Posez vos questions à l’assistant ci-dessous, ou écrivez-nous directement sur WhatsApp.</p>
     <div class="hero-chat in-3" id="heroChat"></div>
     <div class="cta in-4">
@@ -811,7 +923,7 @@ tk1:"דף נחיתה",tk2:"אתר תדמית",tk3:"ממשק ניהול",tk4:"ח�
 skip:"דלגו לתוכן",
 nav1:"אודות", nav2:"חבילות ומחירים", nav3:"תהליך העבודה", nav4:"תנאים", nav5:"יצירת קשר",
 navAria:"ניווט ראשי", menu:"תפריט",
-h1:"האתר שלכם באוויר תוך 5-30 ימי עבודה, במחיר שנקבע מראש.",
+h1:"האתר שלכם באוויר <span class=\"iri\">תוך 5-30 ימי עבודה</span>, במחיר שנקבע מראש.",
 eyebrow:"אתרים · אפליקציות · AI לעסקים בישראל",
 lead:"Idanatid בונה דפי נחיתה, אתרי תדמית עם לוח ניהול, חנויות אונליין ואפליקציות. שאלו את העוזר החכם כאן למטה, או כתבו לנו ישירות בוואטסאפ.",
 cta1:"לצפייה בחבילות ובמחירים", cta2:"לכתוב בוואטסאפ",
@@ -1174,10 +1286,11 @@ document.documentElement.classList.add('ready');
     vec3 L=normalize(vec3((m.x-.5)*2.4+sin(t*.25)*.6,(m.y-.5)*2.4+.4,.9));
     float diff=max(dot(n,L),0.);
     float spec=pow(max(dot(reflect(-L,n),vec3(0.,0.,1.)),0.),14.);
-    vec3 deep=vec3(.055,.105,.19),mid=vec3(.12,.27,.42),ice=vec3(.56,.83,.91);
+    vec3 deep=vec3(.045,.035,.12),mid=vec3(.15,.11,.36),ice=vec3(.66,.84,1.);
     vec3 col=mix(deep,mid,rnd*.8+diff*.45);
-    col=mix(col,vec3(.36,.31,.66),smoothstep(.86,.93,rnd)*.55);
-    col=mix(col,vec3(.94,.86,.60),smoothstep(.95,.99,rnd)*.5);
+    col=mix(col,vec3(.18,.34,.70),smoothstep(.70,.84,rnd)*.55);
+    col=mix(col,vec3(.50,.38,.98),smoothstep(.86,.93,rnd)*.6);
+    col=mix(col,vec3(1.,.84,.36),smoothstep(.955,.99,rnd)*.55);
     col+=ice*spec*.38;
     col+=ice*smoothstep(.06,.0,e)*.26;
     float vg=smoothstep(1.35,.15,length((gl_FragCoord.xy/r-.5)*vec2(1.2,1.)));
