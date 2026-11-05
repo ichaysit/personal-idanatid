@@ -502,6 +502,12 @@ footer{background:#D9E8F1}
  @keyframes rise{from{opacity:.0;transform:translateY(36px)}to{opacity:1;transform:none}}
 }
 @media(prefers-reduced-motion:reduce){.hero::before,.hero::after,.tk-track{animation:none!important}.offer,.vals div,.steps li,details{animation:none!important}}
+
+/* ===== v8 : fond de cristal en WebGL (facettes de Voronoï, reflets qui suivent le curseur) ===== */
+.gl{position:absolute;inset:0;width:100%;height:100%;z-index:-3;display:block;opacity:0;transition:opacity 1.2s ease}
+.hero.gl-on .gl{opacity:1}
+.hero.gl-on::before{opacity:0}
+.hero.gl-on::after{opacity:.55}
 </style>
 <noscript><style>html:not(.ready) body{opacity:1}
 </style></noscript>
@@ -532,6 +538,7 @@ footer{background:#D9E8F1}
 <main id="main">
 <!-- HERO -->
 <section class="hero" id="top">
+  <canvas class="gl" id="gl" aria-hidden="true"></canvas>
   <div class="blob b1" aria-hidden="true"></div>
   <div class="blob b2" aria-hidden="true"></div>
   <div class="blob b3" aria-hidden="true"></div>
@@ -1095,6 +1102,78 @@ let start='he';
 try{const q=new URLSearchParams(location.search).get('lang');const s=localStorage.getItem('lang');start=(q==='fr'||q==='he')?q:(s==='fr'||s==='he')?s:'he'}catch(e){}
 applyLang(start);
 document.documentElement.classList.add('ready');
+
+/* Fond de cristal WebGL : une seule passe, résolution réduite, en pause hors écran */
+(function(){
+  const hero=document.querySelector('.hero'),cv=document.getElementById('gl');
+  if(!hero||!cv)return;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const gl=cv.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power'});
+  if(!gl)return;
+  const vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  const fs=`precision highp float;uniform vec2 r;uniform float t;uniform vec2 m;
+  vec2 h2(vec2 p){p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));return fract(sin(p)*43758.5453);}
+  float h1(vec2 p){return fract(sin(dot(p,vec2(41.3,289.1)))*43758.5453);}
+  void main(){
+    vec2 uv=gl_FragCoord.xy/r.y;
+    vec2 q=uv*6.6+vec2(t*.012,0.);
+    vec2 ip=floor(q),fp=fract(q);
+    float d1=8.,d2=8.;vec2 id=vec2(0.);vec2 cp=vec2(0.);
+    for(int j=-1;j<=1;j++)for(int i=-1;i<=1;i++){
+      vec2 g=vec2(float(i),float(j));
+      vec2 o=h2(ip+g);
+      o=.5+.42*sin(t*.18+6.2831*o);
+      vec2 dv=g+o-fp;float d=dot(dv,dv);
+      if(d<d1){d2=d1;d1=d;id=ip+g;cp=dv;}else if(d<d2){d2=d;}
+    }
+    float e=sqrt(d2)-sqrt(d1);
+    float rnd=h1(id);
+    /* normale de la facette et lumière qui suit le curseur */
+    vec3 n=normalize(vec3((h2(id)-.5)*1.4,1.));
+    vec3 L=normalize(vec3((m.x-.5)*2.4+sin(t*.25)*.6,(m.y-.5)*2.4+.4,.9));
+    float diff=max(dot(n,L),0.);
+    float spec=pow(max(dot(reflect(-L,n),vec3(0.,0.,1.)),0.),14.);
+    vec3 deep=vec3(.055,.105,.19),mid=vec3(.12,.27,.42),ice=vec3(.56,.83,.91);
+    vec3 col=mix(deep,mid,rnd*.8+diff*.45);
+    col=mix(col,vec3(.36,.31,.66),smoothstep(.86,.93,rnd)*.55);
+    col=mix(col,vec3(.94,.86,.60),smoothstep(.95,.99,rnd)*.5);
+    col+=ice*spec*.38;
+    col+=ice*smoothstep(.06,.0,e)*.26;
+    float vg=smoothstep(1.35,.15,length((gl_FragCoord.xy/r-.5)*vec2(1.2,1.)));
+    col*=.55+.45*vg;
+    vec2 sc=(gl_FragCoord.xy/r-vec2(.5,.62))*vec2(1.1,1.5);
+    col*=.50+.50*smoothstep(.12,.62,length(sc));
+    gl_FragColor=vec4(col,1.);
+  }`;
+  function sh(t,s){const x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);return gl.getShaderParameter(x,gl.COMPILE_STATUS)?x:null}
+  const a=sh(gl.VERTEX_SHADER,vs),b=sh(gl.FRAGMENT_SHADER,fs);if(!a||!b)return;
+  const pr=gl.createProgram();gl.attachShader(pr,a);gl.attachShader(pr,b);gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;
+  gl.useProgram(pr);
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  const lp=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
+  const U={r:gl.getUniformLocation(pr,'r'),t:gl.getUniformLocation(pr,'t'),m:gl.getUniformLocation(pr,'m')};
+  let W=0,H=0,mx=.5,my=.6,tx=.5,ty=.6,vis=true,raf=0,t0=performance.now();
+  function size(){
+    const k=Math.min(devicePixelRatio||1,1.5)*.85;
+    const w=Math.max(2,Math.round(hero.clientWidth*k)),h=Math.max(2,Math.round(hero.clientHeight*k));
+    if(w!==W||h!==H){W=w;H=h;cv.width=w;cv.height=h;gl.viewport(0,0,w,h)}
+  }
+  function frame(now){
+    raf=0;size();
+    mx+=(tx-mx)*.04;my+=(ty-my)*.04;
+    gl.uniform2f(U.r,W,H);gl.uniform1f(U.t,reduce?8:(now-t0)/1000);gl.uniform2f(U.m,mx,1-my);
+    gl.drawArrays(gl.TRIANGLES,0,3);
+    if(!reduce&&vis&&!document.hidden)raf=requestAnimationFrame(frame);
+  }
+  function kick(){if(!raf)raf=requestAnimationFrame(frame)}
+  new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis)kick()},{threshold:0}).observe(hero);
+  document.addEventListener('visibilitychange',kick);
+  if(!reduce)hero.addEventListener('pointermove',e=>{const R=hero.getBoundingClientRect();tx=(e.clientX-R.left)/R.width;ty=(e.clientY-R.top)/R.height},{passive:true});
+  addEventListener('resize',kick);
+  kick();hero.classList.add('gl-on');
+})();
 </script>
 </body>
 </html>
