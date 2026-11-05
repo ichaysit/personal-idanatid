@@ -398,8 +398,57 @@ footer{background:#F1F5FB}
 .hero-chat{height:min(410px,64vh)}
 @media(max-width:600px){.hero p.lead{display:none}.hero h1{margin-bottom:18px}}
 .hero .cta{margin-top:26px}
+/* ===== v6 : cristal mat, angles droits, noir / blanc / bleu glace / jaune pâle / violet sourd ===== */
+:root{--navy:#0A0B10;--ink:#0A0B10;--ink-2:#3A4152;--blue:#5C50A8;--blue-d:#463C8C;--ok:#5C50A8;--sky:#A9CFE0;--cyan:#CFE6F0;--violet:#6F62B8;--yellow:#E6D28F;--crystal:#A9CFE0;--tint:#F5F7F9;--tint-2:#ECEFF3;--line:#D5DAE1;--r:2px}
+*{--rr:2px}
+.btn,.nav ul a,.nav ul a.cta,.lang,.menu-btn,.cb-btn,.eyebrow,.tag,.offer,.offer.main::before,.vals div,.calc,.result,details,.contact form,select,input,textarea,.stepper button,.skip,.cb-chips button,.cb-form input,.cb-form button,.cb-msg,.cb-msg a,.cb-head .av,.cb-head button,.cb-panel.docked,.cb-panel.float,.hero-chat,.steps li::before,.steps li::after,.steps h3::before,.spark,.facts li::before,.cb-btn .dot,:focus-visible{border-radius:2px!important}
+.hero-chat{padding:1px;background:linear-gradient(135deg,rgba(169,207,224,.7),rgba(230,210,143,.45) 50%,rgba(111,98,184,.6));box-shadow:none}
+.cb-panel.docked{border-radius:1px!important}
+.cb-head .av{background:var(--sky)}
+.cb-msg.me{background:var(--sky);color:#0A0B10}
+.cb-msg.bot{border-radius:2px!important}
+.cb-btn{background:var(--sky);box-shadow:none;border:1px solid rgba(255,255,255,.5)}
+.cb-btn .dot{background:var(--violet)}
+.btn-primary,.nav ul a.cta,.direct .btn-wa,.offer.main .btn-primary,.cb-form button{background:var(--sky);color:#0A0B10;box-shadow:none}
+.btn-primary:hover,.nav ul a.cta:hover{background:#BDDCEA;transform:none}
+.btn-ghost{border-color:var(--navy);color:var(--navy)}
+.btn-ghost:hover{background:var(--navy);color:#fff}
+.hero .btn-wa{background:transparent;border-color:rgba(255,255,255,.35);backdrop-filter:none}
+.brand span:last-child{color:var(--yellow)}
+.progress{background:var(--yellow)}
+.spark{background:var(--yellow);box-shadow:none}
+.eyebrow{background:transparent;border:1px solid rgba(169,207,224,.4);color:#D6E6EE;backdrop-filter:none}
+/* fond du hero : facettes cristal très discrètes, aucun halo flou */
+.blob{display:none}
+.hero{background:#0A0B10}
+.hero::before{background:
+ linear-gradient(115deg,transparent 0 38%,rgba(169,207,224,.07) 38% 62%,transparent 62%),
+ linear-gradient(62deg,transparent 0 55%,rgba(111,98,184,.12) 55% 78%,transparent 78%),
+ linear-gradient(160deg,transparent 0 70%,rgba(230,210,143,.06) 70% 88%,transparent 88%)}
+.hero::after{opacity:.5}
+.contact{background:#0A0B10}
+.contact::before,.contact::after{display:none}
+.tag{background:var(--yellow);color:#0A0B10}
+.offer.main{background:#0A0B10;box-shadow:none;border:1px solid #0A0B10}
+.offer.main::before{background:linear-gradient(130deg,var(--sky),var(--yellow));-webkit-mask:none;mask:none;inset:0 0 auto 0;height:3px;padding:0}
+.offer{box-shadow:none}
+.offer:hover{transform:none;border-color:var(--navy)}
+.offer.main .price{color:#fff}
+.price{color:var(--blue)}
+.about,.process{background:var(--tint)}
+.vals div{box-shadow:none;border:1px solid var(--line)}
+.vals div:hover{transform:none}
+.calc{box-shadow:none;border:1px solid var(--line)}
+.result{background:var(--tint);border:1px solid var(--line)}
+.steps h3::before{background:var(--navy);color:var(--yellow)}
+.steps li::after{background:var(--violet)}
+.contact form{box-shadow:none}
+footer{background:var(--tint)}
+.cb-note a,.hero a{color:var(--sky)}
+a:hover{color:var(--blue-d)}
 </style>
-<noscript><style>html:not(.ready) body{opacity:1}</style></noscript>
+<noscript><style>html:not(.ready) body{opacity:1}
+</style></noscript>
 </head>
 <body>
 <div class="progress" id="progress" aria-hidden="true"></div>
