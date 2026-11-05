@@ -444,7 +444,9 @@ footer{background:#F1F5FB}
 .steps li::after{background:var(--violet)}
 .contact form{box-shadow:none}
 footer{background:var(--tint)}
-.cb-note a,.hero a{color:var(--sky)}
+.cb-note a{color:var(--sky)}
+.hero a.btn-primary{color:#10203A}
+.hero a.btn-wa{color:#fff}
 a:hover{color:var(--blue-d)}
 
 /* ===== v7 : cristal glacé — bleu nuit profond mêlé de bleu cristal, facettes, reflet, défilement automatique ===== */
@@ -508,6 +510,45 @@ footer{background:#D9E8F1}
 .hero.gl-on .gl{opacity:1}
 .hero.gl-on::before{opacity:0}
 .hero.gl-on::after{opacity:.55}
+
+/* ===== v9 : téléphone — navigation compacte, offres en carrousel, espacements réduits, bouton d'assistant lisible ===== */
+@media(max-width:700px){
+  section{padding:56px 0}
+  h2{font-size:clamp(1.7rem,7.4vw,2.2rem);line-height:1.15}
+  .nav .wrap{height:60px;min-height:60px;flex-wrap:nowrap;padding-block:0;row-gap:0;gap:10px}
+  .brand{font-size:1.3rem}
+  .lang-wrap label{display:none}
+  .lang{min-height:40px;padding:6px 10px;font-size:.9rem}
+  .menu-btn{min-height:40px;padding:6px 12px;font-size:.9rem}
+  .nav ul#menu{top:100%}
+  .hero{padding-bottom:48px}
+  .hero .cta{flex-direction:column;align-items:stretch;gap:10px}
+  .hero .cta .btn{width:100%}
+  .facts{flex-direction:column;align-items:center;gap:8px}
+  /* offres : on glisse de carte en carte, la suivante dépasse pour montrer qu'on peut glisser */
+  .offers{display:flex;grid-template-columns:none;max-width:none;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:14px;align-items:flex-start;width:100vw;margin-inline:calc(50% - 50vw);padding:30px 20px 14px;scrollbar-width:none}
+  .offers::-webkit-scrollbar{display:none}
+  .offer{flex:0 0 84%;scroll-snap-align:center;scroll-margin-inline:20px;animation:none!important;opacity:1!important;transform:none!important}
+  .price{font-size:clamp(1.5rem,7.2vw,1.95rem);line-height:1.15;white-space:nowrap}
+  .calc{padding:20px;gap:24px;margin-top:40px}
+  .steps{gap:26px}
+  .contact form{padding:22px}
+  .direct{align-items:stretch}
+  .direct .btn{width:100%}
+  footer{padding-bottom:92px}
+  .tk-set span{font-size:.92rem;padding:0 18px}
+  .tk-set span::after{margin-inline-start:36px}
+  /* bouton d'assistant : pastille lisible au lieu d'un carré vide */
+  .cb-btn{min-height:48px;padding:0 16px;gap:8px;inset-inline-end:14px;bottom:14px;font-size:.92rem}
+  .cb-btn span.t{display:inline!important}
+  .cb-panel.float{inset-inline-end:10px;inset-inline-start:10px;width:auto;bottom:72px;height:min(560px,calc(100dvh - 96px))}
+}
+.dots{display:none}
+@media(max-width:700px){
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:6px}
+  .dots i{width:22px;height:4px;background:var(--line);transition:background .2s,width .2s}
+  .dots i.on{background:var(--blue);width:34px}
+}
 </style>
 <noscript><style>html:not(.ready) body{opacity:1}
 </style></noscript>
@@ -1173,6 +1214,21 @@ document.documentElement.classList.add('ready');
   if(!reduce)hero.addEventListener('pointermove',e=>{const R=hero.getBoundingClientRect();tx=(e.clientX-R.left)/R.width;ty=(e.clientY-R.top)/R.height},{passive:true});
   addEventListener('resize',kick);
   kick();hero.classList.add('gl-on');
+})();
+
+/* Offres sur téléphone : pastilles de position */
+(function(){
+  const o=document.querySelector('.offers');if(!o)return;
+  const d=document.createElement('div');d.className='dots';d.setAttribute('aria-hidden','true');
+  const cards=[...o.querySelectorAll('.offer')];cards.forEach(()=>d.appendChild(document.createElement('i')));
+  o.insertAdjacentElement('afterend',d);
+  function upd(){
+    const c=o.getBoundingClientRect(),mid=c.left+c.width/2;let best=0,bd=1e9;
+    cards.forEach((el,i)=>{const r=el.getBoundingClientRect();const dd=Math.abs(r.left+r.width/2-mid);if(dd<bd){bd=dd;best=i}});
+    [...d.children].forEach((x,i)=>x.classList.toggle('on',i===best));
+  }
+  o.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
+  addEventListener('resize',upd);upd();
 })();
 </script>
 </body>
