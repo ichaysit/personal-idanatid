@@ -446,6 +446,62 @@ footer{background:#F1F5FB}
 footer{background:var(--tint)}
 .cb-note a,.hero a{color:var(--sky)}
 a:hover{color:var(--blue-d)}
+
+/* ===== v7 : cristal glacé — bleu nuit profond mêlé de bleu cristal, facettes, reflet, défilement automatique ===== */
+:root{--navy:#142238;--ink:#142238;--ink-2:#41546C;--blue:#2F6FB0;--blue-d:#245A92;--sky:#8FD3E8;--cyan:#CFE9F3;--violet:#8B80D4;--yellow:#F0DC9A;--crystal:#8FD3E8;--tint:#E3EEF4;--tint-2:#D3E4EE;--line:#BCD0DE;--glass:#1B3250}
+body{background:#EAF2F7;color:var(--ink)}
+section:not(.hero):not(.contact){background:transparent}
+.about,.process{background:linear-gradient(180deg,#E3EEF4,#D9E8F1)}
+header.nav{background:rgba(20,34,56,.9)}
+/* HERO : verre bleu nuit, facettes de cristal, un seul reflet qui traverse */
+.hero{background:linear-gradient(155deg,#10203A 0%,#1B3A5E 48%,#14304F 100%)}
+.hero::before{background:
+ linear-gradient(118deg,transparent 0 30%,rgba(143,211,232,.16) 30% 44%,transparent 44%),
+ linear-gradient(74deg,transparent 0 58%,rgba(139,128,212,.20) 58% 76%,transparent 76%),
+ linear-gradient(196deg,transparent 0 62%,rgba(240,220,154,.10) 62% 78%,transparent 78%),
+ linear-gradient(28deg,transparent 0 40%,rgba(207,233,243,.08) 40% 55%,transparent 55%);
+ animation:drift 28s ease-in-out infinite alternate}
+.hero::after{background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.14) 50%,transparent 65%);background-size:260% 100%;-webkit-mask-image:none;mask-image:none;opacity:1;animation:sheen 9s ease-in-out infinite}
+@keyframes drift{from{transform:translate3d(-2%,0,0) scale(1.04)}to{transform:translate3d(2%,-1.5%,0) scale(1.08)}}
+@keyframes sheen{0%,35%{background-position:130% 0}70%,100%{background-position:-60% 0}}
+.hero-chat{background:linear-gradient(135deg,rgba(143,211,232,.9),rgba(240,220,154,.55) 45%,rgba(139,128,212,.8))}
+.cb-panel{background:#122640}
+.cb-msg.bot{background:rgba(143,211,232,.10);border-color:rgba(143,211,232,.22)}
+.cb-head,.cb-form{border-color:rgba(143,211,232,.18)}
+/* Cartes : verre givré, arête claire, reflet au survol */
+.offer,.vals div,.calc,details{background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(226,239,246,.7));border:1px solid rgba(47,111,176,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 18px 40px -30px rgba(20,34,56,.5)}
+.offer,.vals div{position:relative;overflow:hidden}
+.offer::after,.vals div::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.7) 50%,transparent 60%);transform:translateX(-120%);transition:transform .9s ease;pointer-events:none}
+.offer:hover::after,.vals div:hover::after{transform:translateX(120%)}
+.offer.main{background:linear-gradient(150deg,#112844 0%,#1E4670 100%);border-color:#8FD3E8}
+.offer.main::after{display:none}
+.offer.main{overflow:visible}
+.offer.main::before{background:linear-gradient(90deg,var(--sky),var(--yellow),var(--violet))}
+.price{color:var(--blue)}
+.result{background:linear-gradient(160deg,#E9F3F8,#D5E6F0)}
+.contact{background:linear-gradient(155deg,#10203A,#1B3A5E)}
+.contact form{background:#F1F7FA;border:1px solid var(--sky)}
+footer{background:#D9E8F1}
+.btn-primary,.nav ul a.cta,.direct .btn-wa,.cb-form button{background:linear-gradient(135deg,#A8DDEE,#7FC6E0);color:#10203A}
+.btn-primary:hover,.nav ul a.cta:hover{background:linear-gradient(135deg,#BDE6F3,#8FD3E8)}
+.steps h3::before{background:#142238;color:var(--sky)}
+.steps li::after{background:linear-gradient(90deg,var(--sky),var(--violet))}
+.progress{background:linear-gradient(90deg,var(--sky),var(--yellow))}
+.cb-btn{background:linear-gradient(135deg,#A8DDEE,#7FC6E0)}
+/* Bande qui défile toute seule */
+.ticker{overflow:hidden;background:#142238;border-block:1px solid rgba(143,211,232,.35);padding:16px 0;direction:ltr}
+.tk-track{display:flex;width:max-content;animation:tk 38s linear infinite}
+.ticker:hover .tk-track{animation-play-state:paused}
+.tk-set{display:flex;flex:none}
+.tk-set span{display:flex;align-items:center;padding:0 28px;color:#CFE9F3;font-family:var(--f-head);font-weight:500;font-size:1.02rem;white-space:nowrap}
+.tk-set span::after{content:"";width:9px;height:9px;margin-inline-start:56px;background:var(--yellow);transform:rotate(45deg)}
+@keyframes tk{to{transform:translateX(-50%)}}
+/* Apparition douce des sections quand on défile (si le navigateur sait) */
+@supports (animation-timeline:view()){
+ .offer,.vals div,.steps li,details{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 25%}
+ @keyframes rise{from{opacity:.0;transform:translateY(36px)}to{opacity:1;transform:none}}
+}
+@media(prefers-reduced-motion:reduce){.hero::before,.hero::after,.tk-track{animation:none!important}.offer,.vals div,.steps li,details{animation:none!important}}
 </style>
 <noscript><style>html:not(.ready) body{opacity:1}
 </style></noscript>
@@ -497,6 +553,7 @@ a:hover{color:var(--blue-d)}
   </div>
 </section>
 
+<div class="ticker" aria-hidden="true"><div class="tk-track"><div class="tk-set"><span data-i18n="tk1" data-fr="Landing page">Landing page</span><span data-i18n="tk2" data-fr="Site vitrine">Site vitrine</span><span data-i18n="tk3" data-fr="Espace d’administration">Espace d’administration</span><span data-i18n="tk4" data-fr="Boutique en ligne">Boutique en ligne</span><span data-i18n="tk5" data-fr="Application sur mesure">Application sur mesure</span><span data-i18n="tk6" data-fr="Hébergement et maintenance">Hébergement et maintenance</span><span data-i18n="tk7" data-fr="Code source à vous">Code source à vous</span></div><div class="tk-set"><span data-i18n="tk1" data-fr="Landing page">Landing page</span><span data-i18n="tk2" data-fr="Site vitrine">Site vitrine</span><span data-i18n="tk3" data-fr="Espace d’administration">Espace d’administration</span><span data-i18n="tk4" data-fr="Boutique en ligne">Boutique en ligne</span><span data-i18n="tk5" data-fr="Application sur mesure">Application sur mesure</span><span data-i18n="tk6" data-fr="Hébergement et maintenance">Hébergement et maintenance</span><span data-i18n="tk7" data-fr="Code source à vous">Code source à vous</span></div></div></div>
 <!-- À PROPOS -->
 <section class="about" id="apropos">
   <div class="wrap">
@@ -702,6 +759,7 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ================= Traductions (hébreu ; le français est le texte d'origine du HTML) ================= */
 const HE = {
+tk1:"דף נחיתה",tk2:"אתר תדמית",tk3:"ממשק ניהול",tk4:"חנות אונליין",tk5:"אפליקציה בהתאמה אישית",tk6:"אחסון ותחזוקה",tk7:"קוד המקור שלכם",
 skip:"דלגו לתוכן",
 nav1:"אודות", nav2:"חבילות ומחירים", nav3:"תהליך העבודה", nav4:"תנאים", nav5:"יצירת קשר",
 navAria:"ניווט ראשי", menu:"תפריט",
