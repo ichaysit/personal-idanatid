@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>404 | Idanatid</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans Hebrew","Noto Sans",sans-serif;color:#fff;background:#16294d;overflow-x:hidden}
+.bg{position:fixed;inset:0;background:
+ radial-gradient(60% 50% at 20% 25%,#3070b0 0,transparent 70%),
+ radial-gradient(50% 45% at 80% 30%,#8f82d6 0,transparent 70%),
+ radial-gradient(55% 50% at 60% 85%,#90d5e8 0,transparent 70%),
+ radial-gradient(45% 40% at 10% 90%,#efdea0 0,transparent 70%),#16294d;
+ filter:saturate(1.1);animation:drift 28s ease-in-out infinite alternate}
+.bg:after{content:"";position:absolute;inset:0;background:rgba(10,20,45,.55)}
+@keyframes drift{from{transform:scale(1.15) translate(-2%,-1%)}to{transform:scale(1.25) translate(2%,2%)}}
+main{position:relative;min-height:100%;display:flex;flex-direction:column;justify-content:center;padding:clamp(1.5rem,6vw,5rem);max-width:60rem;margin-inline:auto}
+.code{font-size:clamp(5rem,26vw,13rem);font-weight:500;line-height:.9;letter-spacing:-.03em}
+h1{font-size:clamp(1.6rem,5vw,2.6rem);font-weight:500;line-height:1.15;margin-top:1rem}
+p{margin-top:1rem;max-width:34rem;font-size:1.05rem;line-height:1.55;color:rgba(255,255,255,.86)}
+nav{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+a.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 1.4rem;border-radius:999px;border:1px solid rgba(255,255,255,.45);color:#fff;text-decoration:none;font-weight:500;transition:background .25s,color .25s}
+a.btn.main{background:#fff;color:#16294d;border-color:#fff}
+a.btn:hover{background:rgba(255,255,255,.18)}a.btn.main:hover{background:#efdea0}
+a.btn:focus-visible{outline:3px solid #efdea0;outline-offset:3px}
+.lg{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2.5rem}
+.lg button{min-height:44px;min-width:44px;padding:0 .9rem;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font:inherit;cursor:pointer}
+.lg button[aria-pressed=true]{background:rgba(255,255,255,.2);border-color:#fff}
+.lg button:focus-visible{outline:3px solid #efdea0;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.bg{animation:none}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<main>
+<div class="code" aria-hidden="true">404</div>
+<h1 id="h"></h1>
+<p id="p"></p>
+<nav>
+<a class="btn main" id="a1" href="/"></a>
+<a class="btn" id="a2" href="/#/offres"></a>
+<a class="btn" id="a3" href="/#/contact"></a>
+</nav>
+<div class="lg" role="group" aria-label="Language">
+<button type="button" data-l="he" lang="he">עברית</button>
+<button type="button" data-l="fr" lang="fr">Français</button>
+<button type="button" data-l="en" lang="en">English</button>
+<button type="button" data-l="ru" lang="ru">Русский</button>
+</div>
+</main>
+<script>
+var T={
+he:{t:"404 | Idanatid",h:"העמוד הזה לא קיים.",p:"הכתובת שגויה או שהעמוד הוסר. אפשר לחזור לדף הבית, לראות את החבילות או לכתוב לי ישירות.",a:["לדף הבית","חבילות ומחירים","יצירת קשר"]},
+fr:{t:"404 | Idanatid",h:"Cette page n’existe pas.",p:"L’adresse est incorrecte ou la page a été retirée. Retournez à l’accueil, consultez les offres ou écrivez-moi directement.",a:["Retour à l’accueil","Offres et tarifs","Me contacter"]},
+en:{t:"404 | Idanatid",h:"This page does not exist.",p:"The address is wrong or the page has been removed. Go back to the home page, see the offers or write to me directly.",a:["Back to home","Offers and pricing","Contact me"]},
+ru:{t:"404 | Idanatid",h:"Такой страницы нет.",p:"Адрес неверный или страница удалена. Вернитесь на главную, посмотрите предложения или напишите мне напрямую.",a:["На главную","Предложения и цены","Связаться"]}
+};
+function set(l){var x=T[l],d=document.documentElement;d.lang=l;d.dir=l==="he"?"rtl":"ltr";document.title=x.t;
+document.getElementById("h").textContent=x.h;document.getElementById("p").textContent=x.p;
+["a1","a2","a3"].forEach(function(id,i){document.getElementById(id).textContent=x.a[i]});
+[].forEach.call(document.querySelectorAll(".lg button"),function(b){b.setAttribute("aria-pressed",b.dataset.l===l)});
+try{localStorage.setItem("lang",l)}catch(e){}}
+var s="he";try{var v=localStorage.getItem("lang");if(T[v])s=v}catch(e){}
+set(s);
+[].forEach.call(document.querySelectorAll(".lg button"),function(b){b.addEventListener("click",function(){set(b.dataset.l)})});
+</script>
+</body>
+</html>
