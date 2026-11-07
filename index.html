@@ -345,6 +345,60 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,te
 /*p4*/@media(min-width:641px){.hero2 .hb{padding-bottom:5.5rem}}
 
 /*p5b*/.ttl .w,.tag2 .w{padding-top:.22em;margin-top:-.22em}select.lang{min-width:6.4rem;text-overflow:clip}@media(min-width:640px){[lang=en] .ttl{font-size:8.6vw}[lang=ru] .ttl{font-size:6.9vw}}@media(min-width:900px){#menu a{white-space:nowrap}[lang=ru] #menu{gap:1.1rem}}[lang=ru] .phc h1,[lang=en] .phc h1{overflow-wrap:anywhere}
+
+/*p7*/
+:root{--vio:#8f82d6;--vio-d:#6f62c4;--sun:#efdea0;--sky:#90d5e8}
+.brand{gap:.65rem;font-size:1.2rem;letter-spacing:.14em}
+.brand svg.logo{width:2.35rem;height:2.1rem;flex:none;color:inherit;filter:drop-shadow(0 2px 10px rgba(8,16,36,.35))}
+.brand span{line-height:1}
+header.nav .hd{padding-top:1.5rem}
+.lang{height:2.9rem;min-height:2.9rem;font-size:.85rem;padding:0 1rem}
+.menu-btn{width:2.9rem;height:2.9rem}
+.book{font-size:.85rem}
+@media(min-width:900px){
+ header.nav .hd{padding:2.1rem 2.5rem 0;gap:1.5rem}
+ .brand{gap:.9rem;font-size:1.85rem;letter-spacing:.13em}
+ .brand svg.logo{width:3.5rem;height:3.15rem}
+ #menu:not(.open){font-size:1rem;gap:1.6rem}
+ .lang{height:3.2rem;min-height:3.2rem;font-size:.95rem}
+ .menu-btn{width:3.2rem;height:3.2rem}
+ .book{font-size:.95rem}
+ [lang=ru] #menu:not(.open){gap:1.1rem;font-size:.95rem}
+}
+@media(min-width:640px){[lang=fr] .ttl{font-size:7vw}}
+@media(max-width:450px){.brand{font-size:1.05rem;letter-spacing:.1em}.brand svg.logo{width:2.05rem;height:1.85rem}.lang{min-width:5.6rem;padding:0 .6rem}}
+#menu a[aria-current=page]{text-decoration-color:var(--sun);text-decoration-thickness:2px}
+.mem .v{color:var(--sun)}
+.gh .gw.ink{color:var(--vio-d)}
+.steps li:before,.sg .v{color:var(--vio-d)}
+.vals strong{color:var(--vio-d)}
+#progs .eyebrow,#stats .eyebrow,#demos .eyebrow,#faq .eyebrow,#fac .eyebrow{color:var(--vio-d)}
+#progs .eyebrow:before,#stats .eyebrow:before,#demos .eyebrow:before,#faq .eyebrow:before,#fac .eyebrow:before{background:var(--vio)}
+.card .price,.pl2 .pr{color:var(--vio-d)}
+.card.main .price,.detail .offer .price{color:var(--sun)}
+.tiers .inc{color:var(--sky)}
+.result dt.total+dd{color:var(--sun)}
+.fcols h4{color:var(--sky)}
+.fcols a:hover{color:var(--sun)}
+.band .btn-primary:hover{background:var(--sun)}
+/*p8*/
+.calc .field select{width:100%}
+.ck2{display:flex;gap:.7rem;align-items:flex-start;text-transform:none!important;letter-spacing:0!important;font-size:.9rem!important;color:var(--ink,#16294d)!important;cursor:pointer;line-height:1.45}
+.ck2 input{width:1.25rem;height:1.25rem;margin-top:.1rem;accent-color:#6f62c4;flex:none}
+.result dd{direction:inherit!important}
+.result dt.tot2{color:#fff;font-weight:500}
+.result dt.tot2+dd{color:var(--sky);font-weight:600}
+.result dl{row-gap:.7rem}
+.result dt[hidden],.result dd[hidden]{display:none}
+.coach{display:none!important}
+.gh .gw{color:var(--deep)}
+.gh .gw.ink{color:var(--vio-d)}
+.gh .row2:last-child .gw:last-child{color:#3070b0}
+.gh{margin-top:2.5rem}
+/*p9*/
+.pour{padding:4rem 0}.pour .rv{max-width:46rem}.pour h2{text-wrap:balance;margin:1rem 0 1.25rem;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.1}
+.pour p{font-size:1.05rem;line-height:1.7;margin-bottom:1rem;color:var(--soft)}
+.pour .eyebrow{color:var(--vio-d)}
 .cb-panel{background:linear-gradient(rgba(4,6,30,.6),rgba(4,6,30,.82)),var(--aiimg,none) center/cover,#0C0F1D!important}
 .sc img,.mem .im,.fi .ic{display:none!important}
 .coach figure img{display:none!important}
@@ -360,10 +414,10 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,te
 .pg[hidden]{display:none}
 </style></head>
 <body data-nav="index.html" data-t-fr="Idanatid — Sites web et applications pour les entreprises en Israël" data-t-he="Idanatid — בניית אתרים ואפליקציות לעסקים בישראל" data-d-fr="Idanatid crée des landing pages, sites vitrines avec espace d’administration, boutiques en ligne et applications pour les entreprises en Israël. Prix annoncés d’avance." data-d-he="Idanatid בונה דפי נחיתה, אתרי תדמית עם לוח ניהול, חנויות אונליין ואפליקציות לעסקים בישראל. מחירים שנקבעים מראש.">
-<div class="progress" id="progress" aria-hidden="true"></div><div id="pt" aria-hidden="true"></div><div id="cur" aria-hidden="true"></div><div id="ldr" role="status" aria-label="Loading"><div class="ld-w"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M5 8h8v32H5z"/><path fill="currentColor" d="M31 8l13 32h-8l-2.1-6.4h-6.8L25 40h-8z"/></svg>Idanatid</div><div class="ld-t"><i></i></div></div>
+<div class="progress" id="progress" aria-hidden="true"></div><div id="pt" aria-hidden="true"></div><div id="cur" aria-hidden="true"></div><div id="ldr" role="status" aria-label="Loading"><div class="ld-w"><svg class="logo" viewBox="143 593 463 414" aria-hidden="true" focusable="false"><rect x="143" y="593" width="94" height="414" fill="#90d5e8"/><path d="M453 593L606 1007H517L453 810L390 1007H301Z" fill="#8f82d6"/><path d="M453 593L494 707H412Z" fill="#efdea0"/><path d="M390 1007L453 810V1007Z" fill="#3070b0"/></svg>Idanatid</div><div class="ld-t"><i></i></div></div>
 <a class="skip" href="#main" data-i18n="skip" data-fr="Aller au contenu">Aller au contenu</a>
 <header class="nav" id="nav"><div class="hd">
-  <a class="brand" href="#/" aria-label="Idanatid"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M5 8h8v32H5z"/><path fill="currentColor" d="M31 8l13 32h-8l-2.1-6.4h-6.8L25 40h-8z"/></svg>Idanatid</a>
+  <a class="brand" href="#/" aria-label="Idanatid"><svg class="logo" viewBox="143 593 463 414" aria-hidden="true" focusable="false"><rect x="143" y="593" width="94" height="414" fill="#90d5e8"/><path d="M453 593L606 1007H517L453 810L390 1007H301Z" fill="#8f82d6"/><path d="M453 593L494 707H412Z" fill="#efdea0"/><path d="M390 1007L453 810V1007Z" fill="#3070b0"/></svg><span>Idanatid</span></a>
   <nav aria-label="Navigation principale" data-i18n-aria="navAria" data-fr-aria="Navigation principale">
     <ul id="menu">
       <li class="ov"><a href="#/" data-i18n="pHome" data-fr="Accueil">Accueil</a></li>
@@ -394,7 +448,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,te
   </div>
  </div>
 </section>
-<section id="trust"><div class="wrap">
+<!--p9--><section class="pour"><div class="wrap"><div class="rv"><span class="eyebrow">Idanatid</span><h2 data-i18n="wH">Un site construit avec vous</h2><p data-i18n="w1">Chaque projet commence par une conversation. Je prends le temps de comprendre votre activité, vos clients et ce que vous voulez voir en ligne. Ensuite nous construisons ensemble le site qui vous correspond, étape après étape, de la première idée jusqu’à la mise en ligne.</p><p data-i18n="w2">Les prix du site donnent un cadre clair. À l’intérieur, tout se règle sur vous : les pages, les fonctions, le style, les mots. Vous restez au centre du projet et je reste à vos côtés à chaque étape. Votre réussite compte pour moi, et je veux que vous soyez fier de votre site.</p></div></div></section><!--/p9--><section id="trust"><div class="wrap">
  <div class="tb"><div class="pc rv"><b>100%</b><span id="pct"></span></div><article class="bc rv" style="transition-delay:.12s"><span class="ix">#01</span><div><h3 id="bcT"></h3><p id="bcP"></p></div></article></div>
  <h2 class="gh" id="gh" aria-hidden="true"><div class="row2"><span class="gw"></span><span class="gw"></span></div><div class="row2"><span class="gw ink"></span><span class="gw"></span></div></h2>
  <div class="coach rv"><figure><img id="cI0" alt=""><img id="cI1" class="off" alt=""><figcaption><b id="cN"></b><span id="cR"></span></figcaption></figure></div>
@@ -428,7 +482,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,te
         <div><strong data-i18n="v2a">Transparent</strong><span data-i18n="v2b">Prix, délais et inclusions annoncés avant de commencer.</span></div>
         <div><strong data-i18n="v3a">Suivi continu</strong><span data-i18n="v3b">Hébergement, sauvegardes et modifications mensuelles.</span></div>
       </div>
-    </div></div></section><section class="band"><div class="wrap">
+    </div></div></section><!--p9--><section class="pour"><div class="wrap"><div class="rv"><span class="eyebrow">Idanatid</span><h2 data-i18n="wH">Un site construit avec vous</h2><p data-i18n="w1">Chaque projet commence par une conversation. Je prends le temps de comprendre votre activité, vos clients et ce que vous voulez voir en ligne. Ensuite nous construisons ensemble le site qui vous correspond, étape après étape, de la première idée jusqu’à la mise en ligne.</p><p data-i18n="w2">Les prix du site donnent un cadre clair. À l’intérieur, tout se règle sur vous : les pages, les fonctions, le style, les mots. Vous restez au centre du projet et je reste à vos côtés à chaque étape. Votre réussite compte pour moi, et je veux que vous soyez fier de votre site.</p></div></div></section><!--/p9--><section class="band"><div class="wrap">
   <h2 data-i18n="ctaH">Prêt à démarrer ?</h2>
   <p data-i18n="ctaP">Écrivez-moi sur WhatsApp, ou posez vos questions à l’assistant sur les offres, les prix et les délais.</p>
   <div class="row"><a class="btn btn-primary" data-wa href="#/contact" data-i18n="tB1">Discuter sur WhatsApp</a><a class="btn btn-ghost" href="#/contact" data-i18n="goContact">Aller à la page Contact</a><a class="btn btn-ghost" href="#/assistant" data-i18n="goAssist">Poser une question à l’assistant</a></div>
@@ -448,7 +502,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,te
   <div class="row"><a class="btn btn-primary" data-wa href="#/contact" data-i18n="tB1">Discuter sur WhatsApp</a><a class="btn btn-ghost" href="#/contact" data-i18n="goContact">Aller à la page Contact</a><a class="btn btn-ghost" href="#/assistant" data-i18n="goAssist">Poser une question à l’assistant</a></div>
 </div></section>
 
-</div>
+<!--p9--><section class="pour"><div class="wrap"><div class="rv"><span class="eyebrow">Idanatid</span><h2 data-i18n="wH">Un site construit avec vous</h2><p data-i18n="w1">Chaque projet commence par une conversation. Je prends le temps de comprendre votre activité, vos clients et ce que vous voulez voir en ligne. Ensuite nous construisons ensemble le site qui vous correspond, étape après étape, de la première idée jusqu’à la mise en ligne.</p><p data-i18n="w2">Les prix du site donnent un cadre clair. À l’intérieur, tout se règle sur vous : les pages, les fonctions, le style, les mots. Vous restez au centre du projet et je reste à vos côtés à chaque étape. Votre réussite compte pour moi, et je veux que vous soyez fier de votre site.</p></div></div></section><!--/p9--></div>
 <div class="pg" data-page="offre-starter" data-t-fr="Starter — Idanatid" data-t-he="סטארטר — Idanatid" hidden>
 <section class="ph"><div class="plate"><div class="pl"><img data-s="assets/ph3.jpg" alt=""></div></div><div class="phc"><nav class="crumb" aria-label="Fil d’Ariane"><a href="#/" data-i18n="pHome" data-fr="Accueil">Accueil</a><span>/</span><span data-i18n="o1h" data-fr="Starter">Starter</span></nav><h1 data-i18n="o1h">Starter</h1>
   <p class="lead" data-i18n="o1m">Landing page de conversion, pour indépendants, artisans, événements et professions libérales.</p></div></section>
@@ -524,38 +578,15 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,te
 </div>
 <div class="pg" data-page="estimateur" data-t-fr="Estimateur de prix — Idanatid" data-t-he="מחשבון הערכת מחיר — Idanatid" hidden>
 <section class="ph"><div class="plate"><div class="pl"><img data-s="assets/ph3.jpg" alt=""></div></div><div class="phc"><nav class="crumb" aria-label="Fil d’Ariane"><a href="#/" data-i18n="pHome" data-fr="Accueil">Accueil</a><span>/</span><span data-i18n="nav6" data-fr="Estimateur">Estimateur</span></nav><h1 data-i18n="estPH">Estimateur de prix</h1>
-  <p class="lead" data-i18n="estPL">Calculez le prix de création de l’offre Vitrine Pro et votre plan de paiement.</p></div></section>
+  <p class="lead" data-i18n="estPL">Choisissez une offre, ajoutez des pages et des heures de support, et obtenez le prix de création, l’acompte et l’abonnement.</p></div></section>
 <section><div class="wrap"><div class="calc rv" id="estimateur">
       <div>
-        <h3 data-i18n="cH">Estimez votre projet Vitrine Pro</h3>
-        <div class="field">
-          <label for="tier" data-i18n="cL1">Formule</label>
-          <select id="tier">
-            <option value="3000" data-i18n="cO1">Base vitrine, 3000 ₪</option>
-            <option value="3800" selected data-i18n="cO2">Standard, 3800 ₪</option>
-            <option value="5000" data-i18n="cO3">Avancée, 5000 ₪</option>
-          </select>
-        </div>
-        <div class="field">
-          <label id="pl" data-i18n="cL2">Pages supplémentaires (500 ₪ l’une)</label>
-          <div class="stepper" role="group" aria-labelledby="pl">
-            <button type="button" id="minus" aria-label="Retirer une page" data-i18n-aria="minus">−</button>
-            <output id="pages" aria-live="polite">0</output>
-            <button type="button" id="plus" aria-label="Ajouter une page" data-i18n-aria="plus">+</button>
-          </div>
-        </div>
+        <h3 data-i18n="cH">Estimez votre projet</h3>
+        <div class="field"><label for="tier" data-i18n="cL1">Offre</label><select id="tier"><option value="1500" data-s="150" data-g="1" data-i18n="cO1">Starter, Standard · 1500 ₪</option><option value="2000" data-s="150" data-g="1" data-i18n="cO2">Starter, Intermédiaire · 2000 ₪</option><option value="2500" data-s="150" data-g="1" data-i18n="cO3">Starter, Premium · 2500 ₪</option><option value="3000" data-s="300" data-g="2" data-i18n="cO4">Vitrine Pro, Base · 3000 ₪</option><option value="3800" data-s="300" data-g="2" data-i18n="cO5">Vitrine Pro, Standard · 3800 ₪</option><option value="5000" data-s="300" data-g="2" data-i18n="cO6">Vitrine Pro, Avancée · 5000 ₪</option><option value="8000" data-s="400" data-g="3" data-i18n="cO7">Boutique, Standard · 8000 ₪</option><option value="15000" data-s="400" data-g="3" data-i18n="cO8">Boutique, Avancée · 15000 ₪</option><option value="17000" data-s="400" data-g="3" data-i18n="cO9">Système sur mesure · dès 17000 ₪</option></select></div>
+        <div class="field"><label id="lbpages" data-i18n="cL2">Pages supplémentaires (500 ₪ l’une)</label><div class="stepper" role="group" aria-labelledby="lbpages"><button type="button" id="minus" aria-label="Retirer une page" data-i18n-aria="minus">−</button><output id="pages" aria-live="polite">0</output><button type="button" id="plus" aria-label="Ajouter une page" data-i18n-aria="plus">+</button></div></div><div class="field"><label id="lbhours" data-i18n="cL3">Heures de support en plus chaque mois (150 ₪ l’heure)</label><div class="stepper" role="group" aria-labelledby="lbhours"><button type="button" id="hminus" aria-label="Retirer une heure" data-i18n-aria="hMinus">−</button><output id="hours" aria-live="polite">0</output><button type="button" id="hplus" aria-label="Ajouter une heure" data-i18n-aria="hPlus">+</button></div></div><div class="field"><label class="ck2" for="exp"><input type="checkbox" id="exp"><span data-i18n="cL4">Prévoir l’export du site chez un autre hébergeur si je pars (500 ₪)</span></label></div>
       </div>
-      <div class="result" aria-live="polite">
-        <dl>
-          <dt data-i18n="r1">Formule</dt><dd id="r-base">3800 ₪</dd>
-          <dt data-i18n="r2">Pages en plus</dt><dd id="r-extra">0 ₪</dd>
-          <dt class="total" data-i18n="r3">Création</dt><dd id="r-total">3800 ₪</dd>
-          <dt data-i18n="r4">Acompte au démarrage (50 %)</dt><dd id="r-dep">1900 ₪</dd>
-          <dt data-i18n="r5">Solde à la mise en ligne</dt><dd id="r-bal">1900 ₪</dd>
-          <dt data-i18n="r6">Abonnement mensuel</dt><dd>300 ₪</dd>
-        </dl>
-      </div>
-    </div><p class="note-s" data-i18n="estNote">L’estimation concerne l’offre Vitrine Pro & Dashboard Admin. Pour un prix ferme sur une autre offre, écrivez-moi.</p><p class="lnk"><a class="btn btn-primary" href="#/contact?offer=pro" data-i18n="tB1x">Demander cette offre</a><a class="btn btn-ghost" href="#/offre-vitrine-pro" data-i18n="seeDetail">Voir le détail</a></p></div></section><section class="band"><div class="wrap">
+      <div class="result" aria-live="polite"><dl><dt id="r-base-t" data-i18n="r1">Offre</dt><dd id="r-base"></dd><dt id="r-extra-t" data-i18n="r2">Pages en plus</dt><dd id="r-extra"></dd><dt class="total" id="r-total-t" data-i18n="r3">Création</dt><dd id="r-total"></dd><dt id="r-dep-t" data-i18n="r4">Acompte au démarrage (50 %)</dt><dd id="r-dep"></dd><dt id="r-bal-t" data-i18n="r5">Solde à la mise en ligne</dt><dd id="r-bal"></dd><dt id="r-sub-t" data-i18n="r6">Abonnement mensuel</dt><dd id="r-sub"></dd><dt id="r-hrs-t" data-i18n="r7">Heures de support en plus (par mois)</dt><dd id="r-hrs"></dd><dt class="tot2" id="r-mon-t" data-i18n="r8">Total mensuel</dt><dd id="r-mon"></dd><dt id="r-six-t" data-i18n="r9">Engagement initial de 6 mois (abonnement)</dt><dd id="r-six"></dd><dt class="tot2" id="r-all-t" data-i18n="r10">Création + 6 mois d’abonnement</dt><dd id="r-all"></dd><dt hidden id="r-exp-t" data-i18n="r11">Frais d’export en cas de départ</dt><dd hidden id="r-exp"></dd><dt id="r-dl-t" data-i18n="r12">Délai de livraison</dt><dd style="direction:inherit" id="r-dl"></dd></dl></div>
+    </div><p class="note-s" data-i18n="estNote">Estimation indicative, calculée sur les prix du site. Pour le système sur mesure, le prix démarre à 17000 ₪ et le montant final dépend du projet : écrivez-moi pour un prix ferme.</p><p class="lnk"><a class="btn btn-primary" id="reqBtn" href="#/contact?offer=pro" data-i18n="tB1x">Demander cette offre</a><a class="btn btn-ghost" id="detBtn" href="#/offre-vitrine-pro" data-i18n="seeDetail">Voir le détail</a></p></div></section><section class="band"><div class="wrap">
   <h2 data-i18n="ctaH">Prêt à démarrer ?</h2>
   <p data-i18n="ctaP">Écrivez-moi sur WhatsApp, ou posez vos questions à l’assistant sur les offres, les prix et les délais.</p>
   <div class="row"><a class="btn btn-primary" data-wa href="#/contact" data-i18n="tB1">Discuter sur WhatsApp</a><a class="btn btn-ghost" href="#/contact" data-i18n="goContact">Aller à la page Contact</a><a class="btn btn-ghost" href="#/assistant" data-i18n="goAssist">Poser une question à l’assistant</a></div>
@@ -1160,6 +1191,8 @@ const META_X={"en": {"title": " — Websites and apps for businesses in Israel",
 window.PT={"en": {"index": "Websites and apps for businesses in Israel", "a-propos": "About", "offres": "Offers and pricing", "offre-starter": "Starter", "offre-vitrine-pro": "Pro Showcase and Admin Dashboard", "offre-ecommerce": "E-commerce and custom", "estimateur": "Price estimator", "methode": "Process", "conditions": "Terms", "contact": "Contact", "assistant": "AI assistant", "privacy": "Privacy policy", "terms": "Terms of use", "accessibility": "Accessibility statement"}, "ru": {"index": "Сайты и приложения для бизнеса в Израиле", "a-propos": "О нас", "offres": "Предложения и цены", "offre-starter": "Стартер", "offre-vitrine-pro": "Витрина Pro и панель управления", "offre-ecommerce": "Магазин и индивидуальная разработка", "estimateur": "Калькулятор цены", "methode": "Этапы работы", "conditions": "Условия", "contact": "Контакты", "assistant": "ИИ-помощник", "privacy": "Политика конфиденциальности", "terms": "Условия использования", "accessibility": "Заявление о доступности"}};
 const KB_X=[{"k2": "price|prices|pricing|cost|how much|цен|стоим|сколько|тариф", "en": "Three offers:\n• Starter: 1500 to 2500 ₪, then 150 ₪ per month\n• Pro Showcase & Admin Dashboard: 3000 to 5000 ₪, then 300 ₪ per month\n• E-commerce & custom: 8000 to 17000+ ₪, then 400 ₪ per month\nEach extra page: 500 ₪.", "ru": "Три предложения:\n• Стартер: от 1500 до 2500 ₪, затем 150 ₪ в месяц\n• Витрина Pro и панель управления: от 3000 до 5000 ₪, затем 300 ₪ в месяц\n• Интернет-магазин и индивидуальная разработка: от 8000 до 17000+ ₪, затем 400 ₪ в месяц\nКаждая дополнительная страница: 500 ₪."}, {"k2": "starter|landing|стартер|посадочн", "en": "The Starter is a landing page. 1500 ₪: one clear page (headline with WhatsApp button, about, 3 services, contact). 2000 ₪: adds a photo gallery and customer reviews. 2500 ₪: adds advanced design, online booking and Meta / Google Analytics setup. Delivery in 5 to 7 working days.", "ru": "Стартер это посадочная страница. 1500 ₪: одна понятная страница (заголовок с кнопкой WhatsApp, о вас, 3 услуги, контакты). 2000 ₪: плюс фотогалерея и отзывы клиентов. 2500 ₪: плюс продвинутый дизайн, онлайн-запись и настройка Meta / Google Analytics. Сдача за 5–7 рабочих дней."}, {"k2": "\\bpro\\b|showcase|dashboard|admin|витрин|панел|админ", "en": "Pro Showcase & Admin Dashboard. Every tier includes a private admin dashboard (email and password login) so you can edit text and images yourself.\n• 3000 ₪: 3 to 4 pages, custom design\n• 3800 ₪: 5 pages, a catalog you manage yourself, gallery and map\n• 5000 ₪: 6 pages and more, advanced filters, touch electronic signature\nDelivery in 10 to 15 working days.", "ru": "Витрина Pro и панель управления. Каждый пакет включает закрытую панель управления (вход по почте и паролю), чтобы вы сами меняли тексты и изображения.\n• 3000 ₪: 3–4 страницы, индивидуальный дизайн\n• 3800 ₪: 5 страниц, каталог под вашим управлением, галерея и карта\n• 5000 ₪: 6 страниц и больше, расширенные фильтры, электронная подпись пальцем\nСдача за 10–15 рабочих дней."}, {"k2": "e-?commerce|store|shop|cart|магазин|корзин|интернет", "en": "E-commerce & custom.\n• 8000 ₪: up to 20 products, live cart, two-step checkout, secure payment (Tranzila, CreditGuard, Hyp, Stripe), stock admin\n• 15000 ₪: up to 100 products, variants, customer area, reminders for abandoned carts\n• 17000 ₪+: more than 100 products or a custom system, user roles, multi-party signatures, PDF invoices, connections to your systems\nDelivery in 15 to 30 working days.", "ru": "Интернет-магазин и индивидуальная разработка.\n• 8000 ₪: до 20 товаров, корзина, оформление в два шага, безопасная оплата (Tranzila, CreditGuard, Hyp, Stripe), управление складом\n• 15000 ₪: до 100 товаров, варианты, личный кабинет, напоминания о брошенных корзинах\n• 17000 ₪+: больше 100 товаров или индивидуальная система, роли пользователей, подписи нескольких сторон, счета в PDF, подключение к вашим системам\nСдача за 15–30 рабочих дней."}, {"k2": "signature|sign\\b|подпис", "en": "Touch electronic signature is included from 5000 ₪ in the Pro Showcase offer: the customer signs by hand on a tablet, phone or mouse, and the date, time and IP address are recorded with a summary document.", "ru": "Электронная подпись пальцем входит в предложение «Витрина Pro» начиная с 5000 ₪: клиент расписывается на планшете, телефоне или мышью, а дата, время и IP-адрес фиксируются в итоговом документе."}, {"k2": "deadline|delivery|how long|when|time|срок|сдач|когда|сколько времени|дней", "en": "Delivery times: Starter 5 to 7 working days, Pro Showcase 10 to 15 days, E-commerce 15 to 30 days. You send your text and visuals within 7 days of signing.", "ru": "Сроки сдачи: Стартер 5–7 рабочих дней, Витрина Pro 10–15 дней, магазин 15–30 дней. Тексты и изображения вы присылаете в течение 7 дней после подписания."}, {"k2": "deposit|payment|pay\\b|upgrade|difference|ownership|source code|предоплат|оплат|платить|разниц|принадлеж|исходн", "en": "Payment: 50% deposit at the start (not refundable once work has begun) and 50% on delivery. If you switch offers, you only pay the difference with what you have already paid. After the balance is paid, the site, the code and the design are 100% yours. If you leave, you receive all the files and the domain access free of charge within 14 days.", "ru": "Оплата: предоплата 50% в начале (не возвращается после начала работ) и 50% при сдаче. При переходе на другое предложение вы платите только разницу с уже внесённым. После оплаты остатка сайт, код и дизайн принадлежат вам на 100%. Если вы уходите, в течение 14 дней вы бесплатно получаете все файлы и доступ к домену."}, {"k2": "subscription|monthly|cancel|commitment|changes|hour|подписк|ежемесяч|отказ|расторж|обязательств|правк", "en": "Monthly subscription: 150 ₪ on Starter, 300 ₪ on Pro Showcase, 400 ₪ on E-commerce (hosting, security, backups, changes and support). Changes included: up to 30 minutes per month on Starter, 1 hour on Pro, 2 hours on a store. Unused time does not carry over, and beyond that it is 150 ₪ per hour. 6-month commitment from launch, then you can cancel in writing with 30 days’ notice.", "ru": "Ежемесячная подписка: 150 ₪ на Стартере, 300 ₪ на Витрине Pro, 400 ₪ на магазине (хостинг, безопасность, резервные копии, правки и поддержка). Включённые правки: до 30 минут в месяц на Стартере, 1 час на Pro, 2 часа на магазине. Неиспользованное время не переносится, сверх этого 150 ₪ в час. Обязательство на 6 месяцев с запуска, затем можно отказаться письменно за 30 дней."}, {"k2": "extra page|additional page|pages|доп|страниц", "en": "Each extra page beyond the package costs 500 ₪.", "ru": "Каждая дополнительная страница сверх пакета стоит 500 ₪."}, {"k2": "contact|whatsapp|phone|call|email|reach|контакт|связ|телефон|позвон|почт|вотсап|ватсап", "en": "You can write to me on WhatsApp or call 058-788-4418, or email ichaysitsitbon@gmail.com. The Contact page also opens WhatsApp.", "ru": "Можно написать мне в WhatsApp или позвонить по номеру 058-788-4418, либо написать на ichaysitsitbon@gmail.com. Страница контактов тоже открывает WhatsApp."}, {"k2": "step|process|how does it work|how it works|этап|процесс|как это работает|как проходит", "en": "4 steps: 1) scoping and quote with a 50% deposit, 2) you send your content, 3) mockup and feedback within 5 working days, 4) launch and balance.", "ru": "4 шага: 1) постановка задачи и смета с предоплатой 50%, 2) вы присылаете материалы, 3) макет и правки в течение 5 рабочих дней, 4) запуск и оплата остатка."}, {"k2": "where|find|section|page|где|найти|раздел", "en": "On the site: Home, About, Offers (one page per offer), Price estimator, Process, Terms, AI assistant and Contact. Use the menu at the top or the button below.", "ru": "На сайте: Главная, О нас, Предложения (по странице на каждое), Калькулятор цены, Этапы работы, Условия, ИИ-помощник и Контакты. Воспользуйтесь меню вверху или кнопкой ниже."}, {"k2": "who are you|who is|about|idanatid|кто вы|кто ты|о вас|о нас", "en": "Idanatid builds websites and apps, with AI at the heart of the process, for professionals in Israel. The site is run by Ichay Sitbon, who works alone.", "ru": "Idanatid создаёт сайты и приложения, с ИИ в основе процесса, для профессионалов в Израиле. Сайтом занимается Ичай Ситбон, который работает один."}, {"k2": "^(hello|hi|hey|здравствуйте|привет|добрый)", "en": "Hello! How can I help?", "ru": "Здравствуйте! Чем могу помочь?"}];
 const LANGS=["he","fr","en","ru"];
+/*p8*/Object.assign(HE,{"cH": "הערכת מחיר לפרויקט שלכם", "cL1": "חבילה", "cO1": "סטארטר, סטנדרט · 1500 ₪", "cO2": "סטארטר, בינוני · 2000 ₪", "cO3": "סטארטר, פרימיום · 2500 ₪", "cO4": "תדמית Pro, בסיס · 3000 ₪", "cO5": "תדמית Pro, סטנדרט · 3800 ₪", "cO6": "תדמית Pro, מתקדם · 5000 ₪", "cO7": "חנות, סטנדרט · 8000 ₪", "cO8": "חנות, מתקדמת · 15000 ₪", "cO9": "מערכת בהתאמה אישית · מ-17000 ₪", "cL2": "עמודים נוספים (500 ₪ לעמוד)", "cL3": "שעות תמיכה נוספות בכל חודש (150 ₪ לשעה)", "hMinus": "להסיר שעה", "hPlus": "להוסיף שעה", "cL4": "לכלול דמי ייצוא האתר אם אעבור לספק אחר (500 ₪)", "r1": "חבילה", "r2": "עמודים נוספים", "r3": "סה״כ בנייה", "r4": "מקדמה בתחילת העבודה (50%)", "r5": "יתרה בהעלאה לאוויר", "r6": "מנוי חודשי", "r7": "שעות תמיכה נוספות (בחודש)", "r8": "סה״כ מנוי חודשי", "r9": "התחייבות ראשונית: 6 חודשי מנוי", "r10": "בנייה + 6 חודשי מנוי", "r11": "דמי ייצוא אם עוזבים", "r12": "זמן אספקה", "dl1": "5-7 ימי עבודה", "dl2": "10-15 ימי עבודה", "dl3": "15-30 ימי עבודה", "from": "מ-", "estPH": "מחשבון מחיר", "estPL": "בחרו חבילה, הוסיפו עמודים ושעות תמיכה, וקבלו את מחיר הבנייה, המקדמה והמנוי.", "estNote": "הערכה בלבד, לפי המחירים באתר. במערכת בהתאמה אישית המחיר מתחיל ב-17000 ₪ והסכום הסופי תלוי בפרויקט: כתבו לי להצעה מחייבת.", "seeDetail": "לפרטים המלאים", "tB1x": "לבקש את החבילה"});Object.assign(TX.en,{"cH": "Estimate your project", "cL1": "Offer", "cO1": "Starter, Standard · 1500 ₪", "cO2": "Starter, Intermediate · 2000 ₪", "cO3": "Starter, Premium · 2500 ₪", "cO4": "Pro Showcase, Base · 3000 ₪", "cO5": "Pro Showcase, Standard · 3800 ₪", "cO6": "Pro Showcase, Advanced · 5000 ₪", "cO7": "Store, Standard · 8000 ₪", "cO8": "Store, Advanced · 15000 ₪", "cO9": "Custom system · from 17000 ₪", "cL2": "Extra pages (500 ₪ each)", "cL3": "Extra support hours each month (150 ₪ per hour)", "hMinus": "Remove an hour", "hPlus": "Add an hour", "cL4": "Include the site export fee if I leave for another host (500 ₪)", "r1": "Offer", "r2": "Extra pages", "r3": "Build", "r4": "Deposit at start (50%)", "r5": "Balance at launch", "r6": "Monthly subscription", "r7": "Extra support hours (per month)", "r8": "Monthly total", "r9": "Initial 6-month commitment (subscription)", "r10": "Build + 6 months of subscription", "r11": "Export fee if you leave", "r12": "Delivery time", "dl1": "5 to 7 working days", "dl2": "10 to 15 working days", "dl3": "15 to 30 working days", "from": "from", "estPH": "Price estimator", "estPL": "Pick an offer, add pages and support hours, and get the build price, the deposit and the subscription.", "estNote": "Indicative estimate based on the prices on this site. For the custom system the price starts at 17000 ₪ and the final amount depends on the project: write to me for a firm quote.", "seeDetail": "See details", "tB1x": "Request this offer"});Object.assign(TX.ru,{"cH": "Оцените свой проект", "cL1": "Пакет", "cO1": "Стартер, Стандарт · 1500 ₪", "cO2": "Стартер, Средний · 2000 ₪", "cO3": "Стартер, Премиум · 2500 ₪", "cO4": "Витрина Pro, Базовый · 3000 ₪", "cO5": "Витрина Pro, Стандарт · 3800 ₪", "cO6": "Витрина Pro, Расширенный · 5000 ₪", "cO7": "Магазин, Стандарт · 8000 ₪", "cO8": "Магазин, Расширенный · 15000 ₪", "cO9": "Своя система · от 17000 ₪", "cL2": "Дополнительные страницы (500 ₪ за страницу)", "cL3": "Дополнительные часы поддержки в месяц (150 ₪ за час)", "hMinus": "Убрать час", "hPlus": "Добавить час", "cL4": "Учесть плату за экспорт сайта, если я уйду к другому хостингу (500 ₪)", "r1": "Пакет", "r2": "Доп. страницы", "r3": "Разработка", "r4": "Аванс на старте (50%)", "r5": "Остаток при запуске", "r6": "Ежемесячная подписка", "r7": "Доп. часы поддержки (в месяц)", "r8": "Итого в месяц", "r9": "Первые 6 месяцев обязательства (подписка)", "r10": "Разработка + 6 месяцев подписки", "r11": "Плата за экспорт при уходе", "r12": "Срок сдачи", "dl1": "5–7 рабочих дней", "dl2": "10–15 рабочих дней", "dl3": "15–30 рабочих дней", "from": "от", "estPH": "Калькулятор цены", "estPL": "Выберите пакет, добавьте страницы и часы поддержки и получите цену разработки, аванс и подписку.", "estNote": "Ориентировочная оценка по ценам сайта. Для своей системы цена начинается от 17000 ₪, итоговая сумма зависит от проекта: напишите мне для точного предложения.", "seeDetail": "Подробнее", "tB1x": "Запросить этот пакет"});
+/*p9*/Object.assign(HE,{"wH": "אתר שנבנה איתכם", "w1": "כל פרויקט מתחיל בשיחה. אני לוקח את הזמן להבין את העסק שלכם, את הלקוחות שלכם ואת מה שאתם רוצים לראות באתר. אחר כך אנחנו בונים ביחד את האתר שהכי מתאים לכם, שלב אחרי שלב, מהרעיון הראשון ועד העלייה לאוויר.", "w2": "המחירים באתר נותנים מסגרת ברורה. בתוכה הכול מותאם אליכם: העמודים, הפונקציות, העיצוב והמילים. אתם במרכז, ואני לצידכם בכל שלב. חשוב לי שתצליחו ושתהיו גאים באתר שלכם."});Object.assign(TX.en,{"wH": "A site built with you", "w1": "Every project starts with a conversation. I take the time to understand your business, your customers and what you want to see online. Then we build together the site that fits you, step by step, from the first idea to launch day.", "w2": "The prices on this site give a clear frame. Inside it, everything is shaped around you: the pages, the features, the style, the words. You stay at the centre of the project and I stay by your side at every stage. Your success matters to me, and I want you to be proud of your site."});Object.assign(TX.ru,{"wH": "Сайт, который мы строим вместе", "w1": "Каждый проект начинается с разговора. Я не спешу и стараюсь понять ваш бизнес, ваших клиентов и то, что вы хотите увидеть в интернете. Затем мы вместе строим сайт, который подходит именно вам, шаг за шагом, от первой идеи до запуска.", "w2": "Цены на этом сайте задают понятные рамки. Внутри них всё подстраивается под вас: страницы, функции, стиль, слова. Вы остаётесь в центре проекта, а я рядом на каждом этапе. Ваш успех важен для меня, и я хочу, чтобы вы гордились своим сайтом."});
 const tx=(l,k,fb)=>l==="he"?HE[k]:l==="fr"?fb:(TX[l][k]!==undefined?TX[l][k]:fb);
 Object.assign(META,META_X);
 /* On mémorise le texte français d'origine */
@@ -1229,23 +1262,38 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
 /* Estimateur */
-let pages=0;
+let pages=0,hrs=0;
 const tier=document.getElementById('tier');
+const CFR={"dl1": "5 à 7 jours ouvrés", "dl2": "10 à 15 jours ouvrés", "dl3": "15 à 30 jours ouvrés", "from": "dès"};
 function calc(){
   if(!tier)return;
-  const base=+tier.value,extra=pages*500,tot=base+extra;
-  document.getElementById('pages').textContent=pages;
-  document.getElementById('r-base').textContent=fmt(base);
-  document.getElementById('r-extra').textContent=fmt(extra);
-  const rt=document.getElementById('r-total');
-  rt.textContent=fmt(tot);
+  const o=tier.options[tier.selectedIndex],base=+tier.value,sub=+o.dataset.s,g=+o.dataset.g,cu=base>=17000;
+  const lang=(typeof LANG!=='undefined'&&LANG)||'he';
+  const fw=tx(lang,'from',CFR.from),pre=cu?(fw.slice(-1)==='-'?fw:fw+' '):'';
+  const m=n=>pre+'<bdi dir="ltr">'+fmt(n)+'</bdi>';
+  const extra=pages*500,tot=base+extra,hx=hrs*150,mon=sub+hx;
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v};
+  set('pages',pages);set('hours',hrs);
+  set('r-base',m(base));set('r-extra',fmt(extra));
+  const rt=document.getElementById('r-total');rt.innerHTML=m(tot);
   rt.classList.remove('bump');void rt.offsetWidth;rt.classList.add('bump');
-  document.getElementById('r-dep').textContent=fmt(tot/2);
-  document.getElementById('r-bal').textContent=fmt(tot/2);
+  set('r-dep',m(tot/2));set('r-bal',m(tot/2));
+  set('r-sub',m(sub));set('r-hrs',fmt(hx));set('r-mon',m(mon));
+  set('r-six',m(mon*6));set('r-all',m(tot+mon*6));
+  const ex=document.getElementById('exp'),on=ex&&ex.checked;
+  ['r-exp-t','r-exp'].forEach(i=>{const e=document.getElementById(i);if(e)e.hidden=!on});
+  set('r-exp',fmt(500));
+  set('r-dl',tx(lang,'dl'+g,CFR['dl'+g]));
+  const rq=document.getElementById('reqBtn'),dt=document.getElementById('detBtn');
+  if(rq)rq.setAttribute('href','#/contact?offer='+(['','starter','pro','ecom'][g]));
+  if(dt)dt.setAttribute('href','#/'+(['','offre-starter','offre-vitrine-pro','offre-ecommerce'][g]));
 }
-if(tier){document.getElementById('plus').onclick=()=>{if(pages<20){pages++;calc()}};
-document.getElementById('minus').onclick=()=>{if(pages>0){pages--;calc()}};
-tier.onchange=calc}
+if(tier){
+  const bind=(id,fn)=>{const e=document.getElementById(id);if(e)e.onclick=fn};
+  bind('plus',()=>{if(pages<20){pages++;calc()}});bind('minus',()=>{if(pages>0){pages--;calc()}});
+  bind('hplus',()=>{if(hrs<20){hrs++;calc()}});bind('hminus',()=>{if(hrs>0){hrs--;calc()}});
+  tier.onchange=calc;const ex=document.getElementById('exp');if(ex)ex.onchange=calc;
+}
 
 /* Pré-sélection de l'offre depuis les boutons */
 try{const of=new URLSearchParams(location.search).get('offer'),so=document.getElementById('o');if(of&&so)so.value=of}catch(e){}
