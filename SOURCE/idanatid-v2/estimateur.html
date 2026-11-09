@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estimateur de prix — Idanatid</title>
+<meta name="description" content="Estimez le prix de création de l’offre Vitrine Pro et le plan de paiement : acompte de 50 %, solde à la livraison, abonnement mensuel.">
+<meta property="og:title" content="Estimateur de prix — Idanatid">
+<meta property="og:description" content="Estimez le prix de création de l’offre Vitrine Pro et le plan de paiement : acompte de 50 %, solde à la livraison, abonnement mensuel.">
+<meta property="og:url" content="https://ichaysit.github.io/personal-idanatid/estimateur.html">
+<meta property="og:site_name" content="Idanatid">
+<meta property="og:locale" content="he_IL">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://ichaysit.github.io/personal-idanatid/estimateur.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#142238">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&family=Heebo:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{if(sessionStorage.getItem('pt')){document.documentElement.classList.add('pt-in');sessionStorage.removeItem('pt')}}catch(e){}</script>
+</head>
+<body data-nav="estimateur.html" data-t-fr="Estimateur de prix — Idanatid" data-t-he="מחשבון הערכת מחיר — Idanatid" data-d-fr="Estimez le prix de création de l’offre Vitrine Pro et le plan de paiement : acompte de 50 %, solde à la livraison, abonnement mensuel." data-d-he="הערכת מחיר היצירה של חבילת Pro ולוח התשלומים: מקדמה 50%, יתרה במסירה ומנוי חודשי.">
+<div class="progress" id="progress" aria-hidden="true"></div><div id="pt" aria-hidden="true"></div><div id="cur" aria-hidden="true"></div>
+<a class="skip" href="#main" data-i18n="skip" data-fr="Aller au contenu">Aller au contenu</a>
+<header class="nav" id="nav"><div class="hd">
+  <a class="brand" href="index.html" aria-label="Idanatid"><svg class="logo" viewBox="143 593 463 414" aria-hidden="true" focusable="false"><rect x="143" y="593" width="94" height="414" fill="#90d5e8"/><path d="M453 593L606 1007H517L453 810L390 1007H301Z" fill="#8f82d6"/><path d="M453 593L494 707H412Z" fill="#efdea0"/><path d="M390 1007L453 810V1007Z" fill="#3070b0"/></svg><span>Idanatid</span></a>
+  <nav aria-label="Navigation principale" data-i18n-aria="navAria" data-fr-aria="Navigation principale">
+    <ul id="menu">
+      <li class="ov"><a href="index.html" data-i18n="pHome" data-fr="Accueil">Accueil</a></li>
+      <li><a href="a-propos.html" data-i18n="nav1" data-fr="À propos">À propos</a></li>
+      <li><a href="offres.html" data-i18n="nav2" data-fr="Offres &amp; tarifs">Offres &amp; tarifs</a></li>
+      <li><a href="estimateur.html" data-i18n="nav6" data-fr="Estimateur">Estimateur</a></li>
+      <li><a href="methode.html" data-i18n="nav3" data-fr="Méthode">Méthode</a></li>
+      <li><a href="conditions.html" data-i18n="nav4" data-fr="Conditions">Conditions</a></li>
+      <li class="ov"><a href="assistant.html" data-i18n="pAssist" data-fr="Assistant IA">Assistant IA</a></li>
+      <li class="ov"><a class="cta" href="contact.html" data-i18n="nav5" data-fr="Me contacter">Me contacter</a></li>
+    </ul>
+  </nav>
+  <div class="nav-end">
+    <div class="lang-wrap"><label for="lang" id="langLabel">שפה</label><select class="lang" id="lang"><option value="he" lang="he">עברית</option><option value="fr" lang="fr">Français</option><option value="en" lang="en">English</option><option value="ru" lang="ru">Русский</option></select></div>
+    <a class="book" href="contact.html" data-i18n="nav5" data-fr="Me contacter">Me contacter</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span data-i18n="menu" data-fr="Menu">Menu</span></button>
+  </div>
+</div></header>
+<main id="main">
+<section class="ph"><div class="plate"><div class="pl"><img src="assets/ph3.jpg" alt=""></div></div><div class="phc"><nav class="crumb" aria-label="Fil d’Ariane"><a href="index.html" data-i18n="pHome" data-fr="Accueil">Accueil</a><span>/</span><span data-i18n="nav6" data-fr="Estimateur">Estimateur</span></nav><h1 data-i18n="estPH">Estimateur de prix</h1>
+  <p class="lead" data-i18n="estPL">Choisissez une offre, ajoutez des pages et des heures de support, et obtenez le prix de création, l’acompte et l’abonnement.</p></div></section>
+<section><div class="wrap"><div class="calc rv" id="estimateur">
+      <div>
+        <h3 data-i18n="cH">Estimez votre projet</h3>
+        <div class="field"><label for="tier" data-i18n="cL1">Offre</label><select id="tier"><option value="1500" data-s="150" data-g="1" data-i18n="cO1">Starter, Standard · 1500 ₪</option><option value="2000" data-s="150" data-g="1" data-i18n="cO2">Starter, Intermédiaire · 2000 ₪</option><option value="2500" data-s="150" data-g="1" data-i18n="cO3">Starter, Premium · 2500 ₪</option><option value="3000" data-s="300" data-g="2" data-i18n="cO4">Vitrine Pro, Base · 3000 ₪</option><option value="3800" data-s="300" data-g="2" data-i18n="cO5">Vitrine Pro, Standard · 3800 ₪</option><option value="5000" data-s="300" data-g="2" data-i18n="cO6">Vitrine Pro, Avancée · 5000 ₪</option><option value="8000" data-s="400" data-g="3" data-i18n="cO7">Boutique, Standard · 8000 ₪</option><option value="15000" data-s="400" data-g="3" data-i18n="cO8">Boutique, Avancée · 15000 ₪</option><option value="17000" data-s="400" data-g="3" data-i18n="cO9">Système sur mesure · dès 17000 ₪</option></select></div>
+        <div class="field"><label id="lbpages" data-i18n="cL2">Pages supplémentaires (500 ₪ l’une)</label><div class="stepper" role="group" aria-labelledby="lbpages"><button type="button" id="minus" aria-label="Retirer une page" data-i18n-aria="minus">−</button><output id="pages" aria-live="polite">0</output><button type="button" id="plus" aria-label="Ajouter une page" data-i18n-aria="plus">+</button></div></div><div class="field"><label id="lbhours" data-i18n="cL3">Heures de support en plus chaque mois (150 ₪ l’heure)</label><div class="stepper" role="group" aria-labelledby="lbhours"><button type="button" id="hminus" aria-label="Retirer une heure" data-i18n-aria="hMinus">−</button><output id="hours" aria-live="polite">0</output><button type="button" id="hplus" aria-label="Ajouter une heure" data-i18n-aria="hPlus">+</button></div></div><div class="field"><label class="ck2" for="exp"><input type="checkbox" id="exp"><span data-i18n="cL4">Prévoir l’export du site chez un autre hébergeur si je pars (500 ₪)</span></label></div>
+      </div>
+      <div class="result" aria-live="polite"><dl><dt id="r-base-t" data-i18n="r1">Offre</dt><dd id="r-base"></dd><dt id="r-extra-t" data-i18n="r2">Pages en plus</dt><dd id="r-extra"></dd><dt class="total" id="r-total-t" data-i18n="r3">Création</dt><dd id="r-total"></dd><dt id="r-dep-t" data-i18n="r4">Acompte au démarrage (50 %)</dt><dd id="r-dep"></dd><dt id="r-bal-t" data-i18n="r5">Solde à la mise en ligne</dt><dd id="r-bal"></dd><dt id="r-sub-t" data-i18n="r6">Abonnement mensuel</dt><dd id="r-sub"></dd><dt id="r-hrs-t" data-i18n="r7">Heures de support en plus (par mois)</dt><dd id="r-hrs"></dd><dt class="tot2" id="r-mon-t" data-i18n="r8">Total mensuel</dt><dd id="r-mon"></dd><dt id="r-six-t" data-i18n="r9">Engagement initial de 6 mois (abonnement)</dt><dd id="r-six"></dd><dt class="tot2" id="r-all-t" data-i18n="r10">Création + 6 mois d’abonnement</dt><dd id="r-all"></dd><dt hidden id="r-exp-t" data-i18n="r11">Frais d’export en cas de départ</dt><dd hidden id="r-exp"></dd><dt id="r-dl-t" data-i18n="r12">Délai de livraison</dt><dd style="direction:inherit" id="r-dl"></dd></dl></div>
+    </div><p class="note-s" data-i18n="estNote">Estimation indicative, calculée sur les prix du site. Pour le système sur mesure, le prix démarre à 17000 ₪ et le montant final dépend du projet : écrivez-moi pour un prix ferme.</p><p class="lnk"><a class="btn btn-primary" id="reqBtn" href="contact.html?offer=pro" data-i18n="tB1x">Demander cette offre</a><a class="btn btn-ghost" id="detBtn" href="offre-vitrine-pro.html" data-i18n="seeDetail">Voir le détail</a></p></div></section><section class="band"><div class="wrap">
+  <h2 data-i18n="ctaH">Prêt à démarrer ?</h2>
+  <p data-i18n="ctaP">Écrivez-moi sur WhatsApp, ou posez vos questions à l’assistant sur les offres, les prix et les délais.</p>
+  <div class="row"><a class="btn btn-primary" data-wa href="contact.html" data-i18n="tB1">Discuter sur WhatsApp</a><a class="btn btn-ghost" href="contact.html" data-i18n="goContact">Aller à la page Contact</a><a class="btn btn-ghost" href="assistant.html" data-i18n="goAssist">Poser une question à l’assistant</a></div>
+</div></section>
+
+</main>
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div><h4 data-i18n="fcH1">Le site</h4>
+        <a href="index.html" data-i18n="pHome">Accueil</a><a href="a-propos.html" data-i18n="nav1">À propos</a><a href="assistant.html" data-i18n="pAssist">Assistant IA</a><a href="contact.html" data-i18n="pContact">Contact</a></div>
+      <div><h4 data-i18n="fcH2">Offres</h4>
+        <a href="offres.html" data-i18n="nav2">Offres &amp; tarifs</a><a href="offre-starter.html" data-i18n="o1h">Starter</a><a href="offre-vitrine-pro.html" data-i18n="o2h">Vitrine Pro</a><a href="offre-ecommerce.html" data-i18n="o3h">E-commerce</a><a href="estimateur.html" data-i18n="nav6">Estimateur</a></div>
+      <div><h4 data-i18n="fcH3">Informations</h4>
+        <a href="methode.html" data-i18n="nav3">Méthode</a><a href="conditions.html" data-i18n="nav4">Conditions</a><a href="privacy.html" data-i18n="fpr">Confidentialité</a><a href="terms.html" data-i18n="ftr">Conditions d’utilisation</a><a href="accessibility.html" data-i18n="fax">Déclaration d’accessibilité</a></div>
+    </div>
+    <span data-i18n="foot">© <span class="yr"></span> Idanatid · <span data-name>ישי סיטבון</span>. Tous droits réservés.</span>
+  </div>
+<div class="fwm" aria-hidden="true">IDANATID</div></footer>
+
+<button class="cb-btn" id="cbBtn" type="button" hidden aria-expanded="false" aria-controls="cbPanel"><span class="dot" aria-hidden="true"></span><span class="t" id="cbBtnT">Assistant IA</span></button>
+<div class="cb-panel" id="cbPanel" role="region" aria-labelledby="cbTitle">
+  <div class="cb-head"><span class="av" aria-hidden="true">I</span><div><b id="cbTitle">Idanatid AI</b><small id="cbSub">Assistant du site</small></div><button type="button" id="cbClose" aria-label="Fermer">×</button></div>
+  <div class="cb-log" id="cbLog" aria-live="polite"></div>
+  <div class="cb-chips" id="cbChips"></div>
+  <form class="cb-form" id="cbForm" autocomplete="off"><input id="cbIn" type="text" maxlength="500" aria-label="Message"><button type="submit" id="cbSend">Envoyer</button></form>
+  <div class="cb-note" id="cbNote"></div>
+</div>
+<script src="assets/app.js"></script><script src="assets/fx.js"></script>
+</body>
+</html>

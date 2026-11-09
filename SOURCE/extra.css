@@ -1,0 +1,10 @@
+.cb-panel{background:linear-gradient(rgba(4,6,30,.6),rgba(4,6,30,.82)),var(--aiimg,none) center/cover,#0C0F1D!important}
+.sc img,.mem .im,.fi .ic{display:none!important}
+.coach figure img{display:none!important}
+.coach figure{aspect-ratio:auto!important;min-height:0!important;width:min(22rem,100%)!important;background:var(--deep)!important;border-radius:var(--rc);padding:1.4rem 1.5rem!important}
+.coach figcaption{position:static!important;background:transparent!important;padding:0!important;backdrop-filter:none!important;color:#fff}
+.cd a{aspect-ratio:auto!important;min-height:0!important;background:var(--deep)!important;padding:1.6rem 1.5rem!important;display:flex;align-items:flex-end}
+.cd a img{display:none!important}
+.cd a figcaption{position:static!important;background:transparent!important;padding:0!important;backdrop-filter:none!important;color:#fff;inset:auto!important}
+.cd a:nth-child(2) figcaption{background:transparent!important}
+.mem{width:auto!important}

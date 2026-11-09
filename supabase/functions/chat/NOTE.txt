@@ -1,0 +1,2 @@
+Code deploye sur le projet Supabase vldpnobmfpjlmmseevum, fonction "chat", version 10, verify_jwt false.
+Secrets (jamais dans le code ni dans le navigateur) : ANTHROPIC_API_KEY (optionnel), OPENROUTER_API_KEY, CHAT_MODEL (optionnel), OPENROUTER_MODELS (optionnel), ALLOWED_ORIGINS (optionnel).
