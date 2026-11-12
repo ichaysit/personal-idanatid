@@ -10,6 +10,8 @@ import { rakia } from '@/lib/constants';
 import { DepthGallery } from '@/components/effects/DepthGallery';
 import { Marquee } from '@/components/effects/Marquee';
 import { SiteEffects } from '@/components/effects/SiteEffects';
+import { Tilt3D } from '@/components/effects/Tilt3D';
+import { HouseTour } from '@/components/sections/HouseTour';
 
 export const metadata: Metadata = {
   title: 'קו רקיע | פנטהאוזים ודירות במגדלי תל אביב',
@@ -27,6 +29,18 @@ export default function Page() {
         <Hero />
         <Marquee items={['פארק צמרת', 'שדרות רוטשילד', 'נווה צדק', 'שרונה', 'נמל תל אביב']} />
         <Listings />
+        <HouseTour
+          name="פנטהאוז האופק, מבפנים"
+          intro="הדמיה תלת־ממדית סכמטית של קומה 44. גללו כדי להיכנס."
+          theme={{ bg: '#17111c', wall: '#2e2233', floor: '#3b2b40', furniture: '#70505a', accent: '#f0a05c', podium: 'tower', water: true }}
+          stops={[
+            { at: 0, title: 'ראש המגדל', text: 'הפנטהאוז תופס את כל הקומה העליונה, 150 מטר מעל הרחוב.' },
+            { at: 0.2, title: 'הכניסה', text: 'דלת זכוכית בגובה מלא, ישר מהמרפסת אל הסלון.' },
+            { at: 0.34, title: 'סלון ומטבח, 96 מ״ר', text: 'חלל אחד פתוח, עם אי מטבח ושלוש מנורות תלויות מעליו.' },
+            { at: 0.6, title: 'הגלריה וחדר השינה', text: 'קומת ביניים שמשקיפה על הסלון בגובה כפול.' },
+            { at: 0.8, title: 'המרפסת והבריכה', text: '140 מ״ר של מרפסת, עם בריכה שפונה מערבה אל הים.' },
+          ]}
+        />
         <DepthGallery
           title="מבפנים החוצה"
           shots={[
@@ -38,9 +52,14 @@ export default function Page() {
             { image: 'terrace-dusk', caption: 'המרפסת בשעת שקיעה' },
           ]}
         />
-        <Areas />
-        <Coast />
-        <Contact
+        <Tilt3D>
+          <Areas />
+        </Tilt3D>
+        <Tilt3D>
+          <Coast />
+        </Tilt3D>
+        <Tilt3D>
+          <Contact
           site={rakia}
           title="עולים לראות?"
           text="סיור נמשך כשעה ומתואם ישירות עם הסוכן של השכונה. אפשר לראות עד שלושה נכסים באותו ביקור, גם בשעת השקיעה."
@@ -49,6 +68,7 @@ export default function Page() {
           doneText="הסוכן של השכונה יתקשר אליכם עד מחר בצהריים כדי לקבוע שעה."
           headingClass="font-bold text-[clamp(4rem,9vw,8.5rem)] leading-[0.85]"
         />
+        </Tilt3D>
       </main>
       <Footer site={rakia} />
       <MobileBar site={rakia} cta="תיאום סיור" />

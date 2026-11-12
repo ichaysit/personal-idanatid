@@ -25,6 +25,8 @@ type Props = {
   vignette?: number;
   /** צבעי תאורת הסביבה, לפי הזהות של האתר */
   lights?: [string, string];
+  /** אזור גלילה גבוה שהסצנה דביקה בתוכו. ההתקדמות נמדדת לאורכו. */
+  scrollTarget?: React.RefObject<HTMLElement | null>;
 };
 
 export default function SceneCanvas({
@@ -34,6 +36,7 @@ export default function SceneCanvas({
   bloom = { threshold: 0.8, intensity: 0.5 },
   vignette = 0,
   lights = ['#ffffff', '#ffffff'],
+  scrollTarget,
 }: Props) {
   const wrap = useRef<HTMLDivElement>(null);
   const state = useRef<SceneState>({ px: 0, py: 0, scroll: 0, moved: -1e9, coarse: false });
@@ -65,6 +68,12 @@ export default function SceneCanvas({
       if (t) point(t.clientX, t.clientY);
     };
     const onScroll = () => {
+      const target = scrollTarget?.current;
+      if (target) {
+        const t = target.getBoundingClientRect();
+        state.current.scroll = clamp(-t.top / Math.max(1, t.height - window.innerHeight));
+        return;
+      }
       const r = el.getBoundingClientRect();
       state.current.scroll = clamp(-r.top / Math.max(1, r.height));
     };
@@ -86,7 +95,7 @@ export default function SceneCanvas({
       window.removeEventListener('resize', onScroll);
       io.disconnect();
     };
-  }, []);
+  }, [scrollTarget]);
 
   return (
     <div ref={wrap} aria-hidden className={cn('canvas-fill', className)}>

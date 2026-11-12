@@ -4,6 +4,7 @@ import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import * as THREE from 'three';
+import { Particles } from './Particles';
 import { useSceneState } from './SceneCanvas';
 
 /* מפת תבליט של הרים, מצוירת בקווי גובה כמו מפה טופוגרפית.
@@ -58,6 +59,7 @@ const fragment = /* glsl */ `
   uniform float uReveal;
   uniform float uHalf;
   uniform vec3 uFocus;
+  uniform float uTime;
   varying vec3 vPos;
 
   float iso(float v, float width) {
@@ -82,6 +84,14 @@ const fragment = /* glsl */ `
     ink = mix(uAcc, ink, smoothstep(0.5, 1.7, fd));
     col = mix(col, ink, lines);
 
+    /* קו גובה אחד "נסרק" ועולה לאט מהעמק אל הפסגות */
+    float sweep = smoothstep(0.1, 0.0, abs(vPos.y - mod(uTime * 0.32, 3.4)));
+    col = mix(col, uAcc, sweep * (0.25 + lines * 0.75));
+
+    /* טבעות מכ"ם שמתפשטות מהבית הנבחר */
+    float ring = smoothstep(0.09, 0.0, abs(fd - mod(uTime * 1.5, 4.5))) * smoothstep(4.5, 0.8, fd);
+    col = mix(col, uAcc, ring * 0.85);
+
     col = mix(col, uPaper, smoothstep(0.62, 0.98, rad));
     gl_FragColor = vec4(col, 1.0);
   }
@@ -99,6 +109,8 @@ export default function TerrainScene({ pins, active, onActive }: Props) {
   const scene = useSceneState();
   const time = useRef(0);
   const focus = useRef(new THREE.Vector3());
+  const land = useRef<THREE.Group>(null);
+  const aim = useRef(new THREE.Vector3(0, 0.9, 0));
 
   const geometry = useMemo(() => {
     const g = new THREE.PlaneGeometry(HALF * 2, HALF * 2, SEG, SEG);
@@ -124,11 +136,13 @@ export default function TerrainScene({ pins, active, onActive }: Props) {
       uReveal: { value: 0 },
       uHalf: { value: HALF },
       uFocus: { value: new THREE.Vector3() },
+      uTime: { value: 0 },
     }),
     [],
   );
 
   const accent = useMemo(() => new THREE.Color('#c8253f').multiplyScalar(3.2), []);
+  const v3 = useMemo(() => new THREE.Vector3(), []);
 
   useFrame(({ camera, invalidate, size }, delta) => {
     const dt = Math.min(delta, 0.1);
@@ -136,6 +150,12 @@ export default function TerrainScene({ pins, active, onActive }: Props) {
     const t = time.current;
     const s = scene.current;
     uniforms.uReveal.value = Math.min(1, t / 2.8);
+    uniforms.uTime.value = t;
+    /* ההרים צומחים מהמישור בטעינה */
+    if (land.current) {
+      const r = Math.min(1, t / 2.4);
+      land.current.scale.y = 0.02 + 0.98 * (1 - Math.pow(1 - r, 3));
+    }
 
     const target = placed.find((p) => p.id === active)?.pos;
     if (target) focus.current.lerp(target, 1 - Math.exp(-dt * 4));
@@ -150,28 +170,38 @@ export default function TerrainScene({ pins, active, onActive }: Props) {
     camera.position.x += (Math.sin(ang) * radius - camera.position.x) * k;
     camera.position.z += (Math.cos(ang) * radius - camera.position.z) * k;
     camera.position.y += (height - camera.position.y) * k;
-    camera.lookAt(0, portrait ? 3.4 : 0.9, 0);
+    /* המבט נמשך מעט אל הבית הנבחר, כך שכל בחירה מזיזה את כל הנוף */
+    aim.current.lerp(v3.set(focus.current.x * 0.3, portrait ? 3.4 : 0.9, focus.current.z * 0.3), 1 - Math.exp(-dt * 2));
+    camera.lookAt(aim.current);
     if (uniforms.uReveal.value < 1) invalidate();
   });
 
   return (
     <>
       <color attach="background" args={['#dcd8d0']} />
+      <group ref={land}>
       <mesh geometry={geometry}>
         <shaderMaterial args={[{ vertexShader: vertex, fragmentShader: fragment, uniforms }]} />
       </mesh>
+      <Particles count={140} spread={[18, 5, 18]} color="#191613" size={0.035} glow={1} y={0.4} />
 
       {placed.map((p) => {
         const on = p.id === active;
         return (
           <group key={p.id} position={p.pos}>
-            <mesh position={[0, 0.75, 0]}>
-              <boxGeometry args={[0.025, 1.5, 0.025]} />
-              <meshBasicMaterial color="#191613" />
+            {/* בית זעיר בשני נפחים, במקום סיכה */}
+            <mesh position={[0, 0.11, 0]}>
+              <boxGeometry args={[0.52, 0.22, 0.36]} />
+              {on ? <meshBasicMaterial color={accent} toneMapped={false} /> : <meshStandardMaterial color="#191613" metalness={0.5} roughness={0.35} />}
             </mesh>
-            <mesh position={[0, 1.56, 0]} rotation={[0, Math.PI / 4, 0]} scale={on ? 1.5 : 1}>
-              <boxGeometry args={[0.16, 0.16, 0.16]} />
-              {on ? <meshBasicMaterial color={accent} toneMapped={false} /> : <meshStandardMaterial color="#191613" metalness={0.6} roughness={0.3} />}
+            <mesh position={[0.08, 0.31, -0.02]}>
+              <boxGeometry args={[0.32, 0.18, 0.3]} />
+              <meshStandardMaterial color={on ? '#f2efe9' : '#3a352f'} metalness={0.3} roughness={0.4} />
+            </mesh>
+            {/* אלומת אור מעל הבית הנבחר */}
+            <mesh position={[0, 1.5, 0]} scale={[1, on ? 1 : 0.28, 1]}>
+              <boxGeometry args={[0.022, 2.2, 0.022]} />
+              {on ? <meshBasicMaterial color={accent} toneMapped={false} /> : <meshBasicMaterial color="#191613" />}
             </mesh>
             {/* משטח פגיעה גדול ושקוף, כדי שיהיה קל לבחור סיכה */}
             <mesh
@@ -189,7 +219,7 @@ export default function TerrainScene({ pins, active, onActive }: Props) {
               <meshBasicMaterial transparent opacity={0} depthWrite={false} />
             </mesh>
             {on && (
-              <Html position={[0, 1.95, 0]} center zIndexRange={[20, 0]} style={{ pointerEvents: 'none' }}>
+              <Html position={[0, 2.75, 0]} center zIndexRange={[20, 0]} style={{ pointerEvents: 'none' }}>
                 <div
                   dir="rtl"
                   className="hidden md:block"
@@ -212,6 +242,7 @@ export default function TerrainScene({ pins, active, onActive }: Props) {
           </group>
         );
       })}
+      </group>
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { Component, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import type { HouseTheme } from './HouseScene';
 import type { Pin } from './TerrainScene';
 
 /* נקודת הכניסה לסצנות התלת־ממד. הכול נטען רק בדפדפן, אחרי שהטקסט כבר על המסך. */
@@ -10,10 +11,12 @@ const SceneCanvas = dynamic(() => import('./SceneCanvas'), { ssr: false });
 const CityScene = dynamic(() => import('./CityScene'), { ssr: false });
 const WaterScene = dynamic(() => import('./WaterScene'), { ssr: false });
 const TerrainScene = dynamic(() => import('./TerrainScene'), { ssr: false });
+const HouseScene = dynamic(() => import('./HouseScene'), { ssr: false });
 
 type Props =
   | { variant: 'city'; className?: string }
   | { variant: 'water'; className?: string; src: string; waterline?: number }
+  | { variant: 'house'; className?: string; theme: HouseTheme; scrollTarget: React.RefObject<HTMLElement | null> }
   | { variant: 'terrain'; className?: string; pins: Pin[]; active: string; onActive: (id: string) => void };
 
 /* אם ה־WebGL לא זמין או קורס, נשארת מתחת תמונת הסצנה והדף ממשיך לעבוד */
@@ -58,6 +61,20 @@ function Scene(props: Props) {
         lights={['#ff9a52', '#c4687a']}
       >
         <CityScene />
+      </SceneCanvas>
+    );
+  }
+  if (props.variant === 'house') {
+    return (
+      <SceneCanvas
+        className={props.className}
+        camera={{ position: [15, 7.5, 17], fov: 50 }}
+        bloom={{ threshold: 1, intensity: 1.1 }}
+        vignette={0.45}
+        lights={[props.theme.accent, '#ffffff']}
+        scrollTarget={props.scrollTarget}
+      >
+        <HouseScene theme={props.theme} />
       </SceneCanvas>
     );
   }

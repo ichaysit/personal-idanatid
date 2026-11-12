@@ -10,6 +10,8 @@ import { bustan } from '@/lib/constants';
 import { Prism } from '@/components/effects/Prism';
 import { Marquee } from '@/components/effects/Marquee';
 import { SiteEffects } from '@/components/effects/SiteEffects';
+import { Tilt3D } from '@/components/effects/Tilt3D';
+import { HouseTour } from '@/components/sections/HouseTour';
 
 export const metadata: Metadata = {
   title: 'בוסתן | וילות פרטיות על קו החוף',
@@ -25,9 +27,23 @@ export default function Page() {
       <Navbar site={bustan} />
       <main>
         <Hero />
-        <Intro />
+        <Tilt3D>
+          <Intro />
+        </Tilt3D>
         <Marquee items={['ארסוף', 'הרצליה פיתוח', 'קיסריה', 'סביון', 'כפר שמריהו']} />
         <Listings />
+        <HouseTour
+          name="בית הגלים, מבפנים"
+          intro="הדמיה תלת־ממדית סכמטית. גללו כדי להיכנס."
+          theme={{ bg: '#101713', wall: '#e9e2d2', floor: '#2c3d32', furniture: '#8d7c56', accent: '#6fc7bb', podium: 'ground', water: true }}
+          stops={[
+            { at: 0, title: 'מבט מבחוץ', text: 'חזית זכוכית בגובה שתי קומות, מול בריכה של 22 מטר.' },
+            { at: 0.2, title: 'הכניסה', text: 'נכנסים מהדק של הבריכה ישר אל לב הבית.' },
+            { at: 0.34, title: 'סלון ומטבח, 110 מ״ר', text: 'חלל מגורים אחד, עם אי מטבח באורך שלושה מטרים.' },
+            { at: 0.6, title: 'הגלריה וחדר השינה', text: 'יחידת ההורים בקומת הגלריה, מעל הסלון.' },
+            { at: 0.8, title: 'המרפסת והבריכה', text: 'מהקומה העליונה רואים את הים מעל קו העצים.' },
+          ]}
+        />
         <Prism
           heading="ומה מחכה בפנים"
           faces={[
@@ -37,9 +53,14 @@ export default function Page() {
             { image: 'villa-tall', title: 'החזית אל המים', text: 'שלוש קומות שפונות כולן מערבה. בית הגלים, ארסוף.' },
           ]}
         />
-        <Night />
-        <Service />
-        <Contact
+        <Tilt3D>
+          <Night />
+        </Tilt3D>
+        <Tilt3D>
+          <Service />
+        </Tilt3D>
+        <Tilt3D>
+          <Contact
           site={bustan}
           title="נדבר לפני שנוסעים לראות"
           text="שיחה ראשונה של עשרים דקות חוסכת סיורים מיותרים. ספרו לנו מה חשוב לכם, ונחזור עם שתיים או שלוש וילות שמתאימות."
@@ -48,6 +69,7 @@ export default function Page() {
           doneText="רונית או אחד הסוכנים יחזרו אליכם בתוך יום עסקים אחד."
           headingClass="font-light"
         />
+        </Tilt3D>
       </main>
       <Footer site={bustan} />
       <MobileBar site={bustan} cta="בקשה לשיחה" />

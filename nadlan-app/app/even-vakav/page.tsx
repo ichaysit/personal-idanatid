@@ -10,6 +10,8 @@ import { even } from '@/lib/constants';
 import { LayerStack } from '@/components/effects/LayerStack';
 import { Marquee } from '@/components/effects/Marquee';
 import { SiteEffects } from '@/components/effects/SiteEffects';
+import { Tilt3D } from '@/components/effects/Tilt3D';
+import { HouseTour } from '@/components/sections/HouseTour';
 
 export const metadata: Metadata = {
   title: 'אבן וקו | בתי אדריכלים בהרי ירושלים, בכרמל ובגליל',
@@ -27,6 +29,19 @@ export default function Page() {
         <Hero />
         <Marquee items={['עין כרם', 'זכרון יעקב', 'ראש פינה', 'חיפה', 'מצפה רמון', 'מבשרת ציון']} />
         <Catalogue />
+        <HouseTour
+          light
+          name="בית האלון, מבפנים"
+          intro="הדמיה תלת־ממדית סכמטית. גללו כדי להיכנס."
+          theme={{ bg: '#dcd8d0', wall: '#f4f1eb', floor: '#b7b0a4', furniture: '#3a352f', accent: '#b3263d', podium: 'ground', water: false }}
+          stops={[
+            { at: 0, title: 'מבט מבחוץ', text: 'נפח אחד פשוט, סגור לצפון ופתוח כולו לדרום.' },
+            { at: 0.2, title: 'הכניסה', text: 'דלת בגובה מלא בתוך חזית הזכוכית, מול האלון.' },
+            { at: 0.34, title: 'סלון ומטבח, 72 מ״ר', text: 'רצפת אבן, אי מטבח מבטון ושלוש מנורות מעליו.' },
+            { at: 0.6, title: 'הגלריה וחדר השינה', text: 'קומת עץ שתלויה מעל המטבח ומשקיפה על הסלון.' },
+            { at: 0.8, title: 'המרפסת', text: 'דק פתוח אל הוואדי, בגובה 742 מטר.' },
+          ]}
+        />
         <LayerStack
           heading="בית המדרון, מפלס אחר מפלס"
           levels={[
@@ -35,8 +50,11 @@ export default function Page() {
             { image: 'in-bath', title: 'מפלס השינה', text: 'ארבעה חדרים צמודים לסלע. קריר בקיץ ושקט כל השנה.' },
           ]}
         />
-        <Materials />
-        <Contact
+        <Tilt3D>
+          <Materials />
+        </Tilt3D>
+        <Tilt3D>
+          <Contact
           site={even}
           title="ביקור בבית, עם האדריכל"
           text="בכל ביקור מצטרף אדריכל מהסטודיו שמסביר איך הבית נבנה ומה אפשר לשנות בו. הביקור נמשך כשעה וחצי ואינו מחייב."
@@ -45,6 +63,7 @@ export default function Page() {
           doneText="נחזור אליכם בתוך שני ימי עסקים עם שלושה מועדים אפשריים."
           headingClass="font-bold"
         />
+        </Tilt3D>
       </main>
       <Footer site={even} />
       <MobileBar site={even} cta="ביקור בבית" />
