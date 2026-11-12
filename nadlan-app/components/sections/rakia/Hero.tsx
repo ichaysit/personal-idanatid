@@ -2,10 +2,13 @@ import { Container } from '@/components/layout/Container';
 import { StaggerContainer, StaggerFade, StaggerLine } from '@/components/animations/StaggerContainer';
 import { HeroScene } from '@/components/three/HeroScene';
 import { Button } from '@/components/ui/Button';
+import { img } from '@/lib/utils';
 
 export function Hero() {
   return (
     <section className="relative h-[100svh] min-h-[660px] overflow-hidden">
+      {/* תמונת הסצנה מוצגת מיד, והעיר החיה מכסה אותה כשה־WebGL מוכן */}
+      <img src={img('poster-city')} alt="" className="absolute inset-0 h-full w-full object-cover" />
       <HeroScene variant="city" />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-bg via-bg/70 to-transparent" />
 

@@ -38,6 +38,7 @@ export function Hero() {
 
   return (
     <section className="relative h-[100svh] min-h-[700px] overflow-hidden">
+      <img src={img('poster-terrain')} alt="" className="absolute inset-0 h-full w-full object-cover" />
       <HeroScene
         variant="terrain"
         pins={pins}

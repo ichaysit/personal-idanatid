@@ -1,5 +1,6 @@
 'use client';
 
+import { Component, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import type { Pin } from './TerrainScene';
 
@@ -15,7 +16,38 @@ type Props =
   | { variant: 'water'; className?: string; src: string; waterline?: number }
   | { variant: 'terrain'; className?: string; pins: Pin[]; active: string; onActive: (id: string) => void };
 
+/* אם ה־WebGL לא זמין או קורס, נשארת מתחת תמונת הסצנה והדף ממשיך לעבוד */
+class SceneGuard extends Component<{ children: React.ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  render() {
+    return this.state.failed ? null : this.props.children;
+  }
+}
+
+function hasWebGL() {
+  try {
+    const c = document.createElement('canvas');
+    return !!(c.getContext('webgl2') || c.getContext('webgl'));
+  } catch {
+    return false;
+  }
+}
+
 export function HeroScene(props: Props) {
+  const [ok, setOk] = useState(false);
+  useEffect(() => setOk(hasWebGL()), []);
+  if (!ok) return null;
+  return (
+    <SceneGuard>
+      <Scene {...props} />
+    </SceneGuard>
+  );
+}
+
+function Scene(props: Props) {
   if (props.variant === 'city') {
     return (
       <SceneCanvas

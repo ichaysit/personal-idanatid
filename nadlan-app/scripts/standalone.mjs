@@ -8,15 +8,16 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const exported = path.resolve(root, '../nadlan');
-const outDir = path.resolve(process.argv[2] ?? path.join(root, 'standalone'));
+const artifact = process.argv.includes('--artifact');
+const outDir = path.resolve(process.argv.slice(2).find((a) => !a.startsWith('--')) ?? path.join(root, 'standalone'));
 const tmp = path.join(root, '.standalone-tmp');
 fs.mkdirSync(outDir, { recursive: true });
 fs.mkdirSync(tmp, { recursive: true });
 
 const sites = [
-  { key: 'kav-rakia', color: '#17111c', title: 'קו רקיע | פנטהאוזים ודירות במגדלי תל אביב' },
-  { key: 'bustan', color: '#141c17', title: 'בוסתן | וילות פרטיות על קו החוף' },
-  { key: 'even-vakav', color: '#dcd8d0', title: 'אבן וקו | בתי אדריכלים בהרי ירושלים, בכרמל ובגליל' },
+  { key: 'kav-rakia', name: 'קו רקיע', scheme: 'dark', color: '#17111c', title: 'קו רקיע | פנטהאוזים ודירות במגדלי תל אביב' },
+  { key: 'bustan', name: 'בוסתן', scheme: 'dark', color: '#141c17', title: 'בוסתן | וילות פרטיות על קו החוף' },
+  { key: 'even-vakav', name: 'אבן וקו', scheme: 'light', color: '#dcd8d0', title: 'אבן וקו | בתי אדריכלים בהרי ירושלים, בכרמל ובגליל' },
 ];
 
 /* עיצוב: ה־CSS שנבנה על ידי Next, עם הגופנים מוטמעים כ־base64 */
@@ -92,19 +93,28 @@ createRoot(document.getElementById('root')!).render(<Page />);`,
   }
 
   const safe = (s) => s.replace(/<\/script/gi, '<\\/script');
-  const html = `<!DOCTYPE html>
+  const fontClass = htmlTag.match(/class="([^"]*)"/)[1];
+  const styles = `<style>${css.replace(/<\/style/gi, '<\\/style')}
+:root{color-scheme:${site.scheme}}body{background:${site.color}}</style>`;
+  const noscript = `<noscript><p style="padding:24px;font:18px sans-serif;color:${site.scheme === 'dark' ? '#fff' : '#111'}">האתר דורש JavaScript. פתחו אותו בדפדפן רגיל. / Ce site a besoin de JavaScript : ouvrez-le dans un navigateur.</p></noscript>`;
+  const body = `<div id="root" lang="he" dir="rtl" class="${fontClass}"></div>
+${noscript}
+<script>window.__IMG=${safe(JSON.stringify(images))};</script>
+<script>${safe(js)}</script>`;
+  /* מצב artifact: קטע HTML בלי html/head/body, לפרסום כדף מתארח */
+  const html = artifact
+    ? `<title>${site.name}</title>\n${styles}\n${body}\n`
+    : `<!DOCTYPE html>
 ${htmlTag}
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="${site.color}">
 <title>${site.title}</title>
-<style>${css.replace(/<\/style/gi, '<\\/style')}</style>
+${styles}
 </head>
 <body>
-<div id="root"></div>
-<script>window.__IMG=${safe(JSON.stringify(images))};</script>
-<script>${safe(js)}</script>
+${body}
 </body>
 </html>
 `;
