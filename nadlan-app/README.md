@@ -47,3 +47,17 @@ npm run export
 ```
 
 Cette commande reconstruit le site et remplace `../nadlan/`.
+
+## Fichiers HTML autonomes
+
+Pour obtenir un seul fichier HTML par site (code, polices et photos intégrés, ouvrable par double-clic) :
+
+```bash
+npm run export
+```
+
+```bash
+npm run standalone
+```
+
+Les trois fichiers sont écrits dans `standalone/` (non versionné, environ 5 Mo chacun).
