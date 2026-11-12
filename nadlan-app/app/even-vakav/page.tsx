@@ -1,5 +1,6 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Footer } from '@/components/layout/Footer';
+import { MobileBar } from '@/components/layout/MobileBar';
 import { Navbar } from '@/components/layout/Navbar';
 import { Contact } from '@/components/sections/Contact';
 import { Catalogue } from '@/components/sections/even/Catalogue';
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
   title: 'אבן וקו | בתי אדריכלים בהרי ירושלים, בכרמל ובגליל',
   description: 'בתי אדריכלים למכירה בעין כרם, במבשרת ציון, בזכרון יעקב, בחיפה, בראש פינה ובמצפה רמון.',
 };
+
+export const viewport: Viewport = { themeColor: '#dcd8d0' };
 
 export default function Page() {
   return (
@@ -31,6 +34,7 @@ export default function Page() {
         />
       </main>
       <Footer site={even} />
+      <MobileBar site={even} cta="ביקור בבית" />
     </div>
   );
 }

@@ -130,7 +130,7 @@ export default function TerrainScene({ pins, active, onActive }: Props) {
 
   const accent = useMemo(() => new THREE.Color('#c8253f').multiplyScalar(3.2), []);
 
-  useFrame(({ camera, invalidate }, delta) => {
+  useFrame(({ camera, invalidate, size }, delta) => {
     const dt = Math.min(delta, 0.1);
     time.current += dt;
     const t = time.current;
@@ -143,13 +143,14 @@ export default function TerrainScene({ pins, active, onActive }: Props) {
 
     /* בגלילה המצלמה עולה למבט־על, כמו מעבר מנוף למפה */
     const ang = -0.55 + Math.sin(t * 0.06) * 0.22 + s.px * 0.14;
-    const radius = 13.5 - s.scroll * 7;
-    const height = 6.6 + s.scroll * 9 + s.py * 0.5;
+    const portrait = size.height > size.width;
+    const radius = (portrait ? 21 : 13.5) - s.scroll * 7;
+    const height = (portrait ? 10.5 : 6.6) + s.scroll * 9 + s.py * 0.5;
     const k = 1 - Math.exp(-dt * 2.4);
     camera.position.x += (Math.sin(ang) * radius - camera.position.x) * k;
     camera.position.z += (Math.cos(ang) * radius - camera.position.z) * k;
     camera.position.y += (height - camera.position.y) * k;
-    camera.lookAt(0, 0.9, 0);
+    camera.lookAt(0, portrait ? 3.4 : 0.9, 0);
     if (uniforms.uReveal.value < 1) invalidate();
   });
 

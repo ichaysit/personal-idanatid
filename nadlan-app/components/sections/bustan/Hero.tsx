@@ -20,7 +20,8 @@ export function Hero() {
           </h1>
           <StaggerFade className="mt-9 flex flex-wrap items-end justify-between gap-8">
             <p className="max-w-[42ch] text-lg text-fg/90">
-              וילות פרטיות בארסוף, בהרצליה פיתוח, בקיסריה, בסביון ובכפר שמריהו. הזיזו את הסמן על המים.
+              וילות פרטיות בארסוף, בהרצליה פיתוח, בקיסריה, בסביון ובכפר שמריהו. <span className="mouse-only">הזיזו את הסמן על המים.</span>
+              <span className="touch-only">געו במים.</span>
             </p>
             <div className="pointer-events-auto flex flex-wrap gap-3">
               <Button href="#listings">לווילות</Button>

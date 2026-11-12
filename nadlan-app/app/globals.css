@@ -11,6 +11,11 @@
   --font-display: var(--font-d);
   --font-body: var(--font-b);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  /* פלטה בהירה נוספת, זמינה כ־bg-claude-bg, text-claude-text וכו׳ */
+  --color-claude-bg: #faf9f5;
+  --color-claude-card: #ffffff;
+  --color-claude-text: #383734;
+  --color-claude-border: #e9e8e0;
 }
 
 /* ---------- שלוש זהויות ---------- */
@@ -119,7 +124,6 @@
 .ltr {
   direction: ltr;
   unicode-bidi: isolate;
-  display: inline-block;
 }
 
 .tilt-scene {
@@ -148,5 +152,18 @@
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* טקסט שמתחלף בין מכשיר עם סמן למכשיר מגע */
+.touch-only {
+  display: none;
+}
+@media (hover: none), (pointer: coarse) {
+  .touch-only {
+    display: inline;
+  }
+  .mouse-only {
+    display: none;
   }
 }

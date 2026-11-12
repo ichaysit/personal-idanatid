@@ -1,5 +1,6 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Footer } from '@/components/layout/Footer';
+import { MobileBar } from '@/components/layout/MobileBar';
 import { Navbar } from '@/components/layout/Navbar';
 import { Contact } from '@/components/sections/Contact';
 import { Areas, Coast } from '@/components/sections/rakia/Areas';
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
   title: 'קו רקיע | פנטהאוזים ודירות במגדלי תל אביב',
   description: 'פנטהאוזים ודירות במגדלי תל אביב, מקומה 18 ומעלה. פארק צמרת, רוטשילד, נווה צדק, שרונה ונמל תל אביב.',
 };
+
+export const viewport: Viewport = { themeColor: '#17111c' };
 
 export default function Page() {
   return (
@@ -32,6 +35,7 @@ export default function Page() {
         />
       </main>
       <Footer site={rakia} />
+      <MobileBar site={rakia} cta="תיאום סיור" />
     </div>
   );
 }

@@ -1,8 +1,9 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Container } from '@/components/layout/Container';
 import { ParallaxWrapper } from '@/components/animations/ParallaxWrapper';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { rakiaAreas } from '@/lib/constants';
 import { cn, img } from '@/lib/utils';
 
@@ -12,6 +13,21 @@ export function Areas() {
   const [active, setActive] = useState(-1);
   const float = useRef<HTMLDivElement>(null);
   const last = useRef({ x: 0, t: 0 });
+  const list = useRef<HTMLUListElement>(null);
+
+  /* בטלפון אין מעבר עכבר: השכונה שנמצאת במרכז המסך היא הפעילה */
+  useEffect(() => {
+    if (!window.matchMedia('(hover: none), (pointer: coarse)').matches || !list.current) return;
+    const rows = Array.from(list.current.children);
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(rows.indexOf(e.target));
+      },
+      { rootMargin: '-42% 0px -42% 0px' },
+    );
+    rows.forEach((r) => io.observe(r));
+    return () => io.disconnect();
+  }, []);
 
   function move(e: React.PointerEvent) {
     const el = float.current;
@@ -32,12 +48,12 @@ export function Areas() {
         </p>
       </Container>
 
-      <div className="relative mt-12" onPointerMove={move} onPointerLeave={() => setActive(-1)}>
-        <ul className="m-0 list-none border-t border-line p-0">
+      <div className="relative mt-12" onPointerMove={move} onPointerLeave={(e) => e.pointerType === 'mouse' && setActive(-1)}>
+        <ul ref={list} className="m-0 list-none border-t border-line p-0">
           {rakiaAreas.map((a, i) => (
             <li
               key={a.name}
-              onPointerEnter={() => setActive(i)}
+              onPointerEnter={(e) => e.pointerType === 'mouse' && setActive(i)}
               className={cn(
                 'border-b border-line transition-colors duration-500',
                 active === i ? 'text-acc' : active >= 0 ? 'text-fg/35' : 'text-fg',
@@ -49,7 +65,9 @@ export function Areas() {
                   <span>{a.count} נכסים</span>
                   <span>{a.sqmPrice.toLocaleString('en-US')} ₪ למ״ר</span>
                 </p>
-                <img src={img(a.image)} alt="" loading="lazy" className="aspect-[16/9] w-full object-cover md:hidden" />
+                <ScrollReveal variant="curtain" className="w-full md:hidden">
+                  <img src={img(a.image)} alt="" loading="lazy" className="aspect-[16/9] w-full object-cover" />
+                </ScrollReveal>
               </Container>
             </li>
           ))}

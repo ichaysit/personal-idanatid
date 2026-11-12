@@ -8,7 +8,7 @@ import { clamp, cn } from '@/lib/utils';
 
 /* מצב משותף לסצנה: מיקום הסמן (‎-1 עד 1) והתקדמות הגלילה בתוך האזור (0 עד 1).
    נשמר ב־ref כדי שלא לגרום לרינדור מחדש בכל תזוזה. */
-export type SceneState = { px: number; py: number; scroll: number; moved: number };
+export type SceneState = { px: number; py: number; scroll: number; moved: number; coarse: boolean };
 const Ctx = createContext<React.RefObject<SceneState> | null>(null);
 
 export function useSceneState() {
@@ -36,9 +36,10 @@ export default function SceneCanvas({
   lights = ['#ffffff', '#ffffff'],
 }: Props) {
   const wrap = useRef<HTMLDivElement>(null);
-  const state = useRef<SceneState>({ px: 0, py: 0, scroll: 0, moved: 0 });
+  const state = useRef<SceneState>({ px: 0, py: 0, scroll: 0, moved: -1e9, coarse: false });
   const [visible, setVisible] = useState(true);
   const [reduce, setReduce] = useState(false);
+  const [coarse, setCoarse] = useState(false);
 
   useEffect(() => {
     const el = wrap.current;
@@ -48,10 +49,20 @@ export default function SceneCanvas({
     const onMq = () => setReduce(mq.matches);
     mq.addEventListener('change', onMq);
 
-    const onPointer = (e: PointerEvent) => {
-      state.current.px = (e.clientX / window.innerWidth) * 2 - 1;
-      state.current.py = -((e.clientY / window.innerHeight) * 2 - 1);
+    /* בטלפון אין סמן: הסצנה מגיבה למגע, ובין מגע למגע היא נעה בעצמה */
+    const touch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    state.current.coarse = touch;
+    setCoarse(touch);
+
+    const point = (x: number, y: number) => {
+      state.current.px = (x / window.innerWidth) * 2 - 1;
+      state.current.py = -((y / window.innerHeight) * 2 - 1);
       state.current.moved = performance.now();
+    };
+    const onPointer = (e: PointerEvent) => point(e.clientX, e.clientY);
+    const onTouch = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (t) point(t.clientX, t.clientY);
     };
     const onScroll = () => {
       const r = el.getBoundingClientRect();
@@ -59,6 +70,8 @@ export default function SceneCanvas({
     };
     onScroll();
     window.addEventListener('pointermove', onPointer, { passive: true });
+    window.addEventListener('touchstart', onTouch, { passive: true });
+    window.addEventListener('touchmove', onTouch, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
 
@@ -67,6 +80,8 @@ export default function SceneCanvas({
     return () => {
       mq.removeEventListener('change', onMq);
       window.removeEventListener('pointermove', onPointer);
+      window.removeEventListener('touchstart', onTouch);
+      window.removeEventListener('touchmove', onTouch);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
       io.disconnect();
@@ -77,9 +92,9 @@ export default function SceneCanvas({
     <div ref={wrap} aria-hidden className={cn('canvas-fill', className)}>
       <Canvas
         camera={camera}
-        dpr={[1, 1.75]}
+        dpr={[1, coarse ? 1.5 : 1.75]}
         frameloop={!visible ? 'never' : reduce ? 'demand' : 'always'}
-        gl={{ antialias: true, powerPreference: 'high-performance' }}
+        gl={{ antialias: !coarse, powerPreference: 'high-performance' }}
       >
         <Ctx.Provider value={state}>
           <Suspense fallback={null}>

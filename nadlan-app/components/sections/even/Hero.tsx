@@ -60,7 +60,8 @@ export function Hero() {
           </h1>
           <StaggerFade>
             <p className="mt-6 max-w-[40ch] text-lg">
-              שישה בתי אדריכלים למכירה, מהגליל ועד הנגב. כל סיכה במפה היא בית. עברו עליה כדי לראות אותו.
+              שישה בתי אדריכלים למכירה, מהגליל ועד הנגב. כל סיכה במפה היא בית. <span className="mouse-only">עברו עליה כדי לראות אותו.</span>
+              <span className="touch-only">געו בה כדי לראות אותו.</span>
             </p>
           </StaggerFade>
         </StaggerContainer>

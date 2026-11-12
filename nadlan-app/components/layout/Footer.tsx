@@ -4,7 +4,7 @@ import { Container } from './Container';
 
 export function Footer({ site }: { site: Site }) {
   return (
-    <footer className="border-t border-line py-12 text-[0.95rem]">
+    <footer className="border-t border-line pb-28 pt-12 text-[0.95rem] md:pb-12">
       <Container className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="font-display text-4xl leading-none">{site.name}</p>

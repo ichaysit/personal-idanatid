@@ -107,8 +107,11 @@ export default function WaterScene({ src, waterline = 0.42 }: { src: string; wat
     uniforms.uView.value = size.width / size.height;
     uniforms.uScroll.value += (s.scroll - uniforms.uScroll.value) * (1 - Math.exp(-dt * 6));
 
-    const x = s.px * 0.5 + 0.5;
-    const y = s.py * 0.5 + 0.5;
+    /* אחרי שתי שניות בלי מגע או סמן, האדווה משוטטת לבד על פני הבריכה */
+    const idle = performance.now() - s.moved > 2200;
+    const t = time.current;
+    const x = idle ? 0.5 + Math.sin(t * 0.43) * 0.3 : s.px * 0.5 + 0.5;
+    const y = idle ? 0.24 + Math.sin(t * 0.71) * 0.12 : s.py * 0.5 + 0.5;
     const speed = Math.hypot(x - last.current.x, y - last.current.y);
     last.current.x = x;
     last.current.y = y;
@@ -117,7 +120,7 @@ export default function WaterScene({ src, waterline = 0.42 }: { src: string; wat
     p.y += (y - p.y) * (1 - Math.exp(-dt * 5));
     /* האדווה מתחזקת כשהסמן זז ודועכת כשהוא נח */
     uniforms.uPulse.value = Math.min(1, uniforms.uPulse.value * Math.exp(-dt * 0.9) + speed * 6);
-    uniforms.uPulse.value = Math.max(0.12, uniforms.uPulse.value);
+    uniforms.uPulse.value = Math.max(idle ? 0.5 : 0.12, uniforms.uPulse.value);
   });
 
   return (

@@ -14,9 +14,9 @@ fs.mkdirSync(outDir, { recursive: true });
 fs.mkdirSync(tmp, { recursive: true });
 
 const sites = [
-  { key: 'kav-rakia', title: 'קו רקיע | פנטהאוזים ודירות במגדלי תל אביב' },
-  { key: 'bustan', title: 'בוסתן | וילות פרטיות על קו החוף' },
-  { key: 'even-vakav', title: 'אבן וקו | בתי אדריכלים בהרי ירושלים, בכרמל ובגליל' },
+  { key: 'kav-rakia', color: '#17111c', title: 'קו רקיע | פנטהאוזים ודירות במגדלי תל אביב' },
+  { key: 'bustan', color: '#141c17', title: 'בוסתן | וילות פרטיות על קו החוף' },
+  { key: 'even-vakav', color: '#dcd8d0', title: 'אבן וקו | בתי אדריכלים בהרי ירושלים, בכרמל ובגליל' },
 ];
 
 /* עיצוב: ה־CSS שנבנה על ידי Next, עם הגופנים מוטמעים כ־base64 */
@@ -97,6 +97,7 @@ ${htmlTag}
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="${site.color}">
 <title>${site.title}</title>
 <style>${css.replace(/<\/style/gi, '<\\/style')}</style>
 </head>

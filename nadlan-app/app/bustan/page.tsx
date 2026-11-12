@@ -1,5 +1,6 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Footer } from '@/components/layout/Footer';
+import { MobileBar } from '@/components/layout/MobileBar';
 import { Navbar } from '@/components/layout/Navbar';
 import { Contact } from '@/components/sections/Contact';
 import { Hero } from '@/components/sections/bustan/Hero';
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
   title: 'בוסתן | וילות פרטיות על קו החוף',
   description: 'וילות פרטיות עם בריכה בארסוף, בהרצליה פיתוח, בקיסריה, בסביון ובכפר שמריהו.',
 };
+
+export const viewport: Viewport = { themeColor: '#141c17' };
 
 export default function Page() {
   return (
@@ -33,6 +36,7 @@ export default function Page() {
         />
       </main>
       <Footer site={bustan} />
+      <MobileBar site={bustan} cta="בקשה לשיחה" />
     </div>
   );
 }

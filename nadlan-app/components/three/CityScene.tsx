@@ -188,7 +188,7 @@ export default function CityScene() {
     m.instanceMatrix.needsUpdate = true;
   }, [towers]);
 
-  useFrame(({ camera, invalidate }, delta) => {
+  useFrame(({ camera, invalidate, size }, delta) => {
     /* שעון משלנו: מצטבר מה־delta ולא תלוי בשעון של three */
     const dt = Math.min(delta, 0.1);
     time.current += dt;
@@ -198,13 +198,15 @@ export default function CityScene() {
     uniforms.uGrow.value = Math.min(1, t / 3.4);
 
     const ang = 0.62 + t * 0.022 + s.px * 0.16;
-    const radius = 17 - s.scroll * 5;
-    const height = 6.4 + s.py * 0.7 - s.scroll * 3.2;
+    /* במסך לאורך המצלמה מתרחקת ועולה, כדי שהמגדלים הגבוהים ייכנסו לפריים */
+    const portrait = size.height > size.width;
+    const radius = (portrait ? 21 : 17) - s.scroll * 5;
+    const height = (portrait ? 8.6 : 6.4) + s.py * 0.7 - s.scroll * 3.2;
     const k = 1 - Math.exp(-dt * 2.2);
     camera.position.x += (Math.sin(ang) * radius - camera.position.x) * k;
     camera.position.z += (Math.cos(ang) * radius - camera.position.z) * k;
     camera.position.y += (height - camera.position.y) * k;
-    camera.lookAt(0, 2.4 + s.scroll * 1.6, 0);
+    camera.lookAt(0, (portrait ? 3.6 : 2.4) + s.scroll * 1.6, 0);
     if (uniforms.uGrow.value < 1) invalidate();
   });
 

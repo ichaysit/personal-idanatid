@@ -14,7 +14,7 @@ import { img, price } from '@/lib/utils';
 
 function Tower({ p }: { p: Property }) {
   return (
-    <article className="w-[min(80vw,430px)] shrink-0 snap-start">
+    <article data-card className="w-[min(68vw,430px)] shrink-0 snap-center [transform-style:preserve-3d] md:snap-start">
       <TiltCard className="aspect-[3/4]">
         <ScrollReveal variant="curtain" className="h-full">
           <img src={img(p.image)} alt={`${p.name}, ${p.place}`} className="h-full w-full object-cover" />
@@ -73,10 +73,45 @@ export function Listings() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [pinned, shift, raw]);
 
+  /* בטלפון: קרוסלה תלת־ממדית. הכרטיס שבמרכז פונה אלינו, ושכניו מסתובבים הצידה. */
+  useEffect(() => {
+    const el = track.current;
+    if (pinned || !el || reduce) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const box = el.getBoundingClientRect();
+      const mid = box.left + box.width / 2;
+      el.querySelectorAll<HTMLElement>('[data-card]').forEach((card) => {
+        const r = card.getBoundingClientRect();
+        const d = Math.max(-1.2, Math.min(1.2, (r.left + r.width / 2 - mid) / r.width));
+        card.style.transform = `perspective(1000px) rotateY(${-d * 22}deg) scale(${1 - Math.abs(d) * 0.1})`;
+        card.style.opacity = String(1 - Math.min(0.5, Math.abs(d) * 0.45));
+      });
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    el.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(frame);
+      el.querySelectorAll<HTMLElement>('[data-card]').forEach((card) => {
+        card.style.transform = '';
+        card.style.opacity = '';
+      });
+    };
+  }, [pinned, reduce]);
+
   const head = (
     <Container className="flex flex-wrap items-end justify-between gap-6 pb-10">
       <h2 className="text-[clamp(3.5rem,8vw,7.5rem)] font-bold leading-[0.85]">נכסים על קו הרקיע</h2>
-      <p className="max-w-[34ch] text-mute">שישה מתוך 41. המספר הגדול על כל תמונה הוא הקומה.</p>
+      <p className="max-w-[34ch] text-mute">
+        שישה מתוך 41. המספר הגדול על כל תמונה הוא הקומה.<span className="touch-only"> החליקו הצידה.</span>
+      </p>
     </Container>
   );
 
@@ -96,7 +131,7 @@ export function Listings() {
             ))}
           </motion.div>
         ) : (
-          <div ref={track} className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-6 sm:px-8">
+          <div ref={track} className="flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden px-[16vw] pb-6 [scrollbar-width:none]">
             {rakia.properties.map((p) => (
               <Tower key={p.id} p={p} />
             ))}
