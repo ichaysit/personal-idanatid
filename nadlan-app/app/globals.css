@@ -1,0 +1,152 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-fg: var(--fg);
+  --color-mute: var(--mute);
+  --color-line: var(--line);
+  --color-acc: var(--acc);
+  --color-acc2: var(--acc2);
+  --font-display: var(--font-d);
+  --font-body: var(--font-b);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- שלוש זהויות ---------- */
+[data-site='rakia'] {
+  --bg: #17111c;
+  --bg2: #221827;
+  --fg: #efe4d3;
+  --mute: #a8998f;
+  --line: rgb(239 228 211 / 0.16);
+  --acc: #e38b4f;
+  --acc2: #c4687a;
+  --font-d: var(--font-karantina), sans-serif;
+  --font-b: var(--font-plex), sans-serif;
+}
+[data-site='bustan'] {
+  --bg: #141c17;
+  --bg2: #1c2720;
+  --fg: #e9e2d2;
+  --mute: #9ba596;
+  --line: rgb(233 226 210 / 0.18);
+  --acc: #c2a566;
+  --acc2: #6fc7bb;
+  --font-d: var(--font-frank), serif;
+  --font-b: var(--font-heebo), sans-serif;
+}
+[data-site='even'] {
+  --bg: #dcd8d0;
+  --bg2: #cfcac0;
+  --fg: #191613;
+  --mute: #6b655c;
+  --line: rgb(25 22 19 / 0.22);
+  --acc: #a12a3c;
+  --acc2: #3f4a3a;
+  --font-d: var(--font-miriam), sans-serif;
+  --font-b: var(--font-assistant), sans-serif;
+}
+[data-site='index'] {
+  --bg: #121212;
+  --bg2: #1c1c1c;
+  --fg: #ece8e1;
+  --mute: #99938a;
+  --line: rgb(236 232 225 / 0.18);
+  --acc: #ece8e1;
+  --acc2: #ece8e1;
+  --font-d: var(--font-frank), serif;
+  --font-b: var(--font-heebo), sans-serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-radius: 0;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: #121212;
+  }
+  [data-site] {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-b);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--acc);
+    color: var(--bg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--acc);
+    outline-offset: 3px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-d);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+  }
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+/* מספרים וטלפונים נשארים משמאל לימין בתוך טקסט עברי */
+.ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+.tilt-scene {
+  perspective: 1100px;
+}
+.tilt-body {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.canvas-fill,
+.canvas-fill > div,
+.canvas-fill canvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
