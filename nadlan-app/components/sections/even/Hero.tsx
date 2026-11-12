@@ -7,6 +7,7 @@ import { HeroScene } from '@/components/three/HeroScene';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { even, evenPins } from '@/lib/constants';
 import { img, price } from '@/lib/utils';
+import { HeroExit } from '@/components/effects/HeroExit';
 
 export function Hero() {
   const [active, setActive] = useState(even.properties[0].id);
@@ -53,6 +54,7 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[58%] bg-gradient-to-b from-bg via-bg/85 to-transparent md:hidden" />
 
       <Container className="pointer-events-none relative flex h-full flex-col justify-between pb-10 pt-28 md:pb-14">
+        <HeroExit>
         <StaggerContainer>
           <h1 className="max-w-[12ch] text-[clamp(3rem,7.4vw,7.25rem)] font-bold leading-[0.98]">
             <StaggerLine>בתים שנבנו</StaggerLine>
@@ -66,6 +68,7 @@ export function Hero() {
             </p>
           </StaggerFade>
         </StaggerContainer>
+        </HeroExit>
 
         <GlassCard className="pointer-events-auto ms-auto grid w-full max-w-[460px] grid-cols-[112px_1fr] gap-4 p-3">
           <img key={p.image} src={img(p.image)} alt="" className="h-28 w-28 object-cover" />

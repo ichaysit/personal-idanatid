@@ -5,6 +5,7 @@ import { Container } from '@/components/layout/Container';
 import { TiltCard } from '@/components/ui/Card';
 import { even } from '@/lib/constants';
 import { cn, img, price } from '@/lib/utils';
+import { SplitText } from '@/components/effects/SplitText';
 
 /* קטלוג בצורת טבלה. בחירה בשורה מחליפה את התמונה הדביקה שלצדה
    בסיבוב במרחב, כמו דף שמתהפך. */
@@ -16,7 +17,9 @@ export function Catalogue() {
     <section id="listings" className="scroll-mt-16 py-24 md:py-36">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6 border-b-2 border-fg pb-5">
-          <h2 className="text-[clamp(2.5rem,5.4vw,5rem)] font-bold leading-none">הקטלוג</h2>
+          <h2 className="text-[clamp(2.5rem,5.4vw,5rem)] font-bold leading-none">
+            <SplitText text="הקטלוג" />
+          </h2>
           <p className="text-mute">שישה בתים, מעודכן לנובמבר 2026</p>
         </div>
 

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { TiltCard } from '@/components/ui/Card';
 import { bustan } from '@/lib/constants';
 import { cn, img, price } from '@/lib/utils';
+import { SplitText } from '@/components/effects/SplitText';
 
 export function Intro() {
   return (
@@ -26,7 +27,9 @@ export function Listings() {
   return (
     <section id="listings" className="scroll-mt-16 pb-24 md:pb-36">
       <Container>
-        <h2 className="border-b border-line pb-6 text-[clamp(2.75rem,6vw,5.5rem)] font-light leading-none">הווילות</h2>
+        <h2 className="border-b border-line pb-6 text-[clamp(2.75rem,6vw,5.5rem)] font-light leading-none">
+          <SplitText text="הווילות" />
+        </h2>
       </Container>
 
       {bustan.properties.map((p, i) => (

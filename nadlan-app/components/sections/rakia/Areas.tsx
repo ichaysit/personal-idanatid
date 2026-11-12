@@ -6,6 +6,7 @@ import { ParallaxWrapper } from '@/components/animations/ParallaxWrapper';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { rakiaAreas } from '@/lib/constants';
 import { cn, img } from '@/lib/utils';
+import { SplitText } from '@/components/effects/SplitText';
 
 /* רשימת שכונות באותיות ענק. מעבר עכבר על שורה מציף תמונה שעוקבת אחרי הסמן
    ונוטה במרחב לפי כיוון התנועה. */
@@ -108,7 +109,7 @@ export function Coast() {
       <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg via-bg/25 to-bg/55" />
       <Container className="relative flex h-full items-end pb-14">
         <p className="max-w-[16ch] font-display text-[clamp(3.5rem,8vw,7.5rem)] font-bold leading-[0.88]">
-          הים במערב, העיר מתחת, והשקט מקומה 30
+          <SplitText text="הים במערב, העיר מתחת, והשקט מקומה 30" />
         </p>
       </Container>
     </section>

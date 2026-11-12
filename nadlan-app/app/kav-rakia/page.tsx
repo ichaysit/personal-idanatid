@@ -7,6 +7,9 @@ import { Areas, Coast } from '@/components/sections/rakia/Areas';
 import { Hero } from '@/components/sections/rakia/Hero';
 import { Listings } from '@/components/sections/rakia/Listings';
 import { rakia } from '@/lib/constants';
+import { DepthGallery } from '@/components/effects/DepthGallery';
+import { Marquee } from '@/components/effects/Marquee';
+import { SiteEffects } from '@/components/effects/SiteEffects';
 
 export const metadata: Metadata = {
   title: 'קו רקיע | פנטהאוזים ודירות במגדלי תל אביב',
@@ -18,10 +21,23 @@ export const viewport: Viewport = { themeColor: '#17111c' };
 export default function Page() {
   return (
     <div data-site="rakia">
+      <SiteEffects name={rakia.name} />
       <Navbar site={rakia} />
       <main>
         <Hero />
+        <Marquee items={['פארק צמרת', 'שדרות רוטשילד', 'נווה צדק', 'שרונה', 'נמל תל אביב']} />
         <Listings />
+        <DepthGallery
+          title="מבפנים החוצה"
+          shots={[
+            { image: 'tower-glass', caption: 'פארק צמרת, מבט מהרחוב' },
+            { image: 'pent-kitchen', caption: 'מטבח, דופלקס רוטשילד' },
+            { image: 'tower-bw', caption: 'מגדלי המשרדים של שרונה' },
+            { image: 'bedroom-light', caption: 'חדר שינה, קומה 29' },
+            { image: 'pent-living', caption: 'סלון בגובה כפול' },
+            { image: 'terrace-dusk', caption: 'המרפסת בשעת שקיעה' },
+          ]}
+        />
         <Areas />
         <Coast />
         <Contact

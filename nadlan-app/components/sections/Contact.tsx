@@ -6,6 +6,7 @@ import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
 import { Input, Select, Textarea } from '@/components/ui/Input';
 import { cn } from '@/lib/utils';
+import { SplitText } from '@/components/effects/SplitText';
 
 type Props = {
   site: Site;
@@ -26,7 +27,9 @@ export function Contact({ site, title, text, interests, submitLabel, doneText, c
     <section id="contact" className={cn('scroll-mt-16 py-24 md:py-36', className)}>
       <Container className="grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
         <div>
-          <h2 className={cn('text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.95]', headingClass)}>{title}</h2>
+          <h2 className={cn('text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.95]', headingClass)}>
+            <SplitText text={title} />
+          </h2>
           <p className="mt-6 max-w-[46ch] text-mute">{text}</p>
 
           <ul id="team" className="mt-12 scroll-mt-24 list-none border-t border-line p-0">

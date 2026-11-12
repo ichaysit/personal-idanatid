@@ -3,6 +3,7 @@ import { StaggerContainer, StaggerFade, StaggerLine } from '@/components/animati
 import { HeroScene } from '@/components/three/HeroScene';
 import { Button } from '@/components/ui/Button';
 import { img } from '@/lib/utils';
+import { HeroExit } from '@/components/effects/HeroExit';
 
 export function Hero() {
   return (
@@ -13,6 +14,7 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/35 to-bg/30" />
 
       <Container className="pointer-events-none relative flex h-full flex-col justify-end pb-12 md:pb-16">
+        <HeroExit>
         <StaggerContainer delay={0.35}>
           <h1 className="max-w-[13ch] text-[clamp(3.25rem,8.2vw,8.25rem)] font-light leading-[1.02]">
             <StaggerLine>בית עם בריכה,</StaggerLine>
@@ -31,6 +33,7 @@ export function Hero() {
             </div>
           </StaggerFade>
         </StaggerContainer>
+        </HeroExit>
       </Container>
     </section>
   );

@@ -3,6 +3,7 @@ import { ParallaxWrapper } from '@/components/animations/ParallaxWrapper';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { bustanServices } from '@/lib/constants';
 import { img } from '@/lib/utils';
+import { SplitText } from '@/components/effects/SplitText';
 
 export function Night() {
   return (
@@ -36,7 +37,9 @@ export function Service() {
           </ScrollReveal>
         </div>
 
-        <h2 className="mt-20 max-w-[18ch] text-[clamp(2.75rem,6vw,5.5rem)] font-light leading-[1.02]">מה כלול בליווי שלנו</h2>
+        <h2 className="mt-20 max-w-[18ch] text-[clamp(2.75rem,6vw,5.5rem)] font-light leading-[1.02]">
+          <SplitText text="מה כלול בליווי שלנו" />
+        </h2>
         <div className="mt-12 grid border-t border-line md:grid-cols-3">
           {bustanServices.map((s) => (
             <div key={s.title} className="border-b border-line py-8 md:border-b-0 md:border-s md:px-8 md:first:border-s-0 md:first:ps-0">

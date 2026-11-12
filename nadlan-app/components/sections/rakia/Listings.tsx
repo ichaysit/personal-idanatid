@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/Badge';
 import { TiltCard } from '@/components/ui/Card';
 import { rakia, type Property } from '@/lib/constants';
 import { img, price } from '@/lib/utils';
+import { SplitText } from '@/components/effects/SplitText';
 
 /* גלילה אנכית שמזיזה את שורת הנכסים לרוחב, כמו נסיעה לאורך קו הרקיע.
    במסך צר או כשהמשתמש ביקש פחות תנועה: גלילה אופקית רגילה. */
@@ -108,7 +109,9 @@ export function Listings() {
 
   const head = (
     <Container className="flex flex-wrap items-end justify-between gap-6 pb-10">
-      <h2 className="text-[clamp(3.5rem,8vw,7.5rem)] font-bold leading-[0.85]">נכסים על קו הרקיע</h2>
+      <h2 className="text-[clamp(3.5rem,8vw,7.5rem)] font-bold leading-[0.85]">
+        <SplitText text="נכסים על קו הרקיע" />
+      </h2>
       <p className="max-w-[34ch] text-mute">
         שישה מתוך 41. המספר הגדול על כל תמונה הוא הקומה.<span className="touch-only"> החליקו הצידה.</span>
       </p>

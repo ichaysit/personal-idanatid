@@ -167,3 +167,72 @@
     display: none;
   }
 }
+
+/* ---------- שכבת אפקטים ---------- */
+.fx-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  pointer-events: none;
+  animation: fx-intro-out 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.9s both;
+}
+.fx-intro-name {
+  font-size: clamp(4rem, 18vw, 14rem);
+  line-height: 1;
+  animation: fx-intro-name 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes fx-intro-name {
+  from {
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(18%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+@keyframes fx-intro-out {
+  to {
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+  }
+}
+.fx-grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 55;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: fx-grain 0.9s steps(5) infinite;
+}
+@keyframes fx-grain {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -4%); }
+  75% { transform: translate(-2%, 3%); }
+  100% { transform: translate(3%, -1%); }
+}
+@media (hover: hover) and (pointer: fine) {
+  [data-site]:has(.fx-intro) a,
+  [data-site]:has(.fx-intro) button {
+    cursor: none;
+  }
+  [data-site]:has(.fx-intro) {
+    cursor: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-intro,
+  .fx-grain {
+    display: none;
+  }
+  [data-site]:has(.fx-intro),
+  [data-site]:has(.fx-intro) a,
+  [data-site]:has(.fx-intro) button {
+    cursor: auto;
+  }
+}
