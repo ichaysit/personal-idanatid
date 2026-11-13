@@ -134,7 +134,7 @@ createRoot(document.getElementById('root')!).render(
     minify: true,
     write: false,
     format: 'iife',
-    target: ['es2019', 'safari14', 'chrome90'],
+    target: 'es2019',
     jsx: 'automatic',
     tsconfig: path.join(root, 'tsconfig.json'),
     define: { 'process.env.NODE_ENV': '"production"', 'process.env.NEXT_PUBLIC_BASE_PATH': '""' },
@@ -180,7 +180,7 @@ window.addEventListener('error',function(){if(!state)window.__appFailed()});
 setTimeout(function(){if(!state)window.__appFailed()},12000);
 })();`;
 
-  const note = `<noscript><p style="position:fixed;z-index:90;inset-inline:0;top:0;margin:0;padding:6px 12px;font:13px/1.4 sans-serif;text-align:center;background:${site.scheme === 'dark' ? '#000c' : '#fffc'};color:${site.scheme === 'dark' ? '#fff' : '#111'}">תצוגה מקדימה. לגרסה המלאה עם התלת־ממד פתחו את הקובץ בדפדפן.</p></noscript>`;
+  const note = `<noscript><p class="static-note" style="background:${site.scheme === 'dark' ? '#000c' : '#fffd'};color:${site.scheme === 'dark' ? '#fff' : '#111'}">תצוגה מקדימה. לגרסה המלאה עם התלת־ממד פתחו את הקובץ בדפדפן.</p></noscript>`;
 
   const body = `<div class="${fontClass}" lang="he" dir="rtl">
 <div id="static" class="static">${staticHtml}</div>

@@ -437,16 +437,15 @@
   .static #tour {
     view-timeline-name: --tour;
   }
+  /* כל תמונה מופיעה מעל קודמתה ונשארת, כך שלעולם אין שתי כיתוביות יחד */
   .static .tour-frame {
-    animation: st-tour-mid linear both;
+    animation: st-tour-in linear both;
     animation-timeline: --tour;
-    animation-range: contain calc(var(--i) * 20% - 3%) contain calc(var(--i) * 20% + 23%);
+    animation-range: contain calc(var(--i) * 20% - 1.5%) contain calc(var(--i) * 20% + 1.5%);
   }
   .static .tour-frame:first-child {
-    animation-name: st-tour-first;
-  }
-  .static .tour-frame:last-child {
-    animation-name: st-tour-last;
+    animation: none;
+    opacity: 1;
   }
   .static .tour-frame img {
     animation: st-push linear both;
@@ -566,33 +565,11 @@
     transform: perspective(1000px) rotateY(26deg) scale(0.88);
   }
 }
-@keyframes st-tour-mid {
-  0% {
+@keyframes st-tour-in {
+  from {
     opacity: 0;
   }
-  14%,
-  86% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes st-tour-first {
-  0%,
-  86% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes st-tour-last {
-  0% {
-    opacity: 0;
-  }
-  14%,
-  100% {
+  to {
     opacity: 1;
   }
 }
@@ -624,5 +601,21 @@
   .static *,
   .static *::before {
     animation: none !important;
+  }
+}
+
+.static-note {
+  position: fixed;
+  z-index: 90;
+  inset-inline: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 5px 12px;
+  font: 12px/1.4 sans-serif;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .static-note {
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px));
   }
 }

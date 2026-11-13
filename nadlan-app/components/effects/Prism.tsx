@@ -35,7 +35,7 @@ export function Prism({ faces, heading }: { faces: Face[]; heading: string }) {
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-16 [--w:min(80vw,760px)]">
         <div className="mb-8 flex w-[var(--w)] items-baseline justify-between">
           <h2 className="text-[clamp(2rem,4.4vw,4rem)] font-light leading-none">{heading}</h2>
-          <motion.span className="ltr text-mute">{label}</motion.span>
+          <motion.span data-app-only className="ltr text-mute">{label}</motion.span>
         </div>
         <div data-fx-box className="h-[calc(var(--w)*0.68)] w-[var(--w)] [perspective:1600px]">
           <motion.div
