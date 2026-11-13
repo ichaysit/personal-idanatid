@@ -30,6 +30,7 @@ export default function Page() {
         <Marquee items={['עין כרם', 'זכרון יעקב', 'ראש פינה', 'חיפה', 'מצפה רמון', 'מבשרת ציון']} />
         <Catalogue />
         <HouseTour
+          frames="even-vakav"
           light
           name="בית האלון, מבפנים"
           intro="הדמיה תלת־ממדית סכמטית. גללו כדי להיכנס."

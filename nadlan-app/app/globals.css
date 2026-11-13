@@ -236,3 +236,393 @@
     cursor: auto;
   }
 }
+
+/* ---------- סיור: תמונות השלבים ---------- */
+.tour-frame {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+.tour-frame[data-on] {
+  opacity: 1;
+}
+.tour-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tour-frame figcaption {
+  display: none;
+}
+
+/* =====================================================================
+   גרסה סטטית: הדף כולו בלי JavaScript (תצוגה מקדימה של קובץ בטלפון).
+   האפקטים כאן הם CSS בלבד, ורובם מונעים על ידי הגלילה.
+   ===================================================================== */
+[hidden] {
+  display: none !important;
+}
+/* כש־JavaScript זמין, מסך הפתיחה נשאר סגור עד שהגרסה המלאה מוכנה */
+.js .static .fx-intro {
+  animation: none;
+}
+.js .fx-intro-name {
+  animation: none;
+}
+.static [data-app-only],
+.static header button,
+.static canvas {
+  display: none;
+}
+.static header nav {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: 1.1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  font-size: 0.9rem;
+}
+.static .tour-frame figcaption {
+  display: block;
+  position: absolute;
+  inset-inline: 1.25rem;
+  bottom: 5.5rem;
+  max-width: 440px;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  background: color-mix(in srgb, var(--bg) 62%, transparent);
+  backdrop-filter: blur(18px);
+}
+.static .tour-frame figcaption strong {
+  display: block;
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1.15;
+}
+.static .tour-frame figcaption span {
+  display: block;
+  margin-top: 0.35rem;
+  opacity: 0.8;
+}
+.static [data-fx-marquee] > div {
+  animation: st-marquee 38s linear infinite;
+}
+.static main > section:first-child > img {
+  animation: st-ken 22s ease-in-out infinite alternate;
+}
+.static h1 > span > span,
+.static h1 > span {
+  animation: st-line 1.1s cubic-bezier(0.16, 1, 0.3, 1) 1.9s both;
+}
+.static h1 > span:nth-child(2) > span {
+  animation-delay: 2.02s;
+}
+.static h1 > span:nth-child(3) > span {
+  animation-delay: 2.14s;
+}
+.static [data-fx-iso] {
+  transform: rotateX(60deg) rotateZ(-38deg);
+}
+.static [data-fx-plate] {
+  transform: translateZ(calc(var(--i) * var(--gap)));
+}
+/* גלריות התלת־ממד הופכות לשורה שמחליקים בה הצידה */
+.static [data-fx='depth'],
+.static [data-fx='prism'] {
+  height: auto !important;
+}
+.static [data-fx='depth'] > div,
+.static [data-fx='prism'] > div {
+  position: static;
+  display: block;
+  height: auto;
+  overflow: visible;
+  padding-block: 4rem 3rem;
+}
+.static [data-fx='depth'] h2 {
+  position: static;
+  display: block;
+  padding: 0 1.25rem 1.5rem;
+  text-align: start;
+  font-size: clamp(3rem, 9vw, 7rem);
+}
+.static [data-fx='prism'] > div > div:first-child {
+  width: auto;
+  padding-inline: 1.25rem;
+}
+.static [data-fx-box] {
+  width: 100%;
+  height: auto;
+}
+.static [data-fx-row] {
+  position: static;
+  display: flex;
+  gap: 1rem;
+  width: auto;
+  height: auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.5rem 14vw 1.5rem;
+  scrollbar-width: none;
+}
+.static [data-fx-row] > * {
+  position: relative;
+  inset: auto;
+  flex: 0 0 min(72vw, 520px);
+  width: auto;
+  scroll-snap-align: center;
+}
+.static [data-fx-row] img {
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+
+@keyframes st-marquee {
+  to {
+    transform: translateX(-25%);
+  }
+}
+@keyframes st-ken {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.14) translate(-1.5%, 1.5%);
+  }
+}
+@keyframes st-line {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(60%);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .static [data-fx-bar] {
+    animation: st-bar linear both;
+    animation-timeline: scroll(root);
+  }
+  /* כל אזור נכנס מוטה במרחב ומתיישר */
+  .static main > :not(:first-child):not([data-fx]):not(#tour):not([data-fx-marquee]) {
+    transform-origin: 50% 0%;
+    animation: st-tilt linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
+  .static h2 {
+    animation: st-head linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 32%;
+  }
+  .static .tilt-body {
+    animation: st-card linear both;
+    animation-timeline: view();
+  }
+  .static .overflow-hidden > div > img,
+  .static .overflow-hidden > img {
+    animation: st-zoom linear both;
+    animation-timeline: view();
+  }
+  .static [data-fx-row] > *,
+  .static [data-card] {
+    animation: st-cover linear both;
+    animation-timeline: view(inline);
+  }
+  /* הסיור: התמונות מתחלפות עם הגלילה, כל אחת עם תנועת מצלמה איטית */
+  .static #tour {
+    view-timeline-name: --tour;
+  }
+  .static .tour-frame {
+    animation: st-tour-mid linear both;
+    animation-timeline: --tour;
+    animation-range: contain calc(var(--i) * 20% - 3%) contain calc(var(--i) * 20% + 23%);
+  }
+  .static .tour-frame:first-child {
+    animation-name: st-tour-first;
+  }
+  .static .tour-frame:last-child {
+    animation-name: st-tour-last;
+  }
+  .static .tour-frame img {
+    animation: st-push linear both;
+    animation-timeline: --tour;
+    animation-range: contain calc(var(--i) * 20% - 3%) contain calc(var(--i) * 20% + 23%);
+  }
+  /* שרטוט מפורק: המפלסים נפרדים עם הגלילה */
+  .static [data-fx='stack'] {
+    view-timeline-name: --stack;
+  }
+  .static [data-fx-plate] {
+    animation: st-plate linear both;
+    animation-timeline: --stack;
+    animation-range: contain 5% contain 75%;
+  }
+  .static [data-fx-iso] {
+    animation: st-iso linear both;
+    animation-timeline: --stack;
+    animation-range: contain 0% contain 100%;
+  }
+}
+@supports not (animation-timeline: view()) {
+  .static [data-fx-bar] {
+    display: none;
+  }
+  .static #tour,
+  .static [data-fx='stack'] {
+    height: auto !important;
+  }
+  .static #tour > div,
+  .static [data-fx='stack'] > div {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding-block: 5rem 3rem;
+  }
+  .static #tour > div > div:nth-child(3) {
+    position: static;
+    padding-top: 0;
+  }
+  .static [data-tour-frames] {
+    position: static;
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 1.5rem 1.25rem;
+  }
+  .static .tour-frame {
+    position: relative;
+    flex: 0 0 min(84vw, 640px);
+    opacity: 1;
+    scroll-snap-align: center;
+  }
+  .static .tour-frame img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .static .tour-frame figcaption {
+    position: static;
+    max-width: none;
+    border: 0;
+    background: none;
+    padding: 0.8rem 0 0;
+  }
+}
+@keyframes st-bar {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes st-tilt {
+  from {
+    opacity: 0.3;
+    transform: perspective(1400px) rotateX(18deg) scale(0.92);
+  }
+}
+@keyframes st-head {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(40%);
+  }
+  to {
+    clip-path: inset(0 0 -20% 0);
+  }
+}
+@keyframes st-card {
+  from {
+    transform: rotateX(11deg) scale(0.95);
+  }
+  50% {
+    transform: none;
+  }
+  to {
+    transform: rotateX(-11deg) scale(0.95);
+  }
+}
+@keyframes st-zoom {
+  from {
+    transform: scale(1.2) translateY(-4%);
+  }
+  to {
+    transform: scale(1.02) translateY(4%);
+  }
+}
+@keyframes st-cover {
+  from {
+    opacity: 0.5;
+    transform: perspective(1000px) rotateY(-26deg) scale(0.88);
+  }
+  50% {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0.5;
+    transform: perspective(1000px) rotateY(26deg) scale(0.88);
+  }
+}
+@keyframes st-tour-mid {
+  0% {
+    opacity: 0;
+  }
+  14%,
+  86% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes st-tour-first {
+  0%,
+  86% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes st-tour-last {
+  0% {
+    opacity: 0;
+  }
+  14%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes st-push {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+@keyframes st-plate {
+  from {
+    transform: translateZ(calc(var(--i) * 12px));
+  }
+  to {
+    transform: translateZ(calc(var(--i) * var(--gap)));
+  }
+}
+@keyframes st-iso {
+  from {
+    transform: rotateX(60deg) rotateZ(-48deg);
+  }
+  to {
+    transform: rotateX(60deg) rotateZ(-22deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .static *,
+  .static *::before {
+    animation: none !important;
+  }
+}

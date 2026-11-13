@@ -31,14 +31,15 @@ export function Prism({ faces, heading }: { faces: Face[]; heading: string }) {
   }
 
   return (
-    <section ref={ref} className="relative" style={{ height: `${faces.length * 90}vh` }}>
+    <section ref={ref} data-fx="prism" className="relative" style={{ height: `${faces.length * 90}vh` }}>
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-16 [--w:min(80vw,760px)]">
         <div className="mb-8 flex w-[var(--w)] items-baseline justify-between">
           <h2 className="text-[clamp(2rem,4.4vw,4rem)] font-light leading-none">{heading}</h2>
           <motion.span className="ltr text-mute">{label}</motion.span>
         </div>
-        <div className="h-[calc(var(--w)*0.68)] w-[var(--w)] [perspective:1600px]">
+        <div data-fx-box className="h-[calc(var(--w)*0.68)] w-[var(--w)] [perspective:1600px]">
           <motion.div
+            data-fx-row
             className="relative h-full w-full [transform-style:preserve-3d]"
             style={{ rotateY, z: 'calc(var(--w) / -2)' }}
           >

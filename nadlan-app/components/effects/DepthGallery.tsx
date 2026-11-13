@@ -49,7 +49,7 @@ export function DepthGallery({ shots, title }: { shots: Shot[]; title: string })
   }
 
   return (
-    <section ref={ref} className="relative" style={{ height: `${shots.length * 55 + 70}vh` }}>
+    <section ref={ref} data-fx="depth" className="relative" style={{ height: `${shots.length * 55 + 70}vh` }}>
       <div className="sticky top-0 h-screen overflow-hidden [--spread:17vw] [perspective:1100px] md:[--spread:24vw]">
         <motion.h2
           className="absolute inset-0 grid place-items-center px-5 text-center text-[clamp(4rem,15vw,15rem)] font-bold leading-[0.82]"
@@ -57,7 +57,7 @@ export function DepthGallery({ shots, title }: { shots: Shot[]; title: string })
         >
           {title}
         </motion.h2>
-        <div className="absolute inset-0 [transform-style:preserve-3d]">
+        <div data-fx-row className="absolute inset-0 [transform-style:preserve-3d]">
           {shots.map((s, i) => (
             <Frame key={s.image} shot={s} i={i} n={shots.length} p={scrollYProgress} />
           ))}

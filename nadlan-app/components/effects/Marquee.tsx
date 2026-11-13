@@ -13,7 +13,7 @@ export function Marquee({ items, className }: { items: string[]; className?: str
   const skew = useTransform(v, [-2500, 0, 2500], [14, 0, -14], { clamp: true });
   const row = [...items, ...items, ...items, ...items];
   return (
-    <div ref={ref} dir="ltr" aria-hidden className={`overflow-hidden border-y border-line py-5 ${className ?? ''}`}>
+    <div ref={ref} data-fx-marquee dir="ltr" aria-hidden className={`overflow-hidden border-y border-line py-5 ${className ?? ''}`}>
       <motion.div className="flex w-max items-center gap-10 whitespace-nowrap" style={reduce ? undefined : { x, skewX: skew }}>
         {row.map((t, i) => (
           <span key={i} dir="rtl" className="flex items-center gap-10 font-display text-[clamp(2.5rem,7vw,6rem)] leading-none">

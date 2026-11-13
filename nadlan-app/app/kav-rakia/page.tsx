@@ -30,6 +30,7 @@ export default function Page() {
         <Marquee items={['פארק צמרת', 'שדרות רוטשילד', 'נווה צדק', 'שרונה', 'נמל תל אביב']} />
         <Listings />
         <HouseTour
+          frames="kav-rakia"
           name="פנטהאוז האופק, מבפנים"
           intro="הדמיה תלת־ממדית סכמטית של קומה 44. גללו כדי להיכנס."
           theme={{ bg: '#17111c', wall: '#2e2233', floor: '#3b2b40', furniture: '#70505a', accent: '#f0a05c', podium: 'tower', water: true }}

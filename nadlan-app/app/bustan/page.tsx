@@ -33,6 +33,7 @@ export default function Page() {
         <Marquee items={['ארסוף', 'הרצליה פיתוח', 'קיסריה', 'סביון', 'כפר שמריהו']} />
         <Listings />
         <HouseTour
+          frames="bustan"
           name="בית הגלים, מבפנים"
           intro="הדמיה תלת־ממדית סכמטית. גללו כדי להיכנס."
           theme={{ bg: '#101713', wall: '#e9e2d2', floor: '#2c3d32', furniture: '#8d7c56', accent: '#6fc7bb', podium: 'ground', water: true }}

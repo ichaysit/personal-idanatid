@@ -42,10 +42,10 @@ export function SiteEffects({ name }: { name: string }) {
   return (
     <>
       {/* מסך פתיחה: אנימציית CSS בלבד, כך שהוא נעלם גם אם משהו אחר נכשל */}
-      <div aria-hidden className="fx-intro">
+      <div aria-hidden className="fx-intro" data-fx-intro>
         <span className="fx-intro-name font-display">{name}</span>
       </div>
-      <motion.div aria-hidden className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-right bg-acc" style={{ scaleX: bar }} />
+      <motion.div aria-hidden data-fx-bar className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-right bg-acc" style={{ scaleX: bar }} />
       <div aria-hidden className="fx-grain" />
       <div
         ref={cursor}
