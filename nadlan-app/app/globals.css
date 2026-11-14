@@ -265,7 +265,13 @@
   display: none !important;
 }
 /* כש־JavaScript זמין, מסך הפתיחה נשאר סגור עד שהגרסה המלאה מוכנה */
+/* בלי JavaScript אין מסך פתיחה בכלל: דף שתלוי באנימציה כדי להיחשף
+   נשאר מכוסה בכל קורא קבצים שמקפיא אנימציות. */
+.static .fx-intro {
+  display: none;
+}
 .js .static .fx-intro {
+  display: grid;
   animation: none;
 }
 .js .fx-intro-name {
@@ -317,13 +323,13 @@
 }
 .static h1 > span > span,
 .static h1 > span {
-  animation: st-line 1.1s cubic-bezier(0.16, 1, 0.3, 1) 1.9s both;
+  animation: st-line 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 .static h1 > span:nth-child(2) > span {
-  animation-delay: 2.02s;
+  animation-delay: 0.27s;
 }
 .static h1 > span:nth-child(3) > span {
-  animation-delay: 2.14s;
+  animation-delay: 0.39s;
 }
 .static [data-fx-iso] {
   transform: rotateX(60deg) rotateZ(-38deg);
@@ -395,10 +401,11 @@
     transform: scale(1.14) translate(-1.5%, 1.5%);
   }
 }
+/* מצב הפתיחה של כל אנימציה סטטית נשאר קריא, למקרה שהיא לא תרוץ */
 @keyframes st-line {
   from {
-    clip-path: inset(0 0 100% 0);
-    transform: translateY(60%);
+    opacity: 0.7;
+    transform: translateY(35%);
   }
 }
 
@@ -519,17 +526,14 @@
 }
 @keyframes st-tilt {
   from {
-    opacity: 0.3;
+    opacity: 0.7;
     transform: perspective(1400px) rotateX(18deg) scale(0.92);
   }
 }
 @keyframes st-head {
   from {
-    clip-path: inset(0 0 100% 0);
-    transform: translateY(40%);
-  }
-  to {
-    clip-path: inset(0 0 -20% 0);
+    opacity: 0.65;
+    transform: translateY(35%);
   }
 }
 @keyframes st-card {
@@ -553,7 +557,7 @@
 }
 @keyframes st-cover {
   from {
-    opacity: 0.5;
+    opacity: 0.75;
     transform: perspective(1000px) rotateY(-26deg) scale(0.88);
   }
   50% {
@@ -561,7 +565,7 @@
     transform: none;
   }
   to {
-    opacity: 0.5;
+    opacity: 0.75;
     transform: perspective(1000px) rotateY(26deg) scale(0.88);
   }
 }
@@ -617,5 +621,24 @@
 @media (max-width: 767px) {
   .static-note {
     bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* תצלום הפתיחה של קו רקיע: תנועת מצלמה איטית מאוד */
+.hero-photo {
+  animation: hero-drift 28s ease-in-out infinite alternate;
+  transform-origin: 60% 55%;
+}
+@keyframes hero-drift {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1.13) translate(-1.2%, 0.8%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo {
+    animation: none;
   }
 }

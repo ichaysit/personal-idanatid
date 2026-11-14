@@ -8,7 +8,6 @@ import { Intro, Listings } from '@/components/sections/bustan/Listings';
 import { Night, Service } from '@/components/sections/bustan/Service';
 import { bustan } from '@/lib/constants';
 import { Prism } from '@/components/effects/Prism';
-import { Marquee } from '@/components/effects/Marquee';
 import { SiteEffects } from '@/components/effects/SiteEffects';
 import { Tilt3D } from '@/components/effects/Tilt3D';
 import { HouseTour } from '@/components/sections/HouseTour';
@@ -30,7 +29,6 @@ export default function Page() {
         <Tilt3D>
           <Intro />
         </Tilt3D>
-        <Marquee items={['ארסוף', 'הרצליה פיתוח', 'קיסריה', 'סביון', 'כפר שמריהו']} />
         <Listings />
         <HouseTour
           frames="bustan"

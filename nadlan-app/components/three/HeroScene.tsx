@@ -12,11 +12,13 @@ const CityScene = dynamic(() => import('./CityScene'), { ssr: false });
 const WaterScene = dynamic(() => import('./WaterScene'), { ssr: false });
 const TerrainScene = dynamic(() => import('./TerrainScene'), { ssr: false });
 const HouseScene = dynamic(() => import('./HouseScene'), { ssr: false });
+const ApartmentScene = dynamic(() => import('./ApartmentScene'), { ssr: false });
 
 type Props =
   | { variant: 'city'; className?: string }
   | { variant: 'water'; className?: string; src: string; waterline?: number }
   | { variant: 'house'; className?: string; theme: HouseTheme; scrollTarget: React.RefObject<HTMLElement | null> }
+  | { variant: 'apartment'; className?: string; theme: HouseTheme; photos: string[]; scrollTarget: React.RefObject<HTMLElement | null> }
   | { variant: 'terrain'; className?: string; pins: Pin[]; active: string; onActive: (id: string) => void };
 
 /* אם ה־WebGL לא זמין או קורס, נשארת מתחת תמונת הסצנה והדף ממשיך לעבוד */
@@ -61,6 +63,20 @@ function Scene(props: Props) {
         lights={['#ff9a52', '#c4687a']}
       >
         <CityScene />
+      </SceneCanvas>
+    );
+  }
+  if (props.variant === 'apartment') {
+    return (
+      <SceneCanvas
+        className={props.className}
+        camera={{ position: [0, 1.6, 5.5], fov: 58 }}
+        bloom={{ threshold: 1, intensity: 0.8 }}
+        vignette={0.35}
+        lights={[props.theme.accent, '#ffffff']}
+        scrollTarget={props.scrollTarget}
+      >
+        <ApartmentScene theme={props.theme} photos={props.photos} />
       </SceneCanvas>
     );
   }

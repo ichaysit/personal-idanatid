@@ -1,6 +1,5 @@
 import { Container } from '@/components/layout/Container';
 import { StaggerContainer, StaggerFade, StaggerLine } from '@/components/animations/StaggerContainer';
-import { HeroScene } from '@/components/three/HeroScene';
 import { Button } from '@/components/ui/Button';
 import { img } from '@/lib/utils';
 import { HeroExit } from '@/components/effects/HeroExit';
@@ -8,10 +7,9 @@ import { HeroExit } from '@/components/effects/HeroExit';
 export function Hero() {
   return (
     <section className="relative h-[100svh] min-h-[660px] overflow-hidden">
-      {/* תמונת הסצנה מוצגת מיד, והעיר החיה מכסה אותה כשה־WebGL מוכן */}
-      <img src={img('poster-city')} alt="" className="absolute inset-0 h-full w-full object-cover" />
-      <HeroScene variant="city" />
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-bg via-bg/70 to-transparent" />
+      {/* תצלום של קו החוף של תל אביב בשקיעה, על כל המסך, עם תנועת מצלמה איטית */}
+      <img src={img('tlv-sunset')} alt="מגדלי תל אביב מעל הים בשעת שקיעה, עננים כתומים מעליהם" className="hero-photo absolute inset-0 h-full w-full object-cover" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/25 to-transparent" />
 
       <Container className="pointer-events-none relative flex h-full flex-col justify-end pb-10 md:pb-14">
         <HeroExit>

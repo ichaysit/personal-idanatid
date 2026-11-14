@@ -16,6 +16,28 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const exported = path.resolve(root, '../nadlan');
 const artifact = process.argv.includes('--artifact');
+/* --light: התמונות והגופנים נטענים מהרשת במקום להיות מוטמעים. הקובץ קטן פי ארבעה ונפתח מהר,
+   אבל דורש חיבור לאינטרנט. לא מתאים ל־artifact, שחוסם תמונות חיצוניות. */
+const light = process.argv.includes('--light') && !artifact;
+
+/* מקור כל תצלום ב־Unsplash: מזהה ורוחב. תמונות ההדמיה (poster, tour) הן שלנו ונשארות מוטמעות. */
+const PHOTOS = {
+  'tlv-coast': '1500990702037-7620ccb6a60a', 'tower-white': '1479839672679-a46483c0e7c8', 'tower-angular': '1487958449943-2429e8be8625',
+  'tower-glass': '1486406146926-c627a92ad1ab', 'tower-bw': '1511818966892-d7d671e672a2', 'apt-block': '1515263487990-61b07816b324',
+  'pent-sea': '1600573472550-8090b5e0745e', 'pent-living': '1600607687939-ce8a6c25118c', 'pent-kitchen': '1600585152220-90363fe7e115',
+  'terrace-dusk': '1544984243-ec57ea16fe25', 'bedroom-light': '1600607687644-c7171b42498f', 'villa-hero': '1613490493576-7fde63acd811',
+  'villa-white': '1600596542815-ffad4c1539a9', 'villa-lawn': '1613977257363-707ba9348227', 'villa-hill': '1580587771525-78b9dba3b914',
+  'villa-glass': '1582268611958-ebfd161ef9cf', 'villa-cube': '1512917774080-9991f1c4c750', 'villa-court': '1613553507747-5f8d62ad5904',
+  'villa-tall': '1602343168117-bb8ffe3e2e9f', 'villa-poolside': '1600573472592-401b489a3cdc', 'villa-salon': '1613545325278-f24b0cae1224',
+  'villa-open': '1600566753086-00f18fb6b3ea', 'pool-night': '1542314831-068cd1dbfeeb', 'house-dusk': '1600585154340-be6161a56a0c',
+  'house-tree': '1600607688969-a5bfcd646154', 'house-entry': '1600585154526-990dced4db0d', 'house-gable': '1600563438938-a9a27216b4f5',
+  'house-wood': '1600047509807-ba8f99d2cdde', 'house-timber': '1600566753190-17f0baa2a6c3', 'house-white': '1523217582562-09d0def993a6',
+  'in-plants': '1600210492486-724fe5c67fb0', 'in-warm': '1618221195710-dd6b41faaea6', 'in-mirror': '1622866306950-81d17097d458',
+  'in-bath': '1600566752355-35792bedcfea', 'in-grey': '1600121848594-d8644e57abab',
+};
+const WIDE = new Set(['tlv-coast', 'villa-hero', 'pool-night', 'house-dusk']);
+const GOOGLE_FONTS =
+  'https://fonts.googleapis.com/css2?family=Assistant:wght@300..800&family=Frank+Ruhl+Libre:wght@300..900&family=Heebo:wght@300..800&family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600&family=Karantina:wght@300;400;700&family=Miriam+Libre:wght@400;700&display=swap';
 const outDir = path.resolve(process.argv.slice(2).find((a) => !a.startsWith('--')) ?? path.join(root, 'standalone'));
 const tmp = path.join(root, '.standalone-tmp');
 fs.mkdirSync(outDir, { recursive: true });
@@ -35,8 +57,22 @@ css = css.replace(/url\((["']?)[^)"']*\/_next\/static\/media\/([^)"']+)\1\)/g, (
   return `url(data:font/woff2;base64,${data})`;
 });
 
-const dataUri = (name) =>
+const embed = (name) =>
   'data:image/webp;base64,' + fs.readFileSync(path.join(exported, 'images', `${name}.webp`)).toString('base64');
+const dataUri = (name) =>
+  light && PHOTOS[name]
+    ? `https://images.unsplash.com/photo-${PHOTOS[name]}?w=${WIDE.has(name) ? 1600 : 1100}&q=70&fm=webp&fit=crop`
+    : embed(name);
+
+/* במצב light מסירים את הגופנים המוטמעים ונותנים למשפחות את שמות Google Fonts */
+function lightCss(input) {
+  let out = input.replace(/@font-face\{[^}]*\}/g, '');
+  const names = { karantina: 'Karantina', plex: 'IBM Plex Sans Hebrew', frank: 'Frank Ruhl Libre', heebo: 'Heebo', miriam: 'Miriam Libre', assistant: 'Assistant' };
+  for (const [k, family] of Object.entries(names)) {
+    out = out.replace(new RegExp(`(--font-${k}:)[^;}]*`, 'g'), `$1"${family}",sans-serif`);
+  }
+  return out;
+}
 
 /* תחליפים למודולים של Next שאין להם משמעות בקובץ עצמאי */
 const shimDynamic = path.join(tmp, 'dynamic.js');
@@ -84,7 +120,8 @@ function staticMarkup(site) {
     used.add(m[1]);
     el.setAttribute('data-im', m[1]);
     el.setAttribute('src', dataUri(m[1]));
-    el.removeAttribute('loading');
+    if (!(light && PHOTOS[m[1]])) el.removeAttribute('loading');
+    else if (light) el.setAttribute('crossorigin', 'anonymous');
   });
   /* קישורים פנימיים של האתר המתארח אינם קיימים בקובץ בודד */
   page.querySelectorAll('a[href^="/"]').forEach((a) => a.setAttribute('href', '#'));
@@ -164,7 +201,10 @@ createRoot(document.getElementById('root')!).render(
 
   const safe = (s) => s.replace(/<\/script/gi, '<\\/script');
   const fontClass = /class="([^"]*)"/.exec(/<html[^>]*>/.exec(fs.readFileSync(path.join(exported, site.key, 'index.html'), 'utf8'))[0])[1];
-  const styles = `<style>${css.replace(/<\/style/gi, '<\\/style')}
+  const fontLinks = light
+    ? `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="${GOOGLE_FONTS}">\n`
+    : '';
+  const styles = `${fontLinks}<style>${(light ? lightCss(css) : css).replace(/<\/style/gi, '<\\/style')}
 :root{color-scheme:${site.scheme}}body{background:${site.color};margin:0}</style>`;
 
   /* סקריפט האתחול: אוסף את התמונות מהשכבה הסטטית, ומחליף שכבות כשהגרסה המלאה מוכנה */

@@ -8,7 +8,6 @@ import { Hero } from '@/components/sections/even/Hero';
 import { Materials } from '@/components/sections/even/Materials';
 import { even } from '@/lib/constants';
 import { LayerStack } from '@/components/effects/LayerStack';
-import { Marquee } from '@/components/effects/Marquee';
 import { SiteEffects } from '@/components/effects/SiteEffects';
 import { Tilt3D } from '@/components/effects/Tilt3D';
 import { HouseTour } from '@/components/sections/HouseTour';
@@ -27,7 +26,6 @@ export default function Page() {
       <Navbar site={even} />
       <main>
         <Hero />
-        <Marquee items={['עין כרם', 'זכרון יעקב', 'ראש פינה', 'חיפה', 'מצפה רמון', 'מבשרת ציון']} />
         <Catalogue />
         <HouseTour
           frames="even-vakav"

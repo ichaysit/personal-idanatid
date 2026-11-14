@@ -21,11 +21,11 @@ export type HouseTheme = {
   water: boolean;
 };
 
-const Theme = createContext<{ theme: HouseTheme; edge: THREE.Color; glow: THREE.Color }>(null!);
+export const Theme = createContext<{ theme: HouseTheme; edge: THREE.Color; glow: THREE.Color }>(null!);
 
 type V3 = [number, number, number];
 
-function Block({
+export function Block({
   pos,
   size,
   color,

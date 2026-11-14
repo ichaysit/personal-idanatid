@@ -8,7 +8,6 @@ import { Hero } from '@/components/sections/rakia/Hero';
 import { Listings } from '@/components/sections/rakia/Listings';
 import { rakia } from '@/lib/constants';
 import { DepthGallery } from '@/components/effects/DepthGallery';
-import { Marquee } from '@/components/effects/Marquee';
 import { SiteEffects } from '@/components/effects/SiteEffects';
 import { Tilt3D } from '@/components/effects/Tilt3D';
 import { HouseTour } from '@/components/sections/HouseTour';
@@ -27,19 +26,19 @@ export default function Page() {
       <Navbar site={rakia} />
       <main>
         <Hero />
-        <Marquee items={['פארק צמרת', 'שדרות רוטשילד', 'נווה צדק', 'שרונה', 'נמל תל אביב']} />
         <Listings />
         <HouseTour
           frames="kav-rakia"
+          photos={['pent-living', 'pent-kitchen', 'bedroom-light', 'pent-sea', 'terrace-dusk']}
           name="פנטהאוז האופק, מבפנים"
-          intro="הדמיה תלת־ממדית סכמטית של קומה 44. גללו כדי להיכנס."
-          theme={{ bg: '#17111c', wall: '#2e2233', floor: '#3b2b40', furniture: '#70505a', accent: '#f0a05c', podium: 'tower', water: true }}
+          intro="סיור תלת־ממדי בחדרי הדירה. גללו כדי ללכת במסדרון ולהיכנס לכל חדר."
+          theme={{ bg: '#17111c', wall: '#2e2233', floor: '#241a28', furniture: '#70505a', accent: '#f0a05c', podium: 'ground', water: false }}
           stops={[
-            { at: 0, title: 'ראש המגדל', text: 'הפנטהאוז תופס את כל הקומה העליונה, 150 מטר מעל הרחוב.' },
-            { at: 0.2, title: 'הכניסה', text: 'דלת זכוכית בגובה מלא, ישר מהמרפסת אל הסלון.' },
-            { at: 0.34, title: 'סלון ומטבח, 96 מ״ר', text: 'חלל אחד פתוח, עם אי מטבח ושלוש מנורות תלויות מעליו.' },
-            { at: 0.6, title: 'הגלריה וחדר השינה', text: 'קומת ביניים שמשקיפה על הסלון בגובה כפול.' },
-            { at: 0.8, title: 'המרפסת והבריכה', text: '140 מ״ר של מרפסת, עם בריכה שפונה מערבה אל הים.' },
+            { at: 0, title: 'הסלון', text: 'חלל בגובה כפול עם קיר עץ אלון ויציאה לגג.' },
+            { at: 0.23, title: 'המטבח', text: 'אי מטבח מאבן לבנה, ארבעה מושבים ומדרגות אל הגלריה.' },
+            { at: 0.43, title: 'חדר השינה הראשי', text: 'חלון בגובה מלא אל העצים, וחדר ארונות צמוד.' },
+            { at: 0.63, title: 'המרפסת אל הים', text: 'בריכה פרטית מאחורי מעקה זכוכית, ונוף פתוח מערבה.' },
+            { at: 0.83, title: 'מרפסת השקיעה', text: 'דק עץ ובריכת זרמים, מול שקיעה מעל גגות העיר.' },
           ]}
         />
         <DepthGallery

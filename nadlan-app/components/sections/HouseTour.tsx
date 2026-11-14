@@ -19,11 +19,13 @@ type Props = {
   name: string;
   intro: string;
   stops: TourStop[];
+  /** שמות תצלומי החדרים. כשהם ניתנים, הסיור הוא דירה מתצלומים במקום הדמיה סכמטית. */
+  photos?: string[];
   /** true כשהרקע של הסצנה בהיר והטקסט צריך להיות כהה */
   light?: boolean;
 };
 
-export function HouseTour({ theme, frames, name, intro, stops, light }: Props) {
+export function HouseTour({ theme, frames, name, intro, stops, photos, light }: Props) {
   const ref = useRef<HTMLElement>(null);
   const [step, setStep] = useState(0);
   const bar = useRef<HTMLSpanElement>(null);
@@ -68,7 +70,11 @@ export function HouseTour({ theme, frames, name, intro, stops, light }: Props) {
             </figure>
           ))}
         </div>
-        <HeroScene variant="house" theme={theme} scrollTarget={ref} />
+        {photos ? (
+          <HeroScene variant="apartment" theme={theme} photos={photos.map((n) => img(n))} scrollTarget={ref} />
+        ) : (
+          <HeroScene variant="house" theme={theme} scrollTarget={ref} />
+        )}
 
         <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-6 px-5 pt-20 sm:px-8 lg:px-14">
           <div>
