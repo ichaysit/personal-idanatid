@@ -19,6 +19,11 @@ const artifact = process.argv.includes('--artifact');
 /* --light: התמונות והגופנים נטענים מהרשת במקום להיות מוטמעים. הקובץ קטן פי ארבעה ונפתח מהר,
    אבל דורש חיבור לאינטרנט. לא מתאים ל־artifact, שחוסם תמונות חיצוניות. */
 const light = process.argv.includes('--light') && !artifact;
+/* --compact: הכול מוטמע בקובץ ואין צורך ברשת, אבל התמונות נלקחות מתיקייה של גרסאות דחוסות
+   (--images <תיקייה>) ומוטמעים רק הגופנים של האתר עצמו. זה המצב המתאים לפתיחת הקובץ בטלפון. */
+const compact = process.argv.includes('--compact');
+const imagesArg = process.argv.indexOf('--images');
+const imageDir = imagesArg > -1 ? path.resolve(process.argv[imagesArg + 1]) : null;
 
 /* מקור כל תצלום ב־Unsplash: מזהה ורוחב. תמונות ההדמיה (poster, tour) הן שלנו ונשארות מוטמעות. */
 const PHOTOS = {
@@ -38,7 +43,7 @@ const PHOTOS = {
 const WIDE = new Set(['tlv-coast', 'villa-hero', 'pool-night', 'house-dusk']);
 const GOOGLE_FONTS =
   'https://fonts.googleapis.com/css2?family=Assistant:wght@300..800&family=Frank+Ruhl+Libre:wght@300..900&family=Heebo:wght@300..800&family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600&family=Karantina:wght@300;400;700&family=Miriam+Libre:wght@400;700&display=swap';
-const outDir = path.resolve(process.argv.slice(2).find((a) => !a.startsWith('--')) ?? path.join(root, 'standalone'));
+const outDir = path.resolve(process.argv.slice(2).find((a, i, all) => !a.startsWith('--') && all[i - 1] !== '--images') ?? path.join(root, 'standalone'));
 const tmp = path.join(root, '.standalone-tmp');
 fs.mkdirSync(outDir, { recursive: true });
 fs.mkdirSync(tmp, { recursive: true });
@@ -58,11 +63,23 @@ css = css.replace(/url\((["']?)[^)"']*\/_next\/static\/media\/([^)"']+)\1\)/g, (
 });
 
 const embed = (name) =>
-  'data:image/webp;base64,' + fs.readFileSync(path.join(exported, 'images', `${name}.webp`)).toString('base64');
+  'data:image/webp;base64,' + fs.readFileSync(path.join(imageDir ?? path.join(exported, 'images'), `${name}.webp`)).toString('base64');
 const dataUri = (name) =>
   light && PHOTOS[name]
     ? `https://images.unsplash.com/photo-${PHOTOS[name]}?w=${WIDE.has(name) ? 1600 : 1100}&q=70&fm=webp&fit=crop`
     : embed(name);
+
+/* במצב compact נשארים רק הגופנים של האתר, ורק תווי עברית ולטינית בסיסית */
+const FAMILIES = { 'kav-rakia': ['Karantina', 'IBM Plex Sans Hebrew'], bustan: ['Frank Ruhl Libre', 'Heebo'], 'even-vakav': ['Miriam Libre', 'Assistant'] };
+function compactCss(input, key) {
+  return input.replace(/@font-face\{[^}]*\}/g, (rule) => {
+    const family = /font-family:\s*"?([^;"}]+)"?/.exec(rule)?.[1].trim() ?? '';
+    if (/Fallback$/.test(family)) return FAMILIES[key].some((f) => family.startsWith(f)) ? rule : '';
+    if (!FAMILIES[key].includes(family)) return '';
+    const range = /unicode-range:([^;}]*)/.exec(rule)?.[1] ?? '';
+    return /u\+0590/i.test(range) || /^\s*u\+00\?\?/i.test(range) ? rule : '';
+  });
+}
 
 /* במצב light מסירים את הגופנים המוטמעים ונותנים למשפחות את שמות Google Fonts */
 function lightCss(input) {
@@ -204,7 +221,7 @@ createRoot(document.getElementById('root')!).render(
   const fontLinks = light
     ? `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="${GOOGLE_FONTS}">\n`
     : '';
-  const styles = `${fontLinks}<style>${(light ? lightCss(css) : css).replace(/<\/style/gi, '<\\/style')}
+  const styles = `${fontLinks}<style>${(light ? lightCss(css) : compact ? compactCss(css, site.key) : css).replace(/<\/style/gi, '<\\/style')}
 :root{color-scheme:${site.scheme}}body{background:${site.color};margin:0}</style>`;
 
   /* סקריפט האתחול: אוסף את התמונות מהשכבה הסטטית, ומחליף שכבות כשהגרסה המלאה מוכנה */
