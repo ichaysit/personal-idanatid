@@ -642,3 +642,75 @@
     animation: none;
   }
 }
+
+/* =====================================================================
+   כל האתר זז בעומק: ‎--mx ו־‎--my (בין ‎-1 ל־1) נקבעים לפי הסמן, האצבע או הטיית הטלפון.
+   כל שכבה זזה בעוצמה ובכיוון משלה, וזה מה שיוצר את תחושת העומק.
+   משתמשים ב־translate / rotate / scale הנפרדים, כדי לא להתנגש ב־transform של אנימציות אחרות.
+   ===================================================================== */
+@property --mx {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+@property --my {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+[data-site] {
+  --mx: 0;
+  --my: 0;
+  --amp: 1;
+}
+@media (max-width: 767px) {
+  [data-site] {
+    --amp: 0.6;
+  }
+}
+[data-site] main > * {
+  translate: calc(var(--mx) * var(--amp) * -12px) calc(var(--my) * var(--amp) * -8px);
+}
+[data-site] main h1,
+[data-site] main h2 {
+  translate: calc(var(--mx) * var(--amp) * 22px) calc(var(--my) * var(--amp) * 12px);
+}
+[data-site] main .overflow-hidden img,
+[data-site] main > section:first-child > img {
+  translate: calc(var(--mx) * var(--amp) * -26px) calc(var(--my) * var(--amp) * -16px);
+  scale: 1.09;
+}
+[data-site] .tilt-scene {
+  rotate: y calc(var(--mx) * var(--amp) * 5deg);
+}
+[data-site] main p {
+  translate: calc(var(--mx) * var(--amp) * 7px) calc(var(--my) * var(--amp) * 4px);
+}
+[data-site] header > div {
+  translate: calc(var(--mx) * var(--amp) * 8px) 0;
+}
+/* בלי JavaScript: אותה תנועה, מונעת על ידי אנימציית CSS של המשתנים */
+.static [data-site] {
+  animation: st-sway-x 7s ease-in-out infinite alternate, st-sway-y 9.5s ease-in-out infinite alternate;
+}
+@keyframes st-sway-x {
+  from {
+    --mx: -0.75;
+  }
+  to {
+    --mx: 0.75;
+  }
+}
+@keyframes st-sway-y {
+  from {
+    --my: -0.5;
+  }
+  to {
+    --my: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .static [data-site] {
+    animation: none;
+  }
+}

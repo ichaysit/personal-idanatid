@@ -10,7 +10,6 @@ import { rakia } from '@/lib/constants';
 import { DepthGallery } from '@/components/effects/DepthGallery';
 import { SiteEffects } from '@/components/effects/SiteEffects';
 import { Tilt3D } from '@/components/effects/Tilt3D';
-import { HouseTour } from '@/components/sections/HouseTour';
 
 export const metadata: Metadata = {
   title: 'קו רקיע | פנטהאוזים ודירות במגדלי תל אביב',
@@ -27,20 +26,6 @@ export default function Page() {
       <main>
         <Hero />
         <Listings />
-        <HouseTour
-          frames="kav-rakia"
-          photos={['pent-living', 'pent-kitchen', 'bedroom-light', 'pent-sea', 'terrace-dusk']}
-          name="פנטהאוז האופק, מבפנים"
-          intro="סיור תלת־ממדי בחדרי הדירה. גללו כדי ללכת במסדרון ולהיכנס לכל חדר."
-          theme={{ bg: '#17111c', wall: '#2e2233', floor: '#241a28', furniture: '#70505a', accent: '#f0a05c', podium: 'ground', water: false }}
-          stops={[
-            { at: 0, title: 'הסלון', text: 'חלל בגובה כפול עם קיר עץ אלון ויציאה לגג.' },
-            { at: 0.23, title: 'המטבח', text: 'אי מטבח מאבן לבנה, ארבעה מושבים ומדרגות אל הגלריה.' },
-            { at: 0.43, title: 'חדר השינה הראשי', text: 'חלון בגובה מלא אל העצים, וחדר ארונות צמוד.' },
-            { at: 0.63, title: 'המרפסת אל הים', text: 'בריכה פרטית מאחורי מעקה זכוכית, ונוף פתוח מערבה.' },
-            { at: 0.83, title: 'מרפסת השקיעה', text: 'דק עץ ובריכת זרמים, מול שקיעה מעל גגות העיר.' },
-          ]}
-        />
         <DepthGallery
           title="מבפנים החוצה"
           shots={[

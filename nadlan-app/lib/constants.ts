@@ -45,7 +45,6 @@ export const rakia: Site = {
   license: 'רישיון תיווך 3120457',
   nav: [
     { label: 'נכסים', href: '#listings' },
-    { label: 'סיור תלת־ממדי', href: '#tour' },
     { label: 'שכונות', href: '#areas' },
     { label: 'הצוות', href: '#team' },
     { label: 'תיאום סיור', href: '#contact' },
@@ -152,7 +151,6 @@ export const bustan: Site = {
   license: 'רישיון תיווך 2987103',
   nav: [
     { label: 'וילות', href: '#listings' },
-    { label: 'סיור תלת־ממדי', href: '#tour' },
     { label: 'השירות', href: '#service' },
     { label: 'צור קשר', href: '#contact' },
   ],
@@ -253,7 +251,6 @@ export const even: Site = {
   license: 'רישיון תיווך 3304618',
   nav: [
     { label: 'הקטלוג', href: '#listings' },
-    { label: 'סיור תלת־ממדי', href: '#tour' },
     { label: 'חומרים', href: '#materials' },
     { label: 'ביקור בבית', href: '#contact' },
   ],
