@@ -9,20 +9,6 @@ import {
 } from "remotion";
 import { FONT } from "./font";
 
-// Words to emphasise in the brand colour.
-const KEYWORDS = new Set([
-  "קלה!",
-  "עידן",
-  "עתיד,",
-  "AI,",
-  "תעקבו!",
-  "עובד?",
-  "מקצועי",
-  "שיש.",
-  "עיצוב,",
-  "ותחזוקה.",
-]);
-
 export const ACCENT = "#FFD60A";
 export const ACCENT_2 = "#3DFFB0";
 
@@ -88,8 +74,6 @@ export const WordCaptions: React.FC<{
         {page.tokens.map((t, i) => {
           const word = t.text.trim();
           const active = ms >= t.fromMs && ms < t.toMs;
-          const spoken = ms >= t.fromMs;
-          const isKey = KEYWORDS.has(word);
           const activeFrame = frame - Math.round((t.fromMs / 1000) * fps);
           const wordPop = active
             ? spring({
@@ -98,13 +82,7 @@ export const WordCaptions: React.FC<{
                 config: { damping: 10, stiffness: 300, mass: 0.5 },
               })
             : 1;
-          const color = isKey
-            ? ACCENT
-            : active
-              ? ACCENT_2
-              : spoken
-                ? "#FFFFFF"
-                : "rgba(255,255,255,0.92)";
+          const color = "#FFFFFF";
           return (
             <span
               key={i}

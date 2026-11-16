@@ -16,8 +16,9 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { ACCENT, ACCENT_2, WordCaptions } from "./Captions";
+import { WordCaptions } from "./Captions";
 import { FONT } from "./font";
+import { Glass, onGlassText } from "./Glass";
 
 const FPS = 60;
 const W = 2160;
@@ -25,8 +26,8 @@ const H = 3840;
 
 // Segment lengths in frames (segments are pre-cut, denoised, 60fps, 4K).
 const SEG = {
-  s1: 119,
-  s2: 220,
+  s1: 163,
+  s2: 222,
   s3: 94,
   s4: 317,
   s5: 243,
@@ -120,32 +121,12 @@ const Grade: React.FC = () => (
   />
 );
 
-const ProgressBar: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        height: 18,
-        width: `${(frame / durationInFrames) * 100}%`,
-        background: `linear-gradient(270deg, ${ACCENT}, ${ACCENT_2})`,
-        boxShadow: `0 0 30px ${ACCENT}`,
-      }}
-    />
-  );
-};
-
 /** Pill label that springs in. */
 const Pill: React.FC<{
   children: React.ReactNode;
   top: number;
-  bg?: string;
-  color?: string;
   size?: number;
-}> = ({ children, top, bg = ACCENT, color = "#000", size = 110 }) => {
+}> = ({ children, top, size = 110 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const s = spring({ frame, fps, config: { damping: 11, stiffness: 180 } });
@@ -163,18 +144,21 @@ const Pill: React.FC<{
     >
       <div
         style={{
-          fontFamily: FONT,
-          fontWeight: 900,
-          fontSize: size,
-          color,
-          background: bg,
-          padding: "26px 70px 34px",
-          borderRadius: 999,
-          boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
           transform: `scale(${s}) rotate(${interpolate(s, [0, 1], [-8, -2])}deg)`,
         }}
       >
-        {children}
+        <Glass>
+          <div
+            style={{
+              fontFamily: FONT,
+              fontWeight: 900,
+              fontSize: size,
+              ...onGlassText,
+            }}
+          >
+            {children}
+          </div>
+        </Glass>
       </div>
     </div>
   );
@@ -200,30 +184,14 @@ const NameTag: React.FC = () => {
         gap: 14,
       }}
     >
-      <div
-        style={{
-          fontWeight: 900,
-          fontSize: 120,
-          color: "#000",
-          background: ACCENT,
-          padding: "14px 50px 22px",
-          borderRadius: 26,
-        }}
-      >
-        ישי סיטבון
-      </div>
-      <div
-        style={{
-          fontWeight: 700,
-          fontSize: 78,
-          color: "#fff",
-          background: "rgba(0,0,0,0.72)",
-          padding: "12px 40px 18px",
-          borderRadius: 22,
-        }}
-      >
-        אתרים ואפליקציות לעסקים
-      </div>
+      <Glass radius={56} padding="22px 60px 30px">
+        <div style={{ fontWeight: 900, fontSize: 120, lineHeight: 1.1, ...onGlassText }}>
+          ישי סיטבון
+        </div>
+        <div style={{ fontWeight: 700, fontSize: 76, lineHeight: 1.2, ...onGlassText }}>
+          אתרים ואפליקציות לעסקים
+        </div>
+      </Glass>
     </div>
   );
 };
@@ -256,15 +224,12 @@ const Check: React.FC<{ label: string; delay: number; index: number }> = ({
         fontFamily: FONT,
         fontWeight: 900,
         fontSize: 104,
-        color: "#fff",
-        background: "rgba(0,0,0,0.7)",
-        padding: "16px 50px 24px 60px",
-        borderRadius: 30,
-        border: `5px solid ${ACCENT_2}`,
       }}
     >
+      <Glass radius={999} padding="14px 40px 22px 60px" sweepDelay={index * 20}>
+      <div style={{ display: "flex", alignItems: "center", gap: 34, ...onGlassText }}>
       <svg width="96" height="96" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="12" fill={ACCENT_2} />
+        <circle cx="12" cy="12" r="12" fill="#fff" />
         <path
           d="M6.5 12.5l3.5 3.5 7.5-8"
           stroke="#000"
@@ -277,6 +242,8 @@ const Check: React.FC<{ label: string; delay: number; index: number }> = ({
         />
       </svg>
       {label}
+      </div>
+      </Glass>
     </div>
   );
 };
@@ -307,19 +274,11 @@ const FollowCTA: React.FC = () => {
         transform: `scale(${s * pulse})`,
       }}
     >
-      <div
-        style={{
-          fontWeight: 900,
-          fontSize: 150,
-          color: "#000",
-          background: `linear-gradient(90deg, ${ACCENT}, ${ACCENT_2})`,
-          padding: "30px 100px 44px",
-          borderRadius: 999,
-          boxShadow: `0 0 80px ${ACCENT}`,
-        }}
-      >
-        + עקבו עכשיו
-      </div>
+      <Glass tint="rgba(255,255,255,0.55)" padding="30px 100px 44px">
+        <div style={{ fontWeight: 900, fontSize: 150, color: "#111" }}>
+          + עקבו עכשיו
+        </div>
+      </Glass>
       <div
         style={{
           fontWeight: 700,
@@ -342,30 +301,31 @@ export const Montage: React.FC = () => {
       <Series>
         {/* HOOK */}
         <Series.Sequence name="Hook" durationInFrames={SEG.s1}>
-          <Shot src="s1.mov" zoomFrom={1.3} zoomTo={1.42} originY="52%" />
+          <Shot src="s1.mov" zoomFrom={1.12} zoomTo={1.24} originY="40%" />
           <Grade />
-          <Pill top={430} size={96} bg="#fff">
+          <Pill top={430} size={96}>
             בניית אתר לעסק?
           </Pill>
           <WordCaptions
             name="Hook captions"
             combineMs={500}
             captions={cap([
-              ["רכישת", 0, 420],
-              ["אתרי", 420, 660],
-              ["אינטרנט", 660, 1000],
-              ["מעולם", 1000, 1260],
-              ["לא", 1260, 1330],
-              ["הייתה", 1330, 1440],
-              ["כזאת", 1440, 1800],
-              ["קלה!", 1800, 2020],
+              ["רכישת", 0, 460],
+              ["אתרי", 460, 680],
+              ["אינטרנט", 680, 1080],
+              ["ואפליקציות", 1080, 1620],
+              ["מעולם", 1620, 1940],
+              ["לא", 1940, 2020],
+              ["הייתה", 2020, 2240],
+              ["כזאת", 2240, 2480],
+              ["קלה!", 2480, 2750],
             ])}
           />
         </Series.Sequence>
 
         {/* INTRO */}
         <Series.Sequence name="Intro" durationInFrames={SEG.s2}>
-          <Shot src="s2.mov" zoomFrom={1.48} zoomTo={1.4} originY="50%" />
+          <Shot src="s2.mov" zoomFrom={1.34} zoomTo={1.26} originY="38%" />
           <Flash />
           <Grade />
           <Sequence from={ms(250)}>
@@ -375,17 +335,16 @@ export const Montage: React.FC = () => {
             name="Intro captions"
             captions={cap([
               ["היי,", 0, 320],
-              ["אני", 320, 500],
-              ["ישי", 500, 640],
-              ["סיטבון", 640, 1040],
-              ["ויוצר", 1040, 1560],
-              ["אתרים", 1560, 1840],
-              ["ואפליקציות", 1840, 2320],
-              ["ווב", 2320, 2480],
-              ["לכל", 2480, 2760],
-              ["מיני", 2760, 2920],
-              ["עסקים", 2920, 3200],
-              ["בישראל.", 3200, 3670],
+              ["אני", 340, 460],
+              ["ישי", 460, 600],
+              ["סיטבון", 600, 1020],
+              ["ויוצר", 1020, 1500],
+              ["אתרים", 1500, 1840],
+              ["ואפליקציות", 1840, 2380],
+              ["לכל", 2380, 2860],
+              ["מיני", 2860, 3000],
+              ["עסקים", 3000, 3280],
+              ["בישראל.", 3280, 3700],
             ])}
           />
         </Series.Sequence>
@@ -541,7 +500,6 @@ export const Montage: React.FC = () => {
         </Sequence>
       ))}
 
-      <ProgressBar />
     </AbsoluteFill>
   );
 };
