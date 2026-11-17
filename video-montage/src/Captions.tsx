@@ -17,7 +17,7 @@ export const WordCaptions: React.FC<{
   captions: Caption[];
   combineMs?: number;
   top?: number;
-}> = ({ captions, combineMs = 650, top = 2380 }) => {
+}> = ({ captions, combineMs = 650, top = 2800 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const ms = (frame / fps) * 1000;
@@ -58,11 +58,11 @@ export const WordCaptions: React.FC<{
           flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
-          columnGap: 54,
+          columnGap: 40,
           rowGap: 10,
           fontFamily: FONT,
           fontWeight: 900,
-          fontSize: 168,
+          fontSize: 126,
           lineHeight: 1.12,
           textAlign: "center",
           transform: `scale(${interpolate(pop, [0, 1], [0.78, 1])}) translateY(${interpolate(pop, [0, 1], [40, 0])}px)`,
@@ -88,12 +88,12 @@ export const WordCaptions: React.FC<{
               key={i}
               style={{
                 display: "inline-block",
-                margin: active ? "0 22px" : 0,
+                margin: active ? "0 16px" : 0,
                 color,
-                WebkitTextStroke: "14px #000",
+                WebkitTextStroke: "11px #000",
                 paintOrder: "stroke fill",
                 textShadow:
-                  "0 10px 0 rgba(0,0,0,0.85), 0 0 40px rgba(0,0,0,0.55)",
+                  "0 8px 0 rgba(0,0,0,0.85), 0 0 32px rgba(0,0,0,0.55)",
                 transform: `scale(${active ? interpolate(wordPop, [0, 1], [1.28, 1.08]) : 1}) rotate(${active ? interpolate(wordPop, [0, 1], [-4, 0]) : 0}deg)`,
               }}
             >
