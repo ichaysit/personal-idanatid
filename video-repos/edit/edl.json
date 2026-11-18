@@ -1,0 +1,12 @@
+{"source": "/root/.claude/uploads/66e91768-cfbf-5daa-a0bd-c58e2e37e705/10d44f7a-WhatsApp_Video_2026-11-19_at_01.28.56.mp4",
+ "ranges": [
+  {"start": 0.70, "end": 1.00, "beat": "HOOK"},
+  {"start": 1.36, "end": 3.95, "beat": "HOOK"},
+  {"start": 5.22, "end": 11.88, "beat": "PROBLEM"},
+  {"start": 12.48, "end": 15.02, "beat": "TWIST"},
+  {"start": 22.12, "end": 29.52, "beat": "REPO1"},
+  {"start": 31.02, "end": 34.56, "beat": "REPO2"},
+  {"start": 37.40, "end": 42.74, "beat": "REPO2"},
+  {"start": 45.42, "end": 52.08, "beat": "REPO3"},
+  {"start": 64.92, "end": 70.30, "beat": "CTA"}
+ ]}
