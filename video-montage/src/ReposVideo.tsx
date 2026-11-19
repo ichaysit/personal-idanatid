@@ -22,10 +22,13 @@ const FPS = 60;
 const f = (s: number) => Math.round(s * FPS);
 const CARD_S = 3.4;
 
-const REPOS: { src: string; at: number; label: string }[] = [
-  { src: "repo1.png", at: EVENTS.repo1, label: "1" },
-  { src: "repo2.png", at: EVENTS.repo2, label: "2" },
-  { src: "repo3.png", at: EVENTS.repo3, label: "3" },
+// #1 Motion Video Director and #2 BeatSync both come from mattypark/Motion-graphics-skill
+// (#2 zooms toward the "animate, edit, caption and sound-design" description);
+// #3 Script-to-Timeline is digitalsamba/claude-code-video-toolkit.
+const REPOS: { src: string; at: number; label: string; origin: string }[] = [
+  { src: "repo1.png", at: EVENTS.repo1, label: "1", origin: "40% 0%" },
+  { src: "repo1.png", at: EVENTS.repo2, label: "2", origin: "92% 28%" },
+  { src: "repo2.png", at: EVENTS.repo3, label: "3", origin: "40% 0%" },
 ];
 
 export const ReposVideoComposition = () => (
@@ -138,11 +141,12 @@ const CalmCaptions: React.FC = () => {
 };
 
 /** Big, readable GitHub repo card with a slow zoom toward the repo title. */
-const RepoCard: React.FC<{ src: string; label: string; frames: number }> = ({
-  src,
-  label,
-  frames,
-}) => {
+const RepoCard: React.FC<{
+  src: string;
+  label: string;
+  frames: number;
+  origin: string;
+}> = ({ src, label, frames, origin }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const enter = spring({ frame, fps, config: { damping: 15, stiffness: 150 } });
@@ -182,7 +186,7 @@ const RepoCard: React.FC<{ src: string; label: string; frames: number }> = ({
               width: "100%",
               display: "block",
               transform: `scale(${kenBurns})`,
-              transformOrigin: "40% 0%",
+              transformOrigin: origin,
             }}
           />
         </div>
@@ -281,8 +285,8 @@ export const ReposVideo: React.FC = () => {
       </Sequence>
 
       {REPOS.map((r) => (
-        <Sequence key={r.src} from={f(r.at)} durationInFrames={cardFrames}>
-          <RepoCard src={r.src} label={r.label} frames={cardFrames} />
+        <Sequence key={r.label} from={f(r.at)} durationInFrames={cardFrames}>
+          <RepoCard src={r.src} label={r.label} frames={cardFrames} origin={r.origin} />
         </Sequence>
       ))}
 
@@ -300,7 +304,7 @@ export const ReposVideo: React.FC = () => {
       <Sfx at={EVENTS.wait} file="impact" volume={0.4} />
       <Sfx at={EVENTS.claude} file="ding" volume={0.28} />
       {REPOS.map((r) => (
-        <React.Fragment key={r.src}>
+        <React.Fragment key={r.label}>
           <Sfx at={r.at - 0.3} file="whoosh_in" volume={0.4} />
           <Sfx at={r.at + CARD_S - 0.3} file="swish_out" volume={0.25} />
         </React.Fragment>
