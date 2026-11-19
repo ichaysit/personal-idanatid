@@ -1,12 +1,220 @@
-{"source": "/root/.claude/uploads/66e91768-cfbf-5daa-a0bd-c58e2e37e705/10d44f7a-WhatsApp_Video_2026-11-19_at_01.28.56.mp4",
+{
+ "source": "/root/.claude/uploads/66e91768-cfbf-5daa-a0bd-c58e2e37e705/10d44f7a-WhatsApp_Video_2026-11-19_at_01.28.56.mp4",
  "ranges": [
-  {"start": 0.70, "end": 1.00, "beat": "HOOK"},
-  {"start": 1.36, "end": 3.95, "beat": "HOOK"},
-  {"start": 5.22, "end": 11.88, "beat": "PROBLEM"},
-  {"start": 12.48, "end": 15.02, "beat": "TWIST"},
-  {"start": 22.12, "end": 29.52, "beat": "REPO1"},
-  {"start": 31.02, "end": 34.56, "beat": "REPO2"},
-  {"start": 37.40, "end": 42.74, "beat": "REPO2"},
-  {"start": 45.42, "end": 52.08, "beat": "REPO3"},
-  {"start": 64.92, "end": 70.30, "beat": "CTA"}
- ]}
+  {
+   "start": 0.7,
+   "end": 1.0,
+   "beat": "HOOK",
+   "range": 0,
+   "sub": 0
+  },
+  {
+   "start": 1.36,
+   "end": 3.24,
+   "beat": "HOOK",
+   "range": 1,
+   "sub": 0
+  },
+  {
+   "start": 3.59,
+   "end": 3.95,
+   "beat": "HOOK",
+   "range": 1,
+   "sub": 1
+  },
+  {
+   "start": 5.22,
+   "end": 8.1,
+   "beat": "PROBLEM",
+   "range": 2,
+   "sub": 0
+  },
+  {
+   "start": 8.37,
+   "end": 11.88,
+   "beat": "PROBLEM",
+   "range": 2,
+   "sub": 1
+  },
+  {
+   "start": 12.48,
+   "end": 12.88,
+   "beat": "TWIST",
+   "range": 3,
+   "sub": 0
+  },
+  {
+   "start": 13.08,
+   "end": 15.02,
+   "beat": "TWIST",
+   "range": 3,
+   "sub": 1
+  },
+  {
+   "start": 22.12,
+   "end": 22.89,
+   "beat": "REPO1",
+   "range": 4,
+   "sub": 0
+  },
+  {
+   "start": 23.1,
+   "end": 24.13,
+   "beat": "REPO1",
+   "range": 4,
+   "sub": 1
+  },
+  {
+   "start": 24.44,
+   "end": 26.64,
+   "beat": "REPO1",
+   "range": 4,
+   "sub": 2
+  },
+  {
+   "start": 26.87,
+   "end": 27.75,
+   "beat": "REPO1",
+   "range": 4,
+   "sub": 3
+  },
+  {
+   "start": 27.99,
+   "end": 28.75,
+   "beat": "REPO1",
+   "range": 4,
+   "sub": 4
+  },
+  {
+   "start": 28.93,
+   "end": 29.52,
+   "beat": "REPO1",
+   "range": 4,
+   "sub": 5
+  },
+  {
+   "start": 31.02,
+   "end": 32.16,
+   "beat": "REPO2",
+   "range": 5,
+   "sub": 0
+  },
+  {
+   "start": 32.37,
+   "end": 32.63,
+   "beat": "REPO2",
+   "range": 5,
+   "sub": 1
+  },
+  {
+   "start": 32.93,
+   "end": 34.56,
+   "beat": "REPO2",
+   "range": 5,
+   "sub": 2
+  },
+  {
+   "start": 37.4,
+   "end": 42.74,
+   "beat": "REPO2",
+   "range": 6,
+   "sub": 0
+  },
+  {
+   "start": 45.42,
+   "end": 46.79,
+   "beat": "REPO3",
+   "range": 7,
+   "sub": 0
+  },
+  {
+   "start": 46.97,
+   "end": 47.79,
+   "beat": "REPO3",
+   "range": 7,
+   "sub": 1
+  },
+  {
+   "start": 48.2,
+   "end": 49.85,
+   "beat": "REPO3",
+   "range": 7,
+   "sub": 2
+  },
+  {
+   "start": 50.03,
+   "end": 51.02,
+   "beat": "REPO3",
+   "range": 7,
+   "sub": 3
+  },
+  {
+   "start": 51.36,
+   "end": 52.08,
+   "beat": "REPO3",
+   "range": 7,
+   "sub": 4
+  },
+  {
+   "start": 64.92,
+   "end": 68.25,
+   "beat": "CTA",
+   "range": 8,
+   "sub": 0
+  },
+  {
+   "start": 68.44,
+   "end": 70.3,
+   "beat": "CTA",
+   "range": 8,
+   "sub": 1
+  }
+ ],
+ "ranges_v1": [
+  {
+   "start": 0.7,
+   "end": 1.0,
+   "beat": "HOOK"
+  },
+  {
+   "start": 1.36,
+   "end": 3.95,
+   "beat": "HOOK"
+  },
+  {
+   "start": 5.22,
+   "end": 11.88,
+   "beat": "PROBLEM"
+  },
+  {
+   "start": 12.48,
+   "end": 15.02,
+   "beat": "TWIST"
+  },
+  {
+   "start": 22.12,
+   "end": 29.52,
+   "beat": "REPO1"
+  },
+  {
+   "start": 31.02,
+   "end": 34.56,
+   "beat": "REPO2"
+  },
+  {
+   "start": 37.4,
+   "end": 42.74,
+   "beat": "REPO2"
+  },
+  {
+   "start": 45.42,
+   "end": 52.08,
+   "beat": "REPO3"
+  },
+  {
+   "start": 64.92,
+   "end": 70.3,
+   "beat": "CTA"
+  }
+ ]
+}
